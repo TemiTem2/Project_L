@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3634031282607385664}
   - component: {fileID: 5558405701907354490}
   - component: {fileID: 358502373267005105}
-  - component: {fileID: 515582074594447095}
+  - component: {fileID: 5169938293803056058}
   - component: {fileID: 122378209979712388}
   m_Layer: 6
-  m_Name: Player
+  m_Name: Knight
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &515582074594447095
+--- !u!114 &5169938293803056058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,20 +121,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6814142038444446381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9298f85ceedc27c4cb1065039d16322a, type: 3}
+  m_Script: {fileID: 11500000, guid: f75022e8d6f19694a838c1caf84c07e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Maxhp: 100
   hp: 0
   speed: 5
   attackRange: 3
-  attackSpeed: 2
+  attackSpeed: 1
   attackDamage: 5
-  recoverTime: 0
+  recoverTime: 5
   attackAngle: 90
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  skill1Cooldown: 5
 --- !u!70 &122378209979712388
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
