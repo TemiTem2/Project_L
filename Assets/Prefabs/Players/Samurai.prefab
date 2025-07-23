@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2470215546566281090}
   - component: {fileID: 3620659697407189137}
   - component: {fileID: 6345623448021550725}
-  - component: {fileID: 5133489509483136575}
   - component: {fileID: 3014500805202314346}
+  - component: {fileID: 5710725570706816974}
   m_Layer: 6
   m_Name: Samurai
   m_TagString: Player
@@ -127,30 +127,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.043288864, y: -0.0024047138}
   m_Size: {x: 0.35703933, y: 0.5157654}
   m_Direction: 0
---- !u!114 &5133489509483136575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401003900509782659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9298f85ceedc27c4cb1065039d16322a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Maxhp: 100
-  hp: 0
-  speed: 7
-  attackRange: 8
-  attackSpeed: 2
-  attackDamage: 2
-  recoverTime: 3
-  attackAngle: 2
-  enemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  skill1Cooldown: 5
 --- !u!95 &3014500805202314346
 Animator:
   serializedVersion: 7
@@ -173,3 +149,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5710725570706816974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401003900509782659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b66ffe2c14dd5e4f959bed87a49319d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  anim: {fileID: 3014500805202314346}
+  skill1Damage: 5
+  skill1MoveRange: 5

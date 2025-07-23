@@ -124,18 +124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75022e8d6f19694a838c1caf84c07e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Maxhp: 100
-  hp: 0
-  speed: 5
-  attackRange: 3
-  attackSpeed: 1
-  attackDamage: 5
-  recoverTime: 5
-  attackAngle: 90
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  skill1Cooldown: 5
+  anim: {fileID: 358502373267005105}
 --- !u!70 &122378209979712388
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

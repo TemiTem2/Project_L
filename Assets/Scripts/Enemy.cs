@@ -4,12 +4,7 @@ public class Enemy : MonoBehaviour
 {
 
     public float hp = 10f;
-    public Player player;
 
-    private void Start()
-    {
-        player = FindFirstObjectByType<Knight>();
-    }
     void Update()
         {
             if (hp <= 0)
@@ -18,7 +13,7 @@ public class Enemy : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.Space))
             {
-            player.TakeDamage(1f); // 예시로 Space 키를 누르면 1의 피해를 받음
+            StateManager.TakeDamage(10f); // 예시로 Space 키를 누르면 10의 피해를 받음
             }
     }
 

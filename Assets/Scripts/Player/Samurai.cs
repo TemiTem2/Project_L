@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Samurai : Player
+public class Samurai : PlayerMove
 {
     [SerializeField] private float skill1Damage = 5f; // 스킬 1의 피해량
     [SerializeField] private float skill1MoveRange = 5f; // 스킬 1의 최대 이동 거리

@@ -1,33 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     // 플레이어의 속성
-    [SerializeField] protected float Maxhp = 100f; // 플레이어의 체력
-    [SerializeField] protected float hp; // 현재 플레이어의 체력
-    [SerializeField] protected float speed;
-    [SerializeField] protected float attackRange;
-    [SerializeField] protected float attackSpeed; //1초당 공격할수 있는 횟수
-    [SerializeField] protected float attackDamage;
-    [SerializeField] protected float recoverTime; // 넉다운 상태에서 회복에 걸리는 시간
-    [SerializeField] protected float attackAngle = 90f; // 공격 각도
     [SerializeField] protected LayerMask enemyLayerMask; // Inspector에서 Enemy 레이어만 선택
-    [SerializeField] protected float skill1Cooldown = 5f; // 스킬 1 쿨타임
 
     protected bool canMove = true; // 플레이어가 이동 가능한지 여부
-    protected bool isKnockDown = false; // 플레이어가 넉다운 상태인지   여부
+    
     protected float currentAttackCooldown;
     protected float currentSkill1Cooldown;
-    protected Animator anim;
+    public Animator anim;
     protected SpriteRenderer spriteRenderer;
 
 
     void Start()
     {
-        hp = Maxhp; // 플레이어의 체력을 초기화
         currentAttackCooldown = 1f;
-        currentSkill1Cooldown = skill1Cooldown; // 스킬 1 쿨타임 초기화
+        currentSkill1Cooldown = 0f; // 스킬 1 쿨타임 초기화
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (anim == null)
@@ -38,18 +28,18 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!isKnockDown) 
+        if (!StateManager.isKnockDown) 
         {
             
             TryMove();
             TryAttack();
             TrySkill1();
-            if (hp <= 0)
-            {
-                StartCoroutine(KnockDownRoutine());
-            }
         }
-        
+        else
+        {
+            StartCoroutine(KnockDownRoutine());
+        }
+
     }
 
     protected virtual void TryMove()
@@ -66,7 +56,7 @@ public class Player : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, vertical, 0).normalized;
         if (direction.magnitude >= 0.1f)
         {
-            transform.position += direction * speed * Time.deltaTime;
+            transform.position += direction * StateManager.speed * Time.deltaTime;
             anim.SetBool("Running", true);
 
             // 이동 방향에 따라 바라보는 방향 변경
@@ -85,7 +75,7 @@ public class Player : MonoBehaviour
     {
         if (currentAttackCooldown > 0) //공격 쿨타임 계산
         {
-            currentAttackCooldown -= attackSpeed * Time.deltaTime;
+            currentAttackCooldown -= StateManager.attackSpeed * Time.deltaTime;
         }
         else
         {
@@ -113,20 +103,20 @@ public class Player : MonoBehaviour
 
         // 공격 각도 시각화 (부채꼴 형태로 여러 Ray 그리기)
         int rayCount = 2; // 부채꼴을 구성할 Ray 개수
-        float halfAngle = attackAngle * 0.5f;
+        float halfAngle = StateManager.attackAngle * 0.5f;
         for (int i = 0; i <= rayCount; i++)
         {
-            float angle = -halfAngle + (attackAngle * i / rayCount);
+            float angle = -halfAngle + (StateManager.attackAngle * i / rayCount);
             float rad = angle * Mathf.Deg2Rad;
             Vector2 dir = Quaternion.Euler(0, 0, angle) * attackDir;
-            Debug.DrawRay(transform.position, dir * attackRange, Color.yellow, 0.5f);
+            Debug.DrawRay(transform.position, dir * StateManager.attackRange, Color.yellow, 0.5f);
         }
 
         // 중앙 방향 Ray (빨간색)
-        Debug.DrawRay(transform.position, attackDir * attackRange, Color.red, 0.5f);
+        Debug.DrawRay(transform.position, attackDir * StateManager. attackRange, Color.red, 0.5f);
 
         // 공격 범위 내의 모든 적 탐색
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayerMask);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, StateManager.attackRange, enemyLayerMask);
         bool hitAny = false;
         foreach (var col in hits)
         {
@@ -137,7 +127,7 @@ public class Player : MonoBehaviour
                 Enemy enemy = col.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(attackDamage);
+                    enemy.TakeDamage(StateManager.attackDamage);
                     Debug.Log($"적({col.name})을 공격했습니다! (각도: {angle:F1}도)");
                     hitAny = true;
                 }
@@ -165,7 +155,7 @@ public class Player : MonoBehaviour
             {
                 anim.SetTrigger("Skill1");
                 Skill1();
-                currentSkill1Cooldown = skill1Cooldown; // 스킬 1 쿨타임 초기화
+                currentSkill1Cooldown = StateManager.skill1Cooldown; // 스킬 1 쿨타임 초기화
             }
             else
             {
@@ -185,22 +175,13 @@ public class Player : MonoBehaviour
     {
         anim.SetTrigger("Knockdown");
         Debug.Log("플레이어가 넉다운 상태입니다. 회복 중...");
-        isKnockDown = true; // 플레이어가 넉다운 상태로 전환
-        yield return new WaitForSeconds(recoverTime); // 3초 대기
+        yield return new WaitForSeconds(StateManager.recoverTime); // 3초 대기
         Recover(); // 넉다운 상태에서 회복 함수 호출
     }
     protected virtual void Recover()
     {
         // 넉다운 상태에서 회복 로직
-        hp = Maxhp; // 체력을 최대치로 회복
-        isKnockDown = false; // 넉다운 상태 해제
+        StateManager.hp = StateManager.Maxhp; // 체력을 최대치로 회복
         anim.SetTrigger("Recover"); // 넉다운 애니메이션 트리거
-    }
-
-    public virtual void TakeDamage(float damage) //플레이어가 공격 받을떄 호출
-    {
-        hp -= damage;
-        anim.SetTrigger("TakeDamage");
-        Debug.Log("플레이어가 " + damage + "의 피해를 받았습니다. 남은 체력: " + hp);
     }
 }
