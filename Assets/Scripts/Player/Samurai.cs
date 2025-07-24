@@ -1,11 +1,23 @@
 using UnityEngine;
+using UnityEngine.TestTools;
 
 public class Samurai : PlayerMove
 {
-    [SerializeField] private float skill1Damage = 5f; // 스킬 1의 피해량
-    [SerializeField] private float skill1MoveRange = 5f; // 스킬 1의 최대 이동 거리
 
     protected override void Skill1()
+    {
+        switch(StateManager.skill.skillname)
+        {
+            case "Baldo":
+                Baldo();
+                break;
+            default:
+                Debug.LogWarning("알 수 없는 스킬 이름: " + StateManager.skill.skillname);
+                break;
+        }
+    }
+
+    private void Baldo() 
     {
         // 1. 마우스 위치 구하기
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -16,7 +28,7 @@ public class Samurai : PlayerMove
         float distance = Vector2.Distance(transform.position, mouseWorldPos);
 
         // 3. 실제 이동 거리 결정 (최대 skill1MoveRange까지만 이동)
-        float moveDistance = Mathf.Min(distance, skill1MoveRange);
+        float moveDistance = Mathf.Min(distance, StateManager.skill.moveRange);
         Vector3 targetPos = transform.position + (Vector3)(direction * moveDistance);
 
         // 4. Raycast로 사이에 있는 적 모두 탐지 및 피해
@@ -27,7 +39,7 @@ public class Samurai : PlayerMove
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(skill1Damage);
+                enemy.TakeDamage(StateManager.skill.damage);
                 Debug.Log($"스킬1: 적({hit.collider.name})에게 피해를 주었습니다!");
                 hitAny = true;
             }

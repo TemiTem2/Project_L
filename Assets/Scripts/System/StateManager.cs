@@ -4,6 +4,7 @@ public class StateManager : MonoBehaviour
 {
     public PlayableCharInfo[] playableCharInfo;
     public string currentPlayCharName;
+    public string currentPlayerSkill;
 
     public static float Maxhp; // 플레이어의 체력
     public static float hp; // 현재 플레이어의 체력
@@ -13,9 +14,10 @@ public class StateManager : MonoBehaviour
     public static float attackDamage;
     public static float recoverTime; // 넉다운 상태에서 회복에 걸리는 시간
     public static float attackAngle; // 공격 각도
-    public static float skill1Damage; // 스킬 1 쿨타임
-    public static float skill1Cooldown; // 스킬 1 쿨타임
-    public static float skill1MoveRange; // 스킬 1 이동 범위
+    public static Skill skill; // 현재 플레이어의 스킬 정보
+    public static float skillDamage; // 스킬 1 쿨타임
+    public static float skillCooldown; // 스킬 1 쿨타임
+    public static float skillMoveRange; // 스킬 1 이동 범위
 
     public static bool isKnockDown = false; // 플레이어가 넉다운 상태인지  여부
     public static bool isDefend = false; // 플레이어가 방어 상태인지 여부
@@ -37,9 +39,16 @@ public class StateManager : MonoBehaviour
                 attackSpeed = playableCharInfo[i].attackSpeed;
                 recoverTime = playableCharInfo[i].recoverTime;
                 attackAngle = playableCharInfo[i].attackAngle;
-                skill1Damage = playableCharInfo[i].skill1Damage;
-                skill1Cooldown = playableCharInfo[i].skill1Cooldown;
-                skill1MoveRange = playableCharInfo[i].skill1MoveRange;
+                for (int j = 0; j < playableCharInfo[i].skills.Length; j++)
+                {
+                    if (playableCharInfo[i].skills[j].skillname == currentPlayerSkill)
+                    {
+                        skill = playableCharInfo[i].skills[j];
+                    }
+                }
+                //skill1Damage = playableCharInfo[i].skill1Damage;
+                //skill1Cooldown = playableCharInfo[i].skill1Cooldown;
+                //skill1MoveRange = playableCharInfo[i].skill1MoveRange;
                 Debug.Log($"Current Playable Character: {playableCharInfo[i].charName}");
             }
         }

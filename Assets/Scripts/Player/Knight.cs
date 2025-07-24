@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Knight : PlayerMove
 {
@@ -8,7 +9,18 @@ public class Knight : PlayerMove
     protected override void Skill1()
     {
         base.Skill1();
-        Defend();
+        switch(StateManager.skill.skillname)
+        {
+            case "Defend":
+                Defend();
+                break;
+            case "SmashingGround":
+                SmashingGround();
+                break;
+            default:
+                Debug.LogWarning("Unknown skill name: " + StateManager.skill.skillname);
+                break;
+        }
         Debug.Log("Knight의 스킬1이 발동되었습니다!");
     }
 
@@ -26,5 +38,27 @@ public class Knight : PlayerMove
         canMove = true; // 방어 자세 해제 후 이동 가능
         Debug.Log("Knight의 방어 자세가 해제되었습니다");
         anim.SetTrigger("Skill1End"); // 방어 해제 애니메이션 트리거
+    }
+
+    private void SmashingGround()
+    {
+        // 마우스 위치 구하기
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos.z = transform.position.z;
+
+        // 방향 계산
+        Vector2 direction = (mouseWorldPos - transform.position).normalized;
+
+        // 프리팹 생성
+        GameObject effect = Instantiate(StateManager.skill.summonPrefab, transform.position, Quaternion.identity);
+
+        // 이동 방향 지정
+        smashedGroundFX effectMove = effect.GetComponent<smashedGroundFX>();
+        if (effectMove != null)
+        {
+            effectMove.moveDir = direction;
+        }
+        Debug.Log("Knight가 땅을 내리쳤습니다!");
+        anim.SetTrigger("Skill1End"); // 스킬 사용 후 애니메이션 트리거
     }
 }

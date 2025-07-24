@@ -23,6 +23,5 @@ MonoBehaviour:
   attackSpeed: 3
   attackAngle: 5
   recoverTime: 3
-  skill1Damage: 5
-  skill1Cooldown: 5
-  skill1MoveRange: 5
+  skills:
+  - {fileID: 11400000, guid: b443e0e2f95c5bb44ba7388af67b1963, type: 2}

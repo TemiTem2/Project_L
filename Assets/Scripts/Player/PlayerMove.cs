@@ -155,18 +155,18 @@ public class PlayerMove : MonoBehaviour
             {
                 anim.SetTrigger("Skill1");
                 Skill1();
-                currentSkill1Cooldown = StateManager.skill1Cooldown; // 스킬 1 쿨타임 초기화
+                currentSkill1Cooldown = StateManager.skill.cooldown; // 스킬 쿨타임 초기화
             }
             else
             {
-                Debug.Log("스킬1 쿨다운중");
+                Debug.Log("스킬 쿨다운중");
             }
         }
     }
 
     protected virtual void Skill1()
     {
-        Debug.Log("스킬 1 사용!");
+        Debug.Log("스킬 사용!");
     }
 
 
