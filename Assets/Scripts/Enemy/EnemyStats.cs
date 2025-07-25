@@ -13,7 +13,7 @@ public enum EnemyState
     hurt,
     dead
 }
-
+[Tooltip("Collider√ﬂ∞°« ")]
 [System.Serializable]
 public class EnemyStats
 {
@@ -33,4 +33,5 @@ public class EnemyStats
 
     [Header("Enemy Prefab")]
     public GameObject enemyPrefab;
+    public GameObject projectilePrefab;
 }

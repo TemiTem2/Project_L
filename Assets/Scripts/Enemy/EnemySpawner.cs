@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("이름 중복: " + enemy.stats.enemyName);
+                Debug.LogWarning("enemyName 중복: " + enemy.stats.enemyName);
             }
         }
     }
