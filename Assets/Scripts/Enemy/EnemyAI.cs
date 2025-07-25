@@ -1,44 +1,119 @@
 using System.Xml.Serialization;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
     private Transform target;
-    private Enemy enemy;
-    private EnemyStats enemyStats;
-
+    private Animator enemyAnim;
     private Rigidbody2D rb;
+    private Enemy enemy;
+    private EnemyStats stats;
+    private EnemyAttackBase attackScript;
+
+
+    private Vector2 targetDirection;
+    private bool canAttack = false;
+    public float currentHP;
+    
 
     void Start()
     {
-        enemy = GetComponent<Enemy>();
-        enemyStats = enemy.stats;
+        enemyAnim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        enemy = GetComponent<Enemy>();
+        stats = enemy.stats;
+
+        currentHP = stats.maxHP;
+
         if (target == null)
         {
             target = GameObject.FindWithTag("Player").transform;
+        }
+
+        switch (stats.attackType)
+        {
+            case AttackType.melee:
+                attackScript = gameObject.AddComponent<MeleeAttack>();
+                break;
+            case AttackType.ranged:
+                attackScript = gameObject.AddComponent<RangedAttack>();
+                break;
+            default:
+                Debug.LogWarning("attackType error");
+                break;
+        }
+
+        attackScript.Initialize(enemy);
+    }
+
+    private void Update()
+    {
+        if( canAttack && stats.enemyState == EnemyState.idle)
+        {
+            stats.enemyState = EnemyState.attack;
+            TryAttack();
         }
     }
 
     private void FixedUpdate()
     {
+        float distanceToTarget = Vector2.Distance(transform.position, target.position);
         if ( target != null)
         {
-            Vector2 direction = (target.position - transform.position).normalized;
-            rb.MovePosition(rb.position + direction * enemyStats.moveSpeed * Time.fixedDeltaTime);
-            float distanceToTarget = Vector2.Distance(transform.position, target.position);
-            if (distanceToTarget <= enemyStats.attackRange)
+            if (distanceToTarget <= stats.attackRange)
             {
-                TryAttack();
+                canAttack = true;
+            }
+            else
+            {
+                targetDirection = (target.position - transform.position).normalized;
+                rb.MovePosition(rb.position + targetDirection * stats.moveSpeed * Time.fixedDeltaTime);
             }
         }
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHP -= damage;
+        Hurt();
+    }
+
+    private void Hurt()
+    {
+        if (currentHP <= 0)
+        {
+            Dead();
+        }
+        else
+        {
+            enemyAnim.SetTrigger("hurt");
+        }
+    }
+
+    private void Dead()
+    {
+        stats.enemyState = EnemyState.dead;
+        enemyAnim.SetBool("isDead", true);
+        Destroy(gameObject, 2f);
+    }
+
     private void TryAttack()
     {
-        if (enemyStats.enemyState == EnemyState.idle)
+        AttackToPlayer();
+        enemyAnim.SetTrigger("attack");
+        stats.enemyState = EnemyState.idle;
+    }
+
+    private void AttackToPlayer()
+    {
+        if (attackScript != null)
         {
-            enemyStats.enemyState = EnemyState.attack;
+            attackScript.Attack(targetDirection, stats.projectilePrefab, stats.damage);
+        }
+        else
+        {
+            Debug.LogWarning("attackSript is null");
         }
     }
 }

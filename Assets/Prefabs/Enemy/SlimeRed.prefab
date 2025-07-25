@@ -51,7 +51,6 @@ MonoBehaviour:
   stats:
     enemyName: SlimeRed
     maxHP: 10
-    currentHP: 0
     damage: 1
     attackSpeed: 3
     attackRange: 1
@@ -61,6 +60,7 @@ MonoBehaviour:
     expReward: 3
     goldReward: 1
     enemyPrefab: {fileID: 6149090450193341056}
+    projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
 --- !u!50 &6269898982055837501
 Rigidbody2D:
   serializedVersion: 5
@@ -87,7 +87,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &5056108969202814499
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09e6a038c75e824092f661084cd6d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHP: 0
 --- !u!1001 &1212619478572968768
 PrefabInstance:
   m_ObjectHideFlags: 0
