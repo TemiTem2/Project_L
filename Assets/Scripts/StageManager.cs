@@ -14,7 +14,7 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         enemySpawner.SpawnEnemy("SlimeBlue", new Vector3(0, 0, 0));    //test
-        enemySpawner.SpawnEnemy("RangedSample", new Vector3(2, 0, 0));      //test
+        //enemySpawner.SpawnEnemy("RangedSample", new Vector3(2, 0, 0));
     }
 
     // Update is called once per frame

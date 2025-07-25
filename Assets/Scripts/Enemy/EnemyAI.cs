@@ -61,7 +61,7 @@ public class EnemyAI : MonoBehaviour
     private void FixedUpdate()
     {
         float distanceToTarget = Vector2.Distance(transform.position, target.position);
-        if ( target != null)
+        if ( target != null && stats.enemyState != EnemyState.dead)
         {
             if (distanceToTarget <= stats.attackRange)
             {
@@ -85,6 +85,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (currentHP <= 0)
         {
+            enemyAnim.SetTrigger("hurt");
             Dead();
         }
         else
@@ -97,7 +98,7 @@ public class EnemyAI : MonoBehaviour
     {
         stats.enemyState = EnemyState.dead;
         enemyAnim.SetBool("isDead", true);
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 3f);
     }
 
     private void TryAttack()
@@ -116,7 +117,7 @@ public class EnemyAI : MonoBehaviour
     private void AttackToPlayer()
     {
         enemyAnim.SetTrigger("attack");
-        attackScript.Attack(targetDirection, stats.projectilePrefab, stats.damage);
+        attackScript.TryAttack(targetDirection, stats.projectilePrefab, stats.damage);
         stats.enemyState = EnemyState.idle;
     }
     

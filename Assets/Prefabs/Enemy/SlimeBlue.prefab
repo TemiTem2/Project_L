@@ -122,8 +122,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.15}
-  m_Size: {x: 1.2, y: 0.7}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.2, y: 1}
   m_Direction: 1
 --- !u!114 &8410876877673101618
 MonoBehaviour:
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb85096d047e34488e5d2a0029f6663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAttack: 0
 --- !u!4 &3421015669534653042 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8048524908834707885, guid: 6dab528ea53eeba489429a176c686bf4, type: 3}
