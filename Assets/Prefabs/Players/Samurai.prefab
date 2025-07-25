@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6345623448021550725}
   - component: {fileID: 3014500805202314346}
   - component: {fileID: 5710725570706816974}
+  - component: {fileID: 7462393084946270225}
   m_Layer: 6
   m_Name: Samurai
   m_TagString: Player
@@ -165,5 +166,30 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   anim: {fileID: 3014500805202314346}
-  skill1Damage: 5
-  skill1MoveRange: 5
+--- !u!50 &7462393084946270225
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401003900509782659}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

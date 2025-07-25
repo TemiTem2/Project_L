@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
             //AttackToPlayer();
             enemyAnim.SetTrigger("attack");
             stats.enemyState = EnemyState.idle;
+            StateManager.TakeDamage(stats.damage);
         }
     }
 
