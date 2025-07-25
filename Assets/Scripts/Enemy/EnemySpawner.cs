@@ -35,7 +35,6 @@ public class EnemySpawner : MonoBehaviour
         if (enemyDictionary.TryGetValue(name, out Enemy enemyPrefab))
         {
             Enemy newEnemy = Instantiate(enemyPrefab, position, Quaternion.identity);
-            newEnemy.stats.AwakeEnemy();
         }
         else
         {

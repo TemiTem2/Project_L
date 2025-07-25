@@ -20,7 +20,6 @@ public class EnemyStats
     [Header("Enemy Stats")]
     public string enemyName;
     public int maxHP;
-    public int currentHP;
     public int damage;
     public float attackSpeed;
     public float attackRange;
@@ -34,9 +33,4 @@ public class EnemyStats
 
     [Header("Enemy Prefab")]
     public GameObject enemyPrefab;
-
-    public void AwakeEnemy()
-    {
-        currentHP = maxHP;
-    }
 }
