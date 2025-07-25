@@ -21,7 +21,7 @@ public class smashedGroundFX : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy"))
         {
             // 적에게 데미지 적용
-            Enemy enemy = col.GetComponent<Enemy>();
+            EnemyAI enemy = col.GetComponent<EnemyAI>();
             if (enemy != null)
             {
                 enemy.TakeDamage(StateManager.skill.damage);

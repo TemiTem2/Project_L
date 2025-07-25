@@ -36,7 +36,7 @@ public class Samurai : PlayerMove
         bool hitAny = false;
         foreach (var hit in hits)
         {
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            EnemyAI enemy = hit.collider.GetComponent<EnemyAI>();
             if (enemy != null)
             {
                 enemy.TakeDamage(StateManager.skill.damage);

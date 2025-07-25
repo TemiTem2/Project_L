@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour
     private Vector2 targetDirection;
     private bool canAttack = false;
     public float currentHP;
+
     
 
     void Start()
@@ -23,6 +24,7 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemy = GetComponent<Enemy>();
         stats = enemy.stats;
+
 
         currentHP = stats.maxHP;
 
@@ -73,7 +75,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHP -= damage;
         Hurt();
@@ -100,20 +102,22 @@ public class EnemyAI : MonoBehaviour
 
     private void TryAttack()
     {
-        AttackToPlayer();
-        enemyAnim.SetTrigger("attack");
-        stats.enemyState = EnemyState.idle;
-    }
-
-    private void AttackToPlayer()
-    {
-        if (attackScript != null)
+        if (attackScript != null && stats.enemyState == EnemyState.attack)
         {
-            attackScript.Attack(targetDirection, stats.projectilePrefab, stats.damage);
+            AttackToPlayer();
         }
         else
         {
             Debug.LogWarning("attackSript is null");
         }
+        
     }
+
+    private void AttackToPlayer()
+    {
+        enemyAnim.SetTrigger("attack");
+        attackScript.Attack(targetDirection, stats.projectilePrefab, stats.damage);
+        stats.enemyState = EnemyState.idle;
+    }
+    
 }

@@ -1,13 +1,43 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class EnemyAttackBase : MonoBehaviour
 {
     protected Enemy enemy;
+    //protected bool isAttacking = false;
+    //protected bool canAttack = false;
 
     public virtual void Initialize(Enemy enemy)
     {
         this.enemy = enemy;
     }
 
-    public abstract void Attack(Vector2 direct, GameObject projectile, int damage);
+    //public void EnableAttack()
+    //{
+    //    canAttack = true;
+    //}
+    //public void DisableAttack()
+    //{
+    //    canAttack = false;
+    //}
+
+    //public void TryAttack(Vector2 direct, GameObject projectile, int damage)
+    //{
+    //    if (!isAttacking)
+    //    {
+    //        StartCoroutine(AttackRoutine(direct, projectile, damage));
+    //    }
+    //}
+
+    //protected virtual IEnumerator AttackRoutine(Vector2 direction, GameObject projectile, int damage)
+    //{
+    //    isAttacking = true;
+    //    yield return new WaitForSeconds(2.6f);
+    //    Attack(direction, projectile, damage);
+
+    //    yield return new WaitForSeconds(enemy.stats.attackSpeed);
+    //    isAttacking = false;
+    //}
+
+    public abstract void Attack(Vector2 direction, GameObject projectile, int damage);
 }
