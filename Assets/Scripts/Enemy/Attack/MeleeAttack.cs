@@ -28,7 +28,9 @@ public class MeleeAttack : EnemyAttackBase
 
     public override void Attack(Vector2 direct, GameObject projectile, int damage)
     {
+        isAttacking = true;
         if (animEvent.canAttack && isCollision)
             StateManager.TakeDamage(damage);
+        isAttacking = false;
     }
 }

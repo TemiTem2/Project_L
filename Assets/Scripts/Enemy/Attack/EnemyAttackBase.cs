@@ -25,7 +25,7 @@ public abstract class EnemyAttackBase : MonoBehaviour
     {
         if (!isAttacking)
         {
-            StartCoroutine(AttackRoutine(direct, projectile, damage));
+            Attack(direct, projectile, damage);
         }
     }
 

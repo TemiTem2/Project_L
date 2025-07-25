@@ -14,9 +14,11 @@ public class EnemyAI : MonoBehaviour
 
     private Vector2 targetDirection;
     private bool canAttack = false;
+    private bool isCooldown = false;
     public float currentHP;
+    private float currentCooldown;
 
-    
+
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemy = GetComponent<Enemy>();
         stats = enemy.stats;
+        currentCooldown = 0f;
 
 
         currentHP = stats.maxHP;
@@ -51,10 +54,20 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if( canAttack && stats.enemyState == EnemyState.idle)
+        if( canAttack &&!isCooldown)
         {
             stats.enemyState = EnemyState.attack;
             TryAttack();
+        }
+        if (currentCooldown > 0)
+        {
+            currentCooldown -= Time.deltaTime * stats.attackSpeed;
+            isCooldown = true;
+        }
+        else
+        {
+            currentCooldown = 0f;
+            isCooldown = false;
         }
     }
 
@@ -71,6 +84,7 @@ public class EnemyAI : MonoBehaviour
             {
                 targetDirection = (target.position - transform.position).normalized;
                 rb.MovePosition(rb.position + targetDirection * stats.moveSpeed * Time.fixedDeltaTime);
+                canAttack = false;
             }
         }
     }
@@ -116,8 +130,10 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackToPlayer()
     {
+        currentCooldown = 1f;
         enemyAnim.SetTrigger("attack");
         attackScript.TryAttack(targetDirection, stats.projectilePrefab, stats.damage);
+        
         stats.enemyState = EnemyState.idle;
     }
     
