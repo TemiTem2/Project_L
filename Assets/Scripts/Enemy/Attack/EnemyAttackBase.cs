@@ -7,6 +7,8 @@ public abstract class EnemyAttackBase : MonoBehaviour
     protected bool isAttacking = false;
     protected bool canAttack = false;
 
+    protected StateManager stateManager;
+
     public virtual void Initialize(Enemy enemy)
     {
         this.enemy = enemy;

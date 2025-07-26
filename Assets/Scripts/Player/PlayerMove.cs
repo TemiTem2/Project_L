@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     protected float currentSkill1Cooldown;
     public Animator anim;
     protected SpriteRenderer spriteRenderer;
+    protected StateManager stateManager;
 
 
     void Start()
@@ -20,6 +21,7 @@ public class PlayerMove : MonoBehaviour
         currentSkill1Cooldown = 0f; // 스킬 1 쿨타임 초기화
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        stateManager = FindFirstObjectByType<StateManager>();
         if (anim == null)
         {
             Debug.LogError("Animator component not found on Player object.");
@@ -28,7 +30,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (!StateManager.isKnockDown) 
+        if (!stateManager.isKnockDown) 
         {
             
             TryMove();
@@ -56,7 +58,7 @@ public class PlayerMove : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, vertical, 0).normalized;
         if (direction.magnitude >= 0.1f)
         {
-            transform.position += direction * StateManager.speed * Time.deltaTime;
+            transform.position += direction * stateManager.speed * Time.deltaTime;
             anim.SetBool("Running", true);
 
             // 이동 방향에 따라 바라보는 방향 변경
@@ -75,7 +77,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (currentAttackCooldown > 0) //공격 쿨타임 계산
         {
-            currentAttackCooldown -= StateManager.attackSpeed * Time.deltaTime;
+            currentAttackCooldown -= stateManager.attackSpeed * Time.deltaTime;
         }
         else
         {
@@ -103,20 +105,20 @@ public class PlayerMove : MonoBehaviour
 
         // 공격 각도 시각화 (부채꼴 형태로 여러 Ray 그리기)
         int rayCount = 2; // 부채꼴을 구성할 Ray 개수
-        float halfAngle = StateManager.attackAngle * 0.5f;
+        float halfAngle = stateManager.attackAngle * 0.5f;
         for (int i = 0; i <= rayCount; i++)
         {
-            float angle = -halfAngle + (StateManager.attackAngle * i / rayCount);
+            float angle = -halfAngle + (stateManager.attackAngle * i / rayCount);
             float rad = angle * Mathf.Deg2Rad;
             Vector2 dir = Quaternion.Euler(0, 0, angle) * attackDir;
-            Debug.DrawRay(transform.position, dir * StateManager.attackRange, Color.yellow, 0.5f);
+            Debug.DrawRay(transform.position, dir * stateManager.attackRange, Color.yellow, 0.5f);
         }
 
         // 중앙 방향 Ray (빨간색)
-        Debug.DrawRay(transform.position, attackDir * StateManager. attackRange, Color.red, 0.5f);
+        Debug.DrawRay(transform.position, attackDir * stateManager. attackRange, Color.red, 0.5f);
 
         // 공격 범위 내의 모든 적 탐색
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, StateManager.attackRange, enemyLayerMask);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, stateManager.attackRange, enemyLayerMask);
         bool hitAny = false;
         foreach (var col in hits)
         {
@@ -127,7 +129,7 @@ public class PlayerMove : MonoBehaviour
                 EnemyAI enemy = col.GetComponent<EnemyAI>();
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(StateManager.attackDamage);
+                    enemy.TakeDamage(stateManager.attackDamage);
                     Debug.Log($"적({col.name})을 공격했습니다! (각도: {angle:F1}도)");
                     hitAny = true;
                 }
@@ -155,7 +157,7 @@ public class PlayerMove : MonoBehaviour
             {
                 anim.SetTrigger("Skill1");
                 Skill1();
-                currentSkill1Cooldown = StateManager.skill.cooldown; // 스킬 쿨타임 초기화
+                currentSkill1Cooldown = stateManager.skill.cooldown; // 스킬 쿨타임 초기화
             }
             else
             {
@@ -175,13 +177,8 @@ public class PlayerMove : MonoBehaviour
     {
         anim.SetTrigger("Knockdown");
         Debug.Log("플레이어가 넉다운 상태입니다. 회복 중...");
-        yield return new WaitForSeconds(StateManager.recoverTime); // 3초 대기
-        Recover(); // 넉다운 상태에서 회복 함수 호출
+        yield return new WaitForSeconds(stateManager.recoverTime); // 3초 대기
+        stateManager.Recover(); // 넉다운 상태에서 회복 함수 호출
     }
-    protected virtual void Recover()
-    {
-        // 넉다운 상태에서 회복 로직
-        StateManager.hp = StateManager.Maxhp; // 체력을 최대치로 회복
-        anim.SetTrigger("Recover"); // 넉다운 애니메이션 트리거
-    }
+    
 }

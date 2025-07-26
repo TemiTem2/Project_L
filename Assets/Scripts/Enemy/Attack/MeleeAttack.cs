@@ -9,6 +9,7 @@ public class MeleeAttack : EnemyAttackBase
     private void Start()
     {
         animEvent = GetComponentInChildren<AnimationEventRelay>();
+        stateManager = FindFirstObjectByType<StateManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +31,7 @@ public class MeleeAttack : EnemyAttackBase
     {
         isAttacking = true;
         if (animEvent.canAttack && isCollision)
-            StateManager.TakeDamage(damage);
+            stateManager.TakeDamage(damage);
         isAttacking = false;
     }
 }

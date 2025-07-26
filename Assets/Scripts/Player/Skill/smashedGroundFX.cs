@@ -5,8 +5,10 @@ public class smashedGroundFX : MonoBehaviour
     public Vector2 moveDir;
     public float moveSpeed = 10f;
     public float lifeTime = 2f;
+    private StateManager stateManager;
     void Start()
     {
+        stateManager = FindFirstObjectByType<StateManager>();
         Destroy(gameObject, lifeTime);
     }
 
@@ -24,7 +26,7 @@ public class smashedGroundFX : MonoBehaviour
             EnemyAI enemy = col.GetComponent<EnemyAI>();
             if (enemy != null)
             {
-                enemy.TakeDamage(StateManager.skill.damage);
+                enemy.TakeDamage(stateManager.skill.damage);
             }
         }
     }
