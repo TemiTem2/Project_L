@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] stages;
+    private StageTemplate[] stages;
     [SerializeField]
     private int currentStageIndex = 0;
     [SerializeField]
@@ -11,15 +12,33 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private EnemySpawner enemySpawner;
 
+
+    private StageTemplate currentStage;
+    private int currentWaveIndex = 0;
+
     void Start()
     {
-        enemySpawner.SpawnEnemy("SlimeBlue", new Vector3(0, 0, 0));    //test
-        //enemySpawner.SpawnEnemy("RangedSample", new Vector3(2, 0, 0));
+        currentStage = stages[currentStageIndex];
+        StartCoroutine(RoadStage());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator RoadStage()
     {
-        
+        while (currentWaveIndex <= currentStage.stageData.maxWave-1)
+        {
+            StageTemplate.WaveData wave = currentStage.waves[currentWaveIndex];
+            for (int i = 0; i < wave.enemyNames.Length; i++)
+            {
+                string enemyName = wave.enemyNames[i];
+                int enemyCount = wave.enemyCounts[i];
+                for (int j = 0; j < enemyCount; j++)
+                {
+                    Vector2 spawnPos = enemySpawner.GenerateSpwanPos();
+                    enemySpawner.SpawnEnemy(enemyName, new Vector3(spawnPos.x, spawnPos.y, 0));
+                    yield return new WaitForSeconds(currentStage.stageData.spawnInterval);
+                }
+            }
+            currentWaveIndex++;
+        }
     }
-}
+} 

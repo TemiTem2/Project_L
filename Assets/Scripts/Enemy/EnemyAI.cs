@@ -54,37 +54,44 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if( canAttack &&!isCooldown)
+
+        if (stats.enemyState != EnemyState.dead)
         {
-            stats.enemyState = EnemyState.attack;
-            TryAttack();
-        }
-        if (currentCooldown > 0)
-        {
-            currentCooldown -= Time.deltaTime * stats.attackSpeed;
-            isCooldown = true;
-        }
-        else
-        {
-            currentCooldown = 0f;
-            isCooldown = false;
+            if (canAttack && !isCooldown)
+            {
+                stats.enemyState = EnemyState.attack;
+                TryAttack();
+            }
+            if (currentCooldown > 0)
+            {
+                currentCooldown -= Time.deltaTime * stats.attackSpeed;
+                isCooldown = true;
+            }
+            else
+            {
+                currentCooldown = 0f;
+                isCooldown = false;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        float distanceToTarget = Vector2.Distance(transform.position, target.position);
-        if ( target != null && stats.enemyState != EnemyState.dead)
+        if (stats.enemyState != EnemyState.dead)
         {
-            if (distanceToTarget <= stats.attackRange)
+            float distanceToTarget = Vector2.Distance(transform.position, target.position);
+            if (target != null && stats.enemyState != EnemyState.dead)
             {
-                canAttack = true;
-            }
-            else
-            {
-                targetDirection = (target.position - transform.position).normalized;
-                rb.MovePosition(rb.position + targetDirection * stats.moveSpeed * Time.fixedDeltaTime);
-                canAttack = false;
+                if (distanceToTarget <= stats.attackRange)
+                {
+                    canAttack = true;
+                }
+                else
+                {
+                    targetDirection = (target.position - transform.position).normalized;
+                    rb.MovePosition(rb.position + targetDirection * stats.moveSpeed * Time.fixedDeltaTime);
+                    canAttack = false;
+                }
             }
         }
     }
@@ -97,6 +104,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Hurt()
     {
+        if (stats.enemyState == EnemyState.dead) return;
         if (currentHP <= 0)
         {
             enemyAnim.SetTrigger("hurt");
