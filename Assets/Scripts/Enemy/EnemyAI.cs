@@ -105,7 +105,6 @@ public class EnemyAI : MonoBehaviour
         if (stats.enemyState == EnemyState.dead) return;
         if (currentHP <= 0)
         {
-            enemyAnim.SetTrigger("hurt");
             Dead();
         }
         else
