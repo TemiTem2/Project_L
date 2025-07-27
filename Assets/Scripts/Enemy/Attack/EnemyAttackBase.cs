@@ -21,22 +21,21 @@ public abstract class EnemyAttackBase : MonoBehaviour
         canAttack = false;
     }
 
-    public void TryAttack(Vector2 direct, GameObject projectile, int damage)
+    public void TryAttackPlayer(Vector2 direct, GameObject projectile, int damage)
     {
         if (!isAttacking)
         {
-            Attack(direct, projectile, damage);
+            AttackPlayer(direct, projectile, damage);
+        }
+    }
+    public void TryAttackProtectedTarget(Vector2 direct, GameObject projectile, int damage)
+    {
+        if (!isAttacking)
+        {
+            AttackProtectedTarget(direct, projectile, damage);
         }
     }
 
-    protected virtual IEnumerator AttackRoutine(Vector2 direction, GameObject projectile, int damage)
-    {
-        isAttacking = true;
-        Attack(direction, projectile, damage);
-
-        yield return new WaitForSeconds(1f);
-        isAttacking = false;
-    }
-
-    public abstract void Attack(Vector2 direction, GameObject projectile, int damage);
+    public abstract void AttackPlayer(Vector2 direction, GameObject projectile, int damage);
+    public abstract void AttackProtectedTarget(Vector2 direction, GameObject projectile, int damage);
 }

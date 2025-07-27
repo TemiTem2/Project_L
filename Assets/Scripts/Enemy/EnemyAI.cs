@@ -2,9 +2,18 @@ using System.Xml.Serialization;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
+public enum TargetType
+{
+    Player,
+    Protect
+}
 public class EnemyAI : MonoBehaviour
 {
     private Transform target;
+    private GameObject player;
+    private GameObject protect;
+    private TargetType currentTarget;
+
     private Animator enemyAnim;
     private Rigidbody2D rb;
     private Enemy enemy;
@@ -31,10 +40,11 @@ public class EnemyAI : MonoBehaviour
 
         currentHP = stats.maxHP;
 
-        if (target == null)
-        {
-            target = GameObject.FindWithTag("Player").transform;
-        }
+        player = GameObject.FindGameObjectWithTag("Player");
+        protect = GameObject.FindGameObjectWithTag("Protect");
+        target = protect.transform;
+        currentTarget = TargetType.Protect;
+
 
         switch (stats.attackType)
         {
@@ -54,6 +64,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        UpdateTarget();
 
         if (stats.enemyState != EnemyState.dead)
         {
@@ -140,9 +151,35 @@ public class EnemyAI : MonoBehaviour
     {
         currentCooldown = 1f;
         enemyAnim.SetTrigger("attack");
-        attackScript.TryAttack(targetDirection, stats.projectilePrefab, stats.damage);
+
+        switch (currentTarget)
+        {
+            case TargetType.Player:
+                attackScript.TryAttackPlayer(targetDirection, stats.projectilePrefab, stats.damage);
+                break;
+            case TargetType.Protect:
+                attackScript.TryAttackProtectedTarget(targetDirection, stats.projectilePrefab, stats.damage);
+                break;
+        }
         
         stats.enemyState = EnemyState.idle;
     }
     
+    private void UpdateTarget()
+    {
+        float playerDistance = Vector2.Distance(transform.position, player.transform.position);
+        float protectDistance = Vector2.Distance(transform.position, protect.transform.position);
+        float attackRange = stats.attackRange;
+
+        if (playerDistance <= attackRange && protectDistance > attackRange)
+        {
+            target = player.transform;
+            currentTarget = TargetType.Player;
+        }
+        else
+        {
+            target = protect.transform;
+            currentTarget = TargetType.Protect;
+        }
+    }
 }

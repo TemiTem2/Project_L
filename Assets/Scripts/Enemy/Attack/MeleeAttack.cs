@@ -4,33 +4,53 @@ using UnityEngine;
 public class MeleeAttack : EnemyAttackBase
 {
     private AnimationEventRelay animEvent;
-    private bool isCollision = false;
+    private bool isCollisionPlayer = false;
+    private bool isCollisionProtect = false;
+    private ProtectedTarget protect;
 
     private void Start()
     {
         animEvent = GetComponentInChildren<AnimationEventRelay>();
+        protect = FindFirstObjectByType<ProtectedTarget>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isCollision = true;
+            isCollisionPlayer = true;
+        }
+        if (collision.gameObject.CompareTag("Protect"))
+        {
+            isCollisionProtect = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isCollision = false;
+            isCollisionPlayer = false;
+        }
+        if (collision.gameObject.CompareTag("Protect"))
+        {
+            isCollisionProtect = false;
         }
     }
 
-    public override void Attack(Vector2 direct, GameObject projectile, int damage)
+    public override void AttackPlayer(Vector2 direct, GameObject projectile, int damage)
     {
         isAttacking = true;
-        if (animEvent.canAttack && isCollision)
+        if (animEvent.canAttack && isCollisionPlayer)
             StateManager.TakeDamage(damage);
+        isAttacking = false;
+    }
+    public override void AttackProtectedTarget(Vector2 direct, GameObject projectile, int damage)
+    {
+        isAttacking = true;
+        if (animEvent.canAttack && isCollisionProtect)
+        {
+            protect.TakeDamage(damage);
+        }
         isAttacking = false;
     }
 }

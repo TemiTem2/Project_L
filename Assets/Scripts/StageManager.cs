@@ -12,6 +12,8 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private EnemySpawner enemySpawner;
 
+    public bool isOver = false;
+
 
     private StageTemplate currentStage;
     private int currentWaveIndex = 0;

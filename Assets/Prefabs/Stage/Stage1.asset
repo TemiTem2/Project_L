@@ -34,6 +34,6 @@ MonoBehaviour:
   - waveNumber: 4
     enemyNames:
     - SlimeBlue
-    - Slimegreen
+    - SlimeGreen
     - SlimeRed
     enemyCounts: 010000000100000001000000
