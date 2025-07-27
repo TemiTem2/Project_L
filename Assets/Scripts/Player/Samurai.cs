@@ -6,13 +6,13 @@ public class Samurai : PlayerMove
 
     protected override void Skill1()
     {
-        switch(StateManager.skill.skillname)
+        switch(stateManager.skill.skillname)
         {
             case "Baldo":
                 Baldo();
                 break;
             default:
-                Debug.LogWarning("알 수 없는 스킬 이름: " + StateManager.skill.skillname);
+                Debug.LogWarning("알 수 없는 스킬 이름: " + stateManager.skill.skillname);
                 break;
         }
     }
@@ -28,7 +28,7 @@ public class Samurai : PlayerMove
         float distance = Vector2.Distance(transform.position, mouseWorldPos);
 
         // 3. 실제 이동 거리 결정 (최대 skill1MoveRange까지만 이동)
-        float moveDistance = Mathf.Min(distance, StateManager.skill.moveRange);
+        float moveDistance = Mathf.Min(distance, stateManager.skill.moveRange);
         Vector3 targetPos = transform.position + (Vector3)(direction * moveDistance);
 
         // 4. Raycast로 사이에 있는 적 모두 탐지 및 피해
@@ -39,7 +39,7 @@ public class Samurai : PlayerMove
             EnemyAI enemy = hit.collider.GetComponent<EnemyAI>();
             if (enemy != null)
             {
-                enemy.TakeDamage(StateManager.skill.damage);
+                enemy.TakeDamage(stateManager.skill.damage);
                 Debug.Log($"스킬1: 적({hit.collider.name})에게 피해를 주었습니다!");
                 hitAny = true;
             }

@@ -129,6 +129,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Dead()
     {
+        LevelupManager levelupManager = FindFirstObjectByType<LevelupManager>();
+        levelupManager.AddExp(stats.expReward);
         stats.enemyState = EnemyState.dead;
         enemyAnim.SetBool("isDead", true);
         Destroy(gameObject, 3f);

@@ -6,23 +6,20 @@ public class StateManager : MonoBehaviour
     public string currentPlayCharName;
     public string currentPlayerSkill;
 
-    public static float Maxhp; // 플레이어의 체력
-    public static float hp; // 현재 플레이어의 체력
-    public static float speed;
-    public static float attackRange;
-    public static float attackSpeed; //1초당 공격할수 있는 횟수
-    public static float attackDamage;
-    public static float recoverTime; // 넉다운 상태에서 회복에 걸리는 시간
-    public static float attackAngle; // 공격 각도
-    public static Skill skill; // 현재 플레이어의 스킬 정보
-    public static float skillDamage; // 스킬 1 쿨타임
-    public static float skillCooldown; // 스킬 1 쿨타임
-    public static float skillMoveRange; // 스킬 1 이동 범위
+    public float hp; // 현재 플레이어의 체력
+    [Header("Player Stats")]
+    public float Maxhp; // 플레이어의 최대 체력
+    public float speed;
+    public float attackRange;
+    public float attackSpeed; //1초당 공격할수 있는 횟수
+    public float attackDamage;
+    public float recoverTime; // 넉다운 상태에서 회복에 걸리는 시간
+    public float attackAngle; // 공격 각도
+    public Skill skill; // 현재 플레이어의 스킬 정보
 
-    public static bool isKnockDown = false; // 플레이어가 넉다운 상태인지  여부
-    public static bool isDefend = false; // 플레이어가 방어 상태인지 여부
+    public bool isKnockDown = false; // 플레이어가 넉다운 상태인지  여부
+    public bool isDefend = false; // 플레이어가 방어 상태인지 여부
 
-    private PlayerMove playerMove;
     void Start()
     {
         for (int i = 0; i < playableCharInfo.Length; i++)
@@ -30,7 +27,8 @@ public class StateManager : MonoBehaviour
             if (playableCharInfo[i].charName == currentPlayCharName)
             {
                 Instantiate(playableCharInfo[i].charPrefab, transform.position, Quaternion.identity);
-                playerMove = FindFirstObjectByType<PlayerMove>();
+                
+                
                 Maxhp = playableCharInfo[i].maxHealth;
                 hp = Maxhp; // 플레이어의 체력을 초기화
                 speed = playableCharInfo[i].moveSpeed;
@@ -66,7 +64,7 @@ public class StateManager : MonoBehaviour
         }
     }
 
-    public static void TakeDamage(float damage) //플레이어가 공격 받을떄 호출
+    public void TakeDamage(float damage) //플레이어가 공격 받을떄 호출
     {
         if (isDefend) // 방어 상태일 때
         {
@@ -77,5 +75,13 @@ public class StateManager : MonoBehaviour
         hp -= damage;
         playerMove.anim.SetTrigger("TakeDamage");
         Debug.Log("플레이어가 " + damage + "의 피해를 받았습니다. 남은 체력: " + hp);
+    }
+
+    public void Recover()
+    {
+        // 넉다운 상태에서 회복 로직
+        PlayerMove playerMove = FindFirstObjectByType<PlayerMove>();
+        hp = Maxhp; // 체력을 최대치로 회복
+        playerMove.anim.SetTrigger("Recover"); // 넉다운 애니메이션 트리거
     }
 }
