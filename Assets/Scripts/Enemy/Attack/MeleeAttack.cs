@@ -12,7 +12,7 @@ public class MeleeAttack : EnemyAttackBase
     {
         animEvent = GetComponentInChildren<AnimationEventRelay>();
         protect = FindFirstObjectByType<ProtectedTarget>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("PlayerManager");
         stateManager = player.GetComponent<StateManager>();
     }
 
