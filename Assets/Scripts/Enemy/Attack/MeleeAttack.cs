@@ -12,6 +12,8 @@ public class MeleeAttack : EnemyAttackBase
     {
         animEvent = GetComponentInChildren<AnimationEventRelay>();
         protect = FindFirstObjectByType<ProtectedTarget>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        stateManager = player.GetComponent<StateManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,18 +41,18 @@ public class MeleeAttack : EnemyAttackBase
 
     public override void AttackPlayer(Vector2 direct, GameObject projectile, int damage)
     {
-        isAttacking = true;
-        if (animEvent.canAttack && isCollisionPlayer)
+        if (animEvent.canAttack && isCollisionPlayer && !animEvent.isAttacked)
+        {
             stateManager.TakeDamage(damage);
-        isAttacking = false;
+            animEvent.isAttacked = true;
+        }
     }
     public override void AttackProtectedTarget(Vector2 direct, GameObject projectile, int damage)
-    {
-        isAttacking = true;
-        if (animEvent.canAttack && isCollisionProtect)
+    { 
+        if (animEvent.canAttack && isCollisionProtect && !animEvent.isAttacked)
         {
             protect.TakeDamage(damage);
+            animEvent.isAttacked = true;
         }
-        isAttacking = false;
     }
 }

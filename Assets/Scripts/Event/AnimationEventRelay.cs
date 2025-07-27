@@ -3,6 +3,7 @@ using UnityEngine;
 public class AnimationEventRelay : MonoBehaviour
 {
     public bool canAttack = false;
+    public bool isAttacked = false;
 
     public void EnableAttack()
     {
@@ -11,5 +12,6 @@ public class AnimationEventRelay : MonoBehaviour
     public void DisableAttack()
     {
         canAttack = false;
+        isAttacked = false;
     }
 }
