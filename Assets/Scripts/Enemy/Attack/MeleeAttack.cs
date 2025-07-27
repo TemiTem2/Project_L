@@ -41,7 +41,7 @@ public class MeleeAttack : EnemyAttackBase
     {
         isAttacking = true;
         if (animEvent.canAttack && isCollisionPlayer)
-            StateManager.TakeDamage(damage);
+            stateManager.TakeDamage(damage);
         isAttacking = false;
     }
     public override void AttackProtectedTarget(Vector2 direct, GameObject projectile, int damage)
