@@ -20,8 +20,12 @@ public class StateManager : MonoBehaviour
     public bool isKnockDown = false; // 플레이어가 넉다운 상태인지  여부
     public bool isDefend = false; // 플레이어가 방어 상태인지 여부
 
+    public PlayerStatManager playerStatManager;
+
     void Start()
     {
+        playerStatManager = FindFirstObjectByType<PlayerStatManager>();
+
         for (int i = 0; i < playableCharInfo.Length; i++)
         {
             if (playableCharInfo[i].charName == currentPlayCharName)
