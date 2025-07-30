@@ -5,16 +5,17 @@ public class STUIButton : MonoBehaviour
 {
     [SerializeField]
     int buttonIndex = 0;
+    PlayerStatManager playerStatManager;
+    private void Start()
+    {
+        playerStatManager = FindFirstObjectByType<PlayerStatManager>();
+    }
     public void StatUp()
     {
-        
+        playerStatManager.Statup(buttonIndex);
     }
     public void StatDown()
     {
-        
-    }
-    public void StartFight()
-    {
-        SceneManager.LoadScene("Test_Stage(07.27)");
+        playerStatManager.StatDown(buttonIndex);
     }
 }
