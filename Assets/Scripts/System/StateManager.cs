@@ -28,16 +28,18 @@ public class StateManager : MonoBehaviour
         Instantiate(database.currentCharInfo.charPrefab, transform.position, Quaternion.identity);
 
 
-        Maxhp = database.currentCharInfo.maxHealth;
+        Maxhp = database.currentCharInfo.maxHealth + (playerStatManager.statPoint.MaxHP * 10);
         hp = Maxhp; // 플레이어의 체력을 초기화
-        speed = database.currentCharInfo.moveSpeed;
-        attackRange = database.currentCharInfo.attackRange;
-        attackDamage = database.currentCharInfo.attackDamage;
-        attackSpeed = database.currentCharInfo.attackSpeed;
-        recoverTime = database.currentCharInfo.recoverTime;
+        speed = database.currentCharInfo.moveSpeed + (playerStatManager.statPoint.Speed * 0.1f);
+        attackRange = database.currentCharInfo.attackRange + (playerStatManager.statPoint.AttackRange * 0.1f);
+        attackDamage = database.currentCharInfo.attackDamage + (playerStatManager.statPoint.AttackDamage);
+        attackSpeed = database.currentCharInfo.attackSpeed + (playerStatManager.statPoint.AttackSpeed * 0.1f);
+        recoverTime = database.currentCharInfo.recoverTime - (playerStatManager.statPoint.RecoverTime * 0.1f);
         attackAngle = database.currentCharInfo.attackAngle;
 
         skill = database.currentSkillInfo;
+        skill.damage += playerStatManager.statPoint.SkillDamage;
+        skill.cooldown -= playerStatManager.statPoint.SkillCooldown * 0.1f;
 
         //for (int i = 0; i < database.playableCharInfo.Length; i++)
         // {
