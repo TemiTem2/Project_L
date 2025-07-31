@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
-    public PlayableCharInfo[] playableCharInfo;
-    public string currentPlayCharName;
-    public string currentPlayerSkill;
+    private Database database;
 
     public float hp; // 현재 플레이어의 체력
     [Header("Player Stats")]
@@ -24,36 +22,51 @@ public class StateManager : MonoBehaviour
 
     void Start()
     {
+        database = FindFirstObjectByType<Database>();
         playerStatManager = FindFirstObjectByType<PlayerStatManager>();
 
-        for (int i = 0; i < playableCharInfo.Length; i++)
-        {
-            if (playableCharInfo[i].charName == currentPlayCharName)
-            {
-                Instantiate(playableCharInfo[i].charPrefab, transform.position, Quaternion.identity);
-                
-                
-                Maxhp = playableCharInfo[i].maxHealth;
-                hp = Maxhp; // 플레이어의 체력을 초기화
-                speed = playableCharInfo[i].moveSpeed;
-                attackRange = playableCharInfo[i].attackRange;
-                attackDamage = playableCharInfo[i].attackDamage;
-                attackSpeed = playableCharInfo[i].attackSpeed;
-                recoverTime = playableCharInfo[i].recoverTime;
-                attackAngle = playableCharInfo[i].attackAngle;
-                for (int j = 0; j < playableCharInfo[i].skills.Length; j++)
-                {
-                    if (playableCharInfo[i].skills[j].skillname == currentPlayerSkill)
-                    {
-                        skill = playableCharInfo[i].skills[j];
-                    }
-                }
-                //skill1Damage = playableCharInfo[i].skill1Damage;
-                //skill1Cooldown = playableCharInfo[i].skill1Cooldown;
-                //skill1MoveRange = playableCharInfo[i].skill1MoveRange;
-                Debug.Log($"Current Playable Character: {playableCharInfo[i].charName}");
-            }
-        }
+        Instantiate(database.currentCharInfo.charPrefab, transform.position, Quaternion.identity);
+
+
+        Maxhp = database.currentCharInfo.maxHealth;
+        hp = Maxhp; // 플레이어의 체력을 초기화
+        speed = database.currentCharInfo.moveSpeed;
+        attackRange = database.currentCharInfo.attackRange;
+        attackDamage = database.currentCharInfo.attackDamage;
+        attackSpeed = database.currentCharInfo.attackSpeed;
+        recoverTime = database.currentCharInfo.recoverTime;
+        attackAngle = database.currentCharInfo.attackAngle;
+
+        skill = database.currentSkillInfo;
+
+        //for (int i = 0; i < database.playableCharInfo.Length; i++)
+        // {
+        //     if (database.playableCharInfo[i].charName == database.currentPlayCharName)
+        //     {
+        //         Instantiate(database.playableCharInfo[i].charPrefab, transform.position, Quaternion.identity);
+
+
+        //         Maxhp = database.playableCharInfo[i].maxHealth;
+        //         hp = Maxhp; // 플레이어의 체력을 초기화
+        //         speed = database.playableCharInfo[i].moveSpeed;
+        //         attackRange = database.playableCharInfo[i].attackRange;
+        //         attackDamage = database.playableCharInfo[i].attackDamage;
+        //         attackSpeed = database.playableCharInfo[i].attackSpeed;
+        //         recoverTime = database.playableCharInfo[i].recoverTime;
+        //         attackAngle = database.playableCharInfo[i].attackAngle;
+        //         for (int j = 0; j < database.playableCharInfo[i].skills.Length; j++)
+        //         {
+        //             if (database.playableCharInfo[i].skills[j].skillname == database.currentPlayerSkill)
+        //             {
+        //                 skill = database.playableCharInfo[i].skills[j];
+        //             }
+        //         }
+        //         //skill1Damage = playableCharInfo[i].skill1Damage;
+        //         //skill1Cooldown = playableCharInfo[i].skill1Cooldown;
+        //         //skill1MoveRange = playableCharInfo[i].skill1MoveRange;
+        //         Debug.Log($"Current Playable Character: {database.playableCharInfo[i].charName}");
+        //     }
+        // }
     }
 
     void Update()

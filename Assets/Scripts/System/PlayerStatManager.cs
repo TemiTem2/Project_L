@@ -71,7 +71,84 @@ public class PlayerStatManager : MonoBehaviour
 
     public void StatDown(int index)
     {
-        Debug.Log("스탯 다운" + index);
+        switch (index)
+        {
+            case 0: // MaxHP
+                if (statPoint.MaxHP <= 0f)
+                {
+                    Debug.LogWarning("0이하로 낮출수 없습니다.");
+                    return;
+                }
+                skillPoints++;
+                statPoint.MaxHP -= 1f;
+                break;
+            case 1: // Speed
+                if (statPoint.Speed <= 0f)
+                {
+                    Debug.LogWarning("0이하로 낮출수 없습니다.");
+                    return;
+                }
+                skillPoints++;
+                statPoint.Speed -= 1f;
+                break;
+            case 2: // AttackRange
+                if (statPoint.AttackRange <= 0f)
+                {
+                    Debug.LogWarning("0이하로 낮출수 없습니다.");
+                    return;
+                }
+                skillPoints++;
+                statPoint.AttackRange -= 1f;
+                break;
+            case 3: // AttackDamage
+                if (statPoint.AttackDamage <= 0f)
+                {
+                    Debug.LogWarning("0이하로 낮출수 없습니다.");
+                    return;
+                }
+                skillPoints++;
+                statPoint.AttackDamage -= 1;
+                break;
+            case 4: // AttackSpeed
+                if (statPoint.AttackSpeed <= 0f)
+                {
+                    Debug.LogWarning("0이하로 낮출수 없습니다.");
+                    return;
+                }
+                skillPoints++;
+                statPoint.AttackSpeed -= 1f;
+                break;
+            case 5: // RecoverTime
+                if (statPoint.RecoverTime <= 0f)
+                {
+                    Debug.LogWarning("0이하로 낮출수 없습니다.");
+                    return;
+                }
+                skillPoints++;
+                statPoint.RecoverTime -= 1f;
+                break;
+            case 6: // SkillDamage
+                if (statPoint.SkillDamage <= 0f)
+                {
+                    Debug.LogWarning("0이하로 낮출수 없습니다.");
+                    return;
+                }
+                skillPoints++;
+                statPoint.SkillDamage -= 1;
+                break;
+            case 7: // SkillCooldown
+                if (statPoint.SkillCooldown <= 0f)
+                {
+                    Debug.LogWarning("0이하로 낮출수 없습니다.");
+                    return;
+                }
+                skillPoints++;
+                statPoint.SkillCooldown -= 1f;
+                break;
+            default:
+                Debug.LogWarning("알수 없는 스탯: " + index);
+                return;
+        }
     }
 
 }
