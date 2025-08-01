@@ -5,13 +5,13 @@ public class ProtectedTarget : MonoBehaviour
     [System.Serializable]
     public class ProtectedObjectStats
     {
-        public int maxHP;
+        public float maxHP;
     }
 
     public ProtectedObjectStats stats = new ProtectedObjectStats();
 
     [SerializeField]
-    private int currentHP;
+    private float currentHP;
     private StageManager stage;
 
     private void Start()
@@ -27,7 +27,7 @@ public class ProtectedTarget : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHP -= damage;
     }

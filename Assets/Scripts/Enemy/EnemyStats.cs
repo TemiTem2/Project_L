@@ -6,26 +6,18 @@ public enum AttackType
     ranged
 }
 
-public enum EnemyState
-{
-    idle,
-    attack,
-    hurt,
-    dead
-}
 [Tooltip("Collider√ﬂ∞°« ")]
 [System.Serializable]
 public class EnemyStats
 {
     [Header("Enemy Stats")]
     public string enemyName;
-    public int maxHP;
-    public int damage;
+    public float maxHP;
+    public float damage;
     public float attackSpeed;
     public float attackRange;
     public float moveSpeed;
     public AttackType attackType;
-    public EnemyState enemyState;
 
     [Header("Rewards")]
     public int expReward;

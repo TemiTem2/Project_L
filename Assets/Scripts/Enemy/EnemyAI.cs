@@ -14,60 +14,42 @@ public class EnemyAI : MonoBehaviour
     private GameObject protect;
     private TargetType currentTarget;
 
-    private Animator enemyAnim;
     private Rigidbody2D rb;
     private Enemy enemy;
+
     private EnemyStats stats;
-    private EnemyAttackBase attackScript;
 
 
     private Vector2 targetDirection;
     private bool canAttack = false;
-    public float currentHP;
 
+    private EnemyTargetor enemyTargetor;
 
+    private void Awake()
+    {
+        enemyTargetor = new EnemyTargetor();
+    }
 
     void Start()
     {
-        enemyAnim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         enemy = GetComponent<Enemy>();
         stats = enemy.stats;
-
-
-        currentHP = stats.maxHP;
 
         player = GameObject.FindGameObjectWithTag("Player");
         protect = GameObject.FindGameObjectWithTag("Protect");
         target = protect.transform;
         currentTarget = TargetType.Protect;
-
-
-        switch (stats.attackType)
-        {
-            case AttackType.melee:
-                attackScript = gameObject.AddComponent<MeleeAttack>();
-                break;
-            case AttackType.ranged:
-                attackScript = gameObject.AddComponent<RangedAttack>();
-                break;
-            default:
-                Debug.LogWarning("attackType error");
-                break;
-        }
-
-        attackScript.Initialize(enemy);
     }
 
     private void Update()
     {
-        UpdateTarget();
-
-        if (stats.enemyState != EnemyState.dead)
+        if (enemy.enemyState != EnemyState.dead)
         {
+            enemyTargetor.UpdateTarget(this.transform);
             if (canAttack)
             {
-                stats.enemyState = EnemyState.attack;
+                enemy.enemyState = EnemyState.attack;
                 TryAttack();
             }
         }
@@ -75,10 +57,10 @@ public class EnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (stats.enemyState != EnemyState.dead)
+        if (enemy.enemyState != EnemyState.dead)
         {
             float distanceToTarget = Vector2.Distance(transform.position, target.position);
-            if (target != null && stats.enemyState != EnemyState.dead)
+            if (target != null && enemy.enemyState != EnemyState.dead)
             {
                 if (distanceToTarget <= stats.attackRange)
                 {
@@ -94,37 +76,9 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
-    {
-        currentHP -= damage;
-        Hurt();
-    }
-
-    private void Hurt()
-    {
-        if (stats.enemyState == EnemyState.dead) return;
-        if (currentHP <= 0)
-        {
-            Dead();
-        }
-        else
-        {
-            enemyAnim.SetTrigger("hurt");
-        }
-    }
-
-    private void Dead()
-    {
-        LevelupManager levelupManager = FindFirstObjectByType<LevelupManager>();
-        levelupManager.AddExp(stats.expReward);
-        stats.enemyState = EnemyState.dead;
-        enemyAnim.SetBool("isDead", true);
-        Destroy(gameObject, 3f);
-    }
-
     private void TryAttack()
     {
-        if (attackScript != null && stats.enemyState == EnemyState.attack)
+        if (enemy.attackScript != null && enemy.enemyState == EnemyState.attack)
         {
             AttackToPlayer();
         }
@@ -137,36 +91,17 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackToPlayer()
     {
-        enemyAnim.SetTrigger("attack");
 
         switch (currentTarget)
         {
             case TargetType.Player:
-                attackScript.TryAttackPlayer(targetDirection, stats.projectilePrefab, stats.damage);
+                enemy.attackScript.AttackPlayer(targetDirection, stats.projectilePrefab, stats.damage);
                 break;
             case TargetType.Protect:
-                attackScript.TryAttackProtectedTarget(targetDirection, stats.projectilePrefab, stats.damage);
+                enemy.attackScript.AttackProtectedTarget(targetDirection, stats.projectilePrefab, stats.damage);
                 break;
         }
         
-        stats.enemyState = EnemyState.idle;
-    }
-    
-    private void UpdateTarget()
-    {
-        float playerDistance = Vector2.Distance(transform.position, player.transform.position);
-        float protectDistance = Vector2.Distance(transform.position, protect.transform.position);
-        float attackRange = stats.attackRange;
-
-        if (playerDistance <= attackRange && protectDistance > attackRange)
-        {
-            target = player.transform;
-            currentTarget = TargetType.Player;
-        }
-        else
-        {
-            target = protect.transform;
-            currentTarget = TargetType.Protect;
-        }
+        enemy.enemyState = EnemyState.idle;
     }
 }

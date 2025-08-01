@@ -126,7 +126,7 @@ public class PlayerMove : MonoBehaviour
             float angle = Vector2.Angle(attackDir, toEnemy);
             if (angle <= halfAngle)
             {
-                EnemyAI enemy = col.GetComponent<EnemyAI>();
+                Enemy enemy = col.GetComponent<Enemy>();
                 if (enemy != null)
                 {
                     enemy.TakeDamage(stateManager.attackDamage);

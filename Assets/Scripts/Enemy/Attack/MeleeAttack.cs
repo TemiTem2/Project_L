@@ -39,7 +39,7 @@ public class MeleeAttack : EnemyAttackBase
         }
     }
 
-    public override void AttackPlayer(Vector2 direct, GameObject projectile, int damage)
+    public override void AttackPlayer(Vector2 direct, GameObject projectile, float damage)
     {
         if (animEvent.canAttack && isCollisionPlayer && !animEvent.isAttacked)
         {
@@ -47,7 +47,7 @@ public class MeleeAttack : EnemyAttackBase
             animEvent.isAttacked = true;
         }
     }
-    public override void AttackProtectedTarget(Vector2 direct, GameObject projectile, int damage)
+    public override void AttackProtectedTarget(Vector2 direct, GameObject projectile, float damage)
     { 
         if (animEvent.canAttack && isCollisionProtect && !animEvent.isAttacked)
         {
