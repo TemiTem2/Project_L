@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
-    public PlayableCharInfo[] playableCharInfo;
-    public string currentPlayCharName;
-    public string currentPlayerSkill;
+    private Database database;
 
     public float hp; // 현재 플레이어의 체력
     [Header("Player Stats")]
@@ -20,36 +18,57 @@ public class StateManager : MonoBehaviour
     public bool isKnockDown = false; // 플레이어가 넉다운 상태인지  여부
     public bool isDefend = false; // 플레이어가 방어 상태인지 여부
 
+    public PlayerStatManager playerStatManager;
+
     void Start()
     {
-        for (int i = 0; i < playableCharInfo.Length; i++)
-        {
-            if (playableCharInfo[i].charName == currentPlayCharName)
-            {
-                Instantiate(playableCharInfo[i].charPrefab, transform.position, Quaternion.identity);
-                
-                
-                Maxhp = playableCharInfo[i].maxHealth;
-                hp = Maxhp; // 플레이어의 체력을 초기화
-                speed = playableCharInfo[i].moveSpeed;
-                attackRange = playableCharInfo[i].attackRange;
-                attackDamage = playableCharInfo[i].attackDamage;
-                attackSpeed = playableCharInfo[i].attackSpeed;
-                recoverTime = playableCharInfo[i].recoverTime;
-                attackAngle = playableCharInfo[i].attackAngle;
-                for (int j = 0; j < playableCharInfo[i].skills.Length; j++)
-                {
-                    if (playableCharInfo[i].skills[j].skillname == currentPlayerSkill)
-                    {
-                        skill = playableCharInfo[i].skills[j];
-                    }
-                }
-                //skill1Damage = playableCharInfo[i].skill1Damage;
-                //skill1Cooldown = playableCharInfo[i].skill1Cooldown;
-                //skill1MoveRange = playableCharInfo[i].skill1MoveRange;
-                Debug.Log($"Current Playable Character: {playableCharInfo[i].charName}");
-            }
-        }
+        database = FindFirstObjectByType<Database>();
+        playerStatManager = FindFirstObjectByType<PlayerStatManager>();
+
+        Instantiate(database.currentCharInfo.charPrefab, transform.position, Quaternion.identity);
+
+
+        Maxhp = database.currentCharInfo.maxHealth + (playerStatManager.statPoint.MaxHP * 10);
+        hp = Maxhp; // 플레이어의 체력을 초기화
+        speed = database.currentCharInfo.moveSpeed + (playerStatManager.statPoint.Speed * 0.1f);
+        attackRange = database.currentCharInfo.attackRange + (playerStatManager.statPoint.AttackRange * 0.1f);
+        attackDamage = database.currentCharInfo.attackDamage + (playerStatManager.statPoint.AttackDamage);
+        attackSpeed = database.currentCharInfo.attackSpeed + (playerStatManager.statPoint.AttackSpeed * 0.1f);
+        recoverTime = database.currentCharInfo.recoverTime - (playerStatManager.statPoint.RecoverTime * 0.1f);
+        attackAngle = database.currentCharInfo.attackAngle;
+
+        skill = database.currentSkillInfo;
+        skill.damage += playerStatManager.statPoint.SkillDamage;
+        skill.cooldown -= playerStatManager.statPoint.SkillCooldown * 0.1f;
+
+        //for (int i = 0; i < database.playableCharInfo.Length; i++)
+        // {
+        //     if (database.playableCharInfo[i].charName == database.currentPlayCharName)
+        //     {
+        //         Instantiate(database.playableCharInfo[i].charPrefab, transform.position, Quaternion.identity);
+
+
+        //         Maxhp = database.playableCharInfo[i].maxHealth;
+        //         hp = Maxhp; // 플레이어의 체력을 초기화
+        //         speed = database.playableCharInfo[i].moveSpeed;
+        //         attackRange = database.playableCharInfo[i].attackRange;
+        //         attackDamage = database.playableCharInfo[i].attackDamage;
+        //         attackSpeed = database.playableCharInfo[i].attackSpeed;
+        //         recoverTime = database.playableCharInfo[i].recoverTime;
+        //         attackAngle = database.playableCharInfo[i].attackAngle;
+        //         for (int j = 0; j < database.playableCharInfo[i].skills.Length; j++)
+        //         {
+        //             if (database.playableCharInfo[i].skills[j].skillname == database.currentPlayerSkill)
+        //             {
+        //                 skill = database.playableCharInfo[i].skills[j];
+        //             }
+        //         }
+        //         //skill1Damage = playableCharInfo[i].skill1Damage;
+        //         //skill1Cooldown = playableCharInfo[i].skill1Cooldown;
+        //         //skill1MoveRange = playableCharInfo[i].skill1MoveRange;
+        //         Debug.Log($"Current Playable Character: {database.playableCharInfo[i].charName}");
+        //     }
+        // }
     }
 
     void Update()
