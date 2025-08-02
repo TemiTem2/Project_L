@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum EnemyState
@@ -12,6 +13,9 @@ public class Enemy : MonoBehaviour
     public EnemyStats stats = new EnemyStats();
     public EnemyState enemyState;
     public EnemyAttackBase attackScript;
+    
+    public Action<Enemy> OnDeathCallBack;
+
     public float currentHP;
 
     private void Start()
@@ -57,6 +61,7 @@ public class Enemy : MonoBehaviour
         enemyState = EnemyState.dead;
         LevelupManager levelupManager = FindFirstObjectByType<LevelupManager>();
         levelupManager.AddExp(stats.expReward);
+        OnDeathCallBack?.Invoke(this);
         Destroy(gameObject, 3f);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
@@ -12,8 +13,10 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private EnemySpawner enemySpawner;
 
+    private List<Enemy> enemies = new();
+
     public bool isOver = false;
-    public bool isWaveEnd = false;
+    public bool isStageEnd = false;
 
 
     private StageTemplate currentStage;
@@ -23,7 +26,6 @@ public class StageManager : MonoBehaviour
     {
         currentStage = stages[currentStageIndex];
         StartCoroutine(RoadStage());
-        isWaveEnd = true;
     }
 
     private IEnumerator RoadStage()
@@ -38,11 +40,27 @@ public class StageManager : MonoBehaviour
                 for (int j = 0; j < enemyCount; j++)
                 {
                     Vector2 spawnPos = enemySpawner.GenerateSpwanPos();
-                    enemySpawner.SpawnEnemy(enemyName, new Vector3(spawnPos.x, spawnPos.y, 0));
+                    Enemy enemy = enemySpawner.SpawnEnemy(enemyName, new Vector3(spawnPos.x, spawnPos.y, 0));
+                    RegisterEnemy(enemy);
                     yield return new WaitForSeconds(currentStage.stageData.spawnInterval);
                 }
             }
             currentWaveIndex++;
+        }
+    }
+
+    private void RegisterEnemy(Enemy enemy)
+    {
+        enemies.Add(enemy);
+        enemy.OnDeathCallBack = UnregisterEnemy;
+    }
+
+    private void UnregisterEnemy(Enemy enemy)
+    {
+        enemies.Remove(enemy);
+        if (enemies.Count == 0)
+        {
+            isStageEnd = true;
         }
     }
 } 

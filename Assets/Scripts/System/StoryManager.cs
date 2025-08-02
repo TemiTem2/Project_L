@@ -29,7 +29,7 @@ public class StoryManager : MonoBehaviour
     private string currentStoryLine;
     private ContentType contentType;
 
-    public bool isEventEnd = false;
+    public bool isEventEnd = false; //랜덤이벤트 종료
 
     private void Start()
     {

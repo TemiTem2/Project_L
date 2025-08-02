@@ -58,15 +58,17 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void SpawnEnemy(string name, Vector3 position)
+    public Enemy SpawnEnemy(string name, Vector3 position)
     {
         if (enemyDictionary.TryGetValue(name, out Enemy enemyPrefab))
         {
             Enemy newEnemy = Instantiate(enemyPrefab, position, Quaternion.identity);
+            return newEnemy;
         }
         else
         {
             Debug.LogWarning("해당 이름 없음: " + name);
+            return null;
         }
     }
 
