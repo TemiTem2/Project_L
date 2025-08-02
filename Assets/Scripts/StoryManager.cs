@@ -4,8 +4,8 @@ using TMPro;
 
 public class StoryManager : MonoBehaviour
 {
-    private InputManager inputManager;
-
+    [SerializeField]
+    private Image imageCharacter;
     [SerializeField]
     private TextMeshProUGUI nameText;
     [SerializeField]
@@ -23,7 +23,7 @@ public class StoryManager : MonoBehaviour
     private int currentParIndex = 0;
     private int currentLineIndex = 0;
 
-    private int currentTime;
+    //private int currentTime;
     private StoryData currentStoryData;
     private StoryLine currentParData;
     private string currentStoryLine;
@@ -33,19 +33,10 @@ public class StoryManager : MonoBehaviour
 
     private void Start()
     {
-        inputManager = FindFirstObjectByType<InputManager>();
 
         currentStoryIndex = RandomSelector();
         currentStoryData = storyDatas[currentStoryIndex];
         LoadPar();
-    }
-
-    private void Update()
-    {
-        if(isEventEnd)
-        {
-
-        }
     }
 
     public void LoadByContentType()
@@ -72,6 +63,7 @@ public class StoryManager : MonoBehaviour
             currentLineIndex = 0;
             currentParData = currentStoryData.pars[currentParIndex];
             contentType = currentParData.contentType;
+            imageCharacter.sprite = currentParData.speakerImage;
             LoadLine();
         }
     }
