@@ -12,13 +12,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313bff327122b7b44a99d02222c12975, type: 3}
   m_Name: RandomEventSample 1
   m_EditorClassIdentifier: 
-  storyName: Sample1
+  storyName: Sample0
   pars:
-  - speakerName: A
+  - contentType: 0
+    speakerName: B
     contents:
-    - p
-    - hp
-    - 'p
+    - "\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\r\n"
+    choices: []
+  - contentType: 0
+    speakerName: B
+    contents:
+    - hi
+    - "\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C"
+    - f
+    choices: []
+  - contentType: 1
+    speakerName: A
+    contents:
+    - where
+    choices:
+    - choiceText: to 3
+      jumpIndex: 3
+    - choiceText: to 5
+      jumpIndex: 5
+  - contentType: 2
+    speakerName: A
+    contents:
+    - 'first end
 
 '
-    - p
+    - 'second end
+
+'
+    choices:
+    - choiceText: to 3
+      jumpIndex: 0
+    - choiceText: to 5
+      jumpIndex: 0
+  - contentType: 0
+    speakerName: s
+    contents:
+    - nobody can see
+    - nobody can see
+    - nobody can see
+    - nobody can see
+    choices:
+    - choiceText: to 3
+      jumpIndex: 0
+    - choiceText: to 5
+      jumpIndex: 0
+  - contentType: 0
+    speakerName: A
+    contents:
+    - hihi
+    - 'hi
+
+'
+    choices:
+    - choiceText: to 3
+      jumpIndex: 0
+    - choiceText: to 5
+      jumpIndex: 0
+  - contentType: 2
+    speakerName: A
+    contents:
+    - end
+    choices:
+    - choiceText: to 3
+      jumpIndex: 0
+    - choiceText: to 5
+      jumpIndex: 0

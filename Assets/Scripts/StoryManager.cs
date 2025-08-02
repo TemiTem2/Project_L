@@ -11,9 +11,11 @@ public class StoryManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI storyText;
     [SerializeField]
-    private Button buttonOne;
+    private GameObject panelChoiceTwo;
     [SerializeField]
-    private Button buttonTwo;
+    private TextMeshProUGUI textChoice0;
+    [SerializeField]
+    private TextMeshProUGUI textChoice1;
 
     [SerializeField]
     private StoryData[] storyDatas;
@@ -25,6 +27,7 @@ public class StoryManager : MonoBehaviour
     private StoryData currentStoryData;
     private StoryLine currentParData;
     private string currentStoryLine;
+    private ContentType contentType;
 
     public bool isEventEnd = false;
 
@@ -39,23 +42,36 @@ public class StoryManager : MonoBehaviour
 
     private void Update()
     {
-        if(!isEventEnd && inputManager.isClicked)
+        if(isEventEnd)
         {
-            LoadNext();
+
         }
     }
 
-    //private void DictStory()
-    //{
-
-    //}
+    public void LoadByContentType()
+    {
+        switch (contentType)
+        {
+            case ContentType.None:
+                LoadNext();
+                break;
+            case ContentType.Choice:
+                LoadButton();
+                break;
+            case ContentType.End:
+                isEventEnd = true;
+                break;
+        }
+    }
 
 
     private void LoadPar()
     {
         if(currentStoryData != null)
         {
+            currentLineIndex = 0;
             currentParData = currentStoryData.pars[currentParIndex];
+            contentType = currentParData.contentType;
             LoadLine();
         }
     }
@@ -75,7 +91,6 @@ public class StoryManager : MonoBehaviour
         currentLineIndex++;
         if (currentLineIndex >= currentParData.contents.Length)
         {
-            currentLineIndex = 0;
             currentParIndex++;
             if (currentParIndex >= currentStoryData.pars.Length)
             {
@@ -94,5 +109,19 @@ public class StoryManager : MonoBehaviour
     {
         int index = storyDatas.Length;
         return Random.Range(0, index);
+    }
+
+    private void LoadButton()
+    {
+        panelChoiceTwo.SetActive(true);
+        textChoice0.text = currentParData.choices[0].choiceText;
+        textChoice1.text = currentParData.choices[1].choiceText;
+    }
+
+    public void LoadByButton(int buttonIndex)
+    {
+        currentParIndex = currentParData.choices[buttonIndex].jumpIndex;
+        LoadPar();
+        panelChoiceTwo.SetActive(false);
     }
 }
