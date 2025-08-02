@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 1369182316}
   - component: {fileID: 1369182315}
   m_Layer: 5
-  m_Name: Text_Description
+  m_Name: Text_Story
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1264,6 +1264,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369182313}
   m_CullTransparentMesh: 1
+--- !u!1 &1698115391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698115393}
+  - component: {fileID: 1698115392}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1698115392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698115391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b7873b99cfc1948a875328a443013b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClicked: 0
+--- !u!4 &1698115393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698115391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 514.92737, y: 627.23895, z: -9.257259}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1862140066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,9 +1338,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838515c14460043469feaf850ced5c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameText: {fileID: 328902933}
+  storyText: {fileID: 1369182315}
+  buttonOne: {fileID: 403692561}
+  buttonTwo: {fileID: 758169178}
   storyDatas:
   - {fileID: 11400000, guid: 975fcfd5af58dc24b9b3bf019a3c8fae, type: 2}
   - {fileID: 11400000, guid: 4f5c3209292fb3d42a82ccc8a296eb39, type: 2}
+  isEventEnd: 0
 --- !u!4 &1862140068
 Transform:
   m_ObjectHideFlags: 0
@@ -1474,3 +1524,4 @@ SceneRoots:
   - {fileID: 136116278}
   - {fileID: 588656212}
   - {fileID: 1862140068}
+  - {fileID: 1698115393}
