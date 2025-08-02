@@ -4,23 +4,26 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMover
 {
-    //public void get(Transform transform, Transform target, Enemy enemy)
-    //{
-    //    float distanceToTarget = Vector2.Distance(transform.position, target.position);
-    //    if (target != null && enemy.enemyState != EnemyState.dead)
-    //    {
-    //        if (distanceToTarget <= enemy.stats.attackRange)
-    //        {
-    //            canAttack = true;
-    //        }
-    //        else
-    //        {
-    //            targetDirection = (target.position - transform.position).normalized;
-    //            rb.MovePosition(rb.position + targetDirection * enemy.stats.moveSpeed * Time.fixedDeltaTime);
-    //            canAttack = false;
-    //        }
-    //    }
-    //}
+    private Rigidbody2D rb;
 
-    //private void MoveToTarget
+    public void InitializeEnemyMover(Enemy enemy)
+    {
+        rb = enemy.GetComponent<Rigidbody2D>();
+    }
+
+    public bool IsTargetInRange(Transform self, Transform target, float attackRange)
+    {
+        float distance = Vector2.Distance(self.position, target.position);
+        return distance <= attackRange;
+    }
+
+    public Vector2 GetTargetDirection(Transform transform, Transform target)
+    {
+        return (target.position - transform.position).normalized;
+    }
+
+    public void MoveEnemy(Vector2 targetDirection, float moveSpeed)
+    {
+        rb.MovePosition(rb.position + targetDirection * moveSpeed * Time.fixedDeltaTime);
+    }
 }

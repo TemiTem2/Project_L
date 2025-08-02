@@ -9,99 +9,69 @@ public enum TargetType
 }
 public class EnemyAI : MonoBehaviour
 {
-    private Transform target;
-    private GameObject player;
-    private GameObject protect;
-    private TargetType currentTarget;
-
-    private Rigidbody2D rb;
     private Enemy enemy;
-
     private EnemyStats stats;
 
 
+    private TargetType targetType;
+    private Transform target;
     private Vector2 targetDirection;
     private bool canAttack = false;
 
     private EnemyTargetor enemyTargetor;
+    private EnemyMover enemyMover;
 
     private void Awake()
     {
         enemyTargetor = new EnemyTargetor();
+        enemyMover = new EnemyMover();
     }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         enemy = GetComponent<Enemy>();
         stats = enemy.stats;
 
-        player = GameObject.FindGameObjectWithTag("Player");
-        protect = GameObject.FindGameObjectWithTag("Protect");
-        target = protect.transform;
-        currentTarget = TargetType.Protect;
+        enemyTargetor.InitializeEnemyTargetor();
+        enemyMover.InitializeEnemyMover(enemy);
     }
 
     private void Update()
     {
-        if (enemy.enemyState != EnemyState.dead)
+        if (enemy.enemyState == EnemyState.dead)
         {
-            enemyTargetor.UpdateTarget(this.transform);
-            if (canAttack)
-            {
-                enemy.enemyState = EnemyState.attack;
-                TryAttack();
-            }
+            this.enabled = false;
+        }
+        else
+        {
+            UpdateTargetInformation();
+            EnemyBehavior();
         }
     }
 
-    private void FixedUpdate()
+    private void EnemyBehavior()
     {
-        if (enemy.enemyState != EnemyState.dead)
+        if (canAttack)
         {
-            float distanceToTarget = Vector2.Distance(transform.position, target.position);
-            if (target != null && enemy.enemyState != EnemyState.dead)
-            {
-                if (distanceToTarget <= stats.attackRange)
-                {
-                    canAttack = true;
-                }
-                else
-                {
-                    targetDirection = (target.position - transform.position).normalized;
-                    rb.MovePosition(rb.position + targetDirection * stats.moveSpeed * Time.fixedDeltaTime);
-                    canAttack = false;
-                }
-            }
+            enemy.enemyState = EnemyState.attack;
+            TryAttack();
         }
+        else
+        {
+            enemyMover.MoveEnemy(targetDirection, stats.moveSpeed);
+        }
+    }
+    private void UpdateTargetInformation()
+    {
+        targetType = enemyTargetor.UpdateTarget(stats, transform);
+        target = enemyTargetor.GetTargetTransform(targetType);
+        targetDirection = enemyMover.GetTargetDirection(transform, target);
+        canAttack = enemyMover.IsTargetInRange(transform, target, stats.attackRange);
     }
 
     private void TryAttack()
     {
-        if (enemy.attackScript != null && enemy.enemyState == EnemyState.attack)
-        {
-            AttackToPlayer();
-        }
-        else
-        {
-            Debug.LogWarning("attackSript is null");
-        }
-        
+            enemy.attackScript.TryAttack(targetType, targetDirection, stats.projectilePrefab, stats.damage);
     }
 
-    private void AttackToPlayer()
-    {
-
-        switch (currentTarget)
-        {
-            case TargetType.Player:
-                enemy.attackScript.AttackPlayer(targetDirection, stats.projectilePrefab, stats.damage);
-                break;
-            case TargetType.Protect:
-                enemy.attackScript.AttackProtectedTarget(targetDirection, stats.projectilePrefab, stats.damage);
-                break;
-        }
-        
-        enemy.enemyState = EnemyState.idle;
-    }
 }

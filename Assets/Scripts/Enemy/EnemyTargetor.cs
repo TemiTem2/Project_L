@@ -3,22 +3,17 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class EnemyTargetor
-{
-    private Transform target;
+{   
     private GameObject player;
     private GameObject protect;
 
-    private TargetType currentTarget;
-    private EnemyStats stats;
-
-    void Start()
+    public void InitializeEnemyTargetor()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         protect = GameObject.FindGameObjectWithTag("Protect");
-        target = protect.transform;
-        currentTarget = TargetType.Protect;
     }
-    public void UpdateTarget(Transform transform)
+
+    public TargetType UpdateTarget(EnemyStats stats, Transform transform)
     {
         float playerDistance = Vector2.Distance(transform.position, player.transform.position);
         float protectDistance = Vector2.Distance(transform.position, protect.transform.position);
@@ -26,13 +21,24 @@ public class EnemyTargetor
 
         if (playerDistance <= attackRange && protectDistance > attackRange)
         {
-            target = player.transform;
-            currentTarget = TargetType.Player;
+            return TargetType.Player;
         }
         else
         {
-            target = protect.transform;
-            currentTarget = TargetType.Protect;
+            return TargetType.Protect;
+        }
+    }
+
+    public Transform GetTargetTransform(TargetType targetType)
+    {
+        switch (targetType)
+        {
+            case TargetType.Player:
+                return player.transform;
+            case TargetType.Protect:
+                return protect.transform;
+            default:
+                return null;
         }
     }
 }

@@ -4,19 +4,30 @@ public class EnemyAnim : MonoBehaviour
 {
     private Animator enemyAnim;
     private Enemy enemy;
+    private EnemyState prevState;
 
     private void Start()
     {
-        enemyAnim = GetComponentInChildren<Animator>();
-        enemy = GetComponent<Enemy>();
+        enemyAnim = GetComponent<Animator>();
+        enemy = GetComponentInParent<Enemy>();
+        prevState = enemy.enemyState;
     }
 
     private void Update()
     {
+        if (enemy.enemyState != prevState)
+        {
+            UpdateAnimState();
+            prevState = enemy.enemyState;
+        }
+    }
+
+    public void DisableAttack()
+    {
         UpdateAnimState();
     }
 
-    private void UpdateAnimState()
+    public void UpdateAnimState()
     {
         switch(enemy.enemyState)
         {
@@ -30,6 +41,7 @@ public class EnemyAnim : MonoBehaviour
                 break;
             case EnemyState.dead:
                 enemyAnim.SetBool("isDead", true);
+                this.enabled = false;
                 break;
         }
     }

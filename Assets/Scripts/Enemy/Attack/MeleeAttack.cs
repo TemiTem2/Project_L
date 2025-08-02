@@ -39,20 +39,27 @@ public class MeleeAttack : EnemyAttackBase
         }
     }
 
-    public override void AttackPlayer(Vector2 direct, GameObject projectile, float damage)
+    public override void TryAttack(TargetType targetType, Vector2 direct, GameObject projectile, float damage)
     {
-        if (animEvent.canAttack && isCollisionPlayer && !animEvent.isAttacked)
+        switch (targetType)
         {
-            stateManager.TakeDamage(damage);
-            animEvent.isAttacked = true;
-        }
-    }
-    public override void AttackProtectedTarget(Vector2 direct, GameObject projectile, float damage)
-    { 
-        if (animEvent.canAttack && isCollisionProtect && !animEvent.isAttacked)
-        {
-            protect.TakeDamage(damage);
-            animEvent.isAttacked = true;
+            case TargetType.Player:
+                if (animEvent.canAttack && isCollisionPlayer && !animEvent.isAttacked)
+                {
+                    stateManager.TakeDamage(damage);
+                    animEvent.isAttacked = true;
+                }
+                break;
+            case TargetType.Protect:
+                if (animEvent.canAttack && isCollisionProtect && !animEvent.isAttacked)
+                {
+                    protect.TakeDamage(damage);
+                    animEvent.isAttacked = true;
+                }
+                break;
+            default:
+                Debug.LogWarning("Unknown target type");
+                break;
         }
     }
 }

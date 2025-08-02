@@ -13,6 +13,7 @@ public class StageManager : MonoBehaviour
     private EnemySpawner enemySpawner;
 
     public bool isOver = false;
+    public bool isWaveEnd = false;
 
 
     private StageTemplate currentStage;
@@ -22,6 +23,7 @@ public class StageManager : MonoBehaviour
     {
         currentStage = stages[currentStageIndex];
         StartCoroutine(RoadStage());
+        isWaveEnd = true;
     }
 
     private IEnumerator RoadStage()
