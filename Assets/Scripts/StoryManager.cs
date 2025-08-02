@@ -125,3 +125,6 @@ public class StoryManager : MonoBehaviour
         panelChoiceTwo.SetActive(false);
     }
 }
+
+
+
