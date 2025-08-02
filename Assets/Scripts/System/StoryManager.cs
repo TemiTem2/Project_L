@@ -1,42 +1,50 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class StoryManager : MonoBehaviour
 {
     [SerializeField]
-    private Image imageCharacter;
-    [SerializeField]
-    private TextMeshProUGUI nameText;
-    [SerializeField]
-    private TextMeshProUGUI storyText;
-    [SerializeField]
-    private GameObject panelChoiceTwo;
-    [SerializeField]
-    private TextMeshProUGUI textChoice0;
-    [SerializeField]
-    private TextMeshProUGUI textChoice1;
+    private StoryUIUpdator storyUIUpdator;
 
     [SerializeField]
     private StoryData[] storyDatas;
+
     private int currentStoryIndex = 0;
     private int currentParIndex = 0;
     private int currentLineIndex = 0;
 
-    //private int currentTime;
     private StoryData currentStoryData;
     private StoryLine currentParData;
-    private string currentStoryLine;
     private ContentType contentType;
+
+    private Sprite currentImage;
+    private string currentStoryLine;
+    private string currentName;
 
     public bool isEventEnd = false; //랜덤이벤트 종료
 
     private void Start()
     {
-
         currentStoryIndex = RandomSelector();
         currentStoryData = storyDatas[currentStoryIndex];
         LoadPar();
+    }
+
+
+
+    private void LoadPar()
+    {
+        currentLineIndex = 0;
+        currentParData = currentStoryData.pars[currentParIndex];
+        contentType = currentParData.contentType;
+        currentImage = currentParData.speakerImage;
+        LoadLine();
+    }
+
+    private void LoadLine()
+    {
+        currentStoryLine = currentParData.contents[currentLineIndex];
+        currentName = currentParData.speakerName;
+        storyUIUpdator.UpdateUI(currentName, currentStoryLine, currentImage);
     }
 
     public void LoadByContentType()
@@ -47,34 +55,11 @@ public class StoryManager : MonoBehaviour
                 LoadNext();
                 break;
             case ContentType.Choice:
-                LoadButton();
+                storyUIUpdator.EnableChoice(currentParData.choices[0].choiceText, currentParData.choices[1].choiceText);
                 break;
             case ContentType.End:
                 isEventEnd = true;
                 break;
-        }
-    }
-
-
-    private void LoadPar()
-    {
-        if(currentStoryData != null)
-        {
-            currentLineIndex = 0;
-            currentParData = currentStoryData.pars[currentParIndex];
-            contentType = currentParData.contentType;
-            imageCharacter.sprite = currentParData.speakerImage;
-            LoadLine();
-        }
-    }
-
-    private void LoadLine()
-    {
-        if (currentParData != null)
-        {
-            currentStoryLine = currentParData.contents[currentLineIndex];
-            nameText.text = currentParData.speakerName;
-            storyText.text = currentStoryLine;
         }
     }
 
@@ -103,18 +88,11 @@ public class StoryManager : MonoBehaviour
         return Random.Range(0, index);
     }
 
-    private void LoadButton()
-    {
-        panelChoiceTwo.SetActive(true);
-        textChoice0.text = currentParData.choices[0].choiceText;
-        textChoice1.text = currentParData.choices[1].choiceText;
-    }
-
     public void LoadByButton(int buttonIndex)
     {
         currentParIndex = currentParData.choices[buttonIndex].jumpIndex;
         LoadPar();
-        panelChoiceTwo.SetActive(false);
+        storyUIUpdator.DisableChoice();
     }
 }
 

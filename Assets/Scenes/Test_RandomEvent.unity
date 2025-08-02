@@ -838,8 +838,9 @@ GameObject:
   - component: {fileID: 588656211}
   - component: {fileID: 588656210}
   - component: {fileID: 588656209}
+  - component: {fileID: 588656213}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: StoryUIPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -929,6 +930,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &588656213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588656208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd83c05c396c6b54bb6beebdd4c1a093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageCharacter: {fileID: 968009781}
+  nameText: {fileID: 328902933}
+  storyText: {fileID: 1369182315}
+  panelChoiceTwo: {fileID: 2046210929}
+  textChoice0: {fileID: 175704000}
+  textChoice1: {fileID: 8141981}
 --- !u!1 &758169176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,12 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838515c14460043469feaf850ced5c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageCharacter: {fileID: 968009781}
-  nameText: {fileID: 328902933}
-  storyText: {fileID: 1369182315}
-  panelChoiceTwo: {fileID: 2046210929}
-  textChoice0: {fileID: 175704000}
-  textChoice1: {fileID: 8141981}
+  storyUIUpdator: {fileID: 588656213}
   storyDatas:
   - {fileID: 11400000, guid: 975fcfd5af58dc24b9b3bf019a3c8fae, type: 2}
   - {fileID: 11400000, guid: 1dbff643c23ea12448db9bf0a2eff9c2, type: 2}
