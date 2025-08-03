@@ -22,7 +22,7 @@ public class StoryManager : MonoBehaviour
     private string currentStoryLine;
     private string currentName;
 
-    public Dictionary<RewardType, int> reward;
+    public Dictionary<RewardType, int> reward = new();
     public bool isEventEnd = false; //랜덤이벤트 종료
 
     private void Start()
@@ -52,6 +52,10 @@ public class StoryManager : MonoBehaviour
 
     public void LoadByContentType()
     {
+        if (isEventEnd)
+        {
+            return;
+        }
         switch (contentType)
         {
             case ContentType.None:
@@ -103,7 +107,23 @@ public class StoryManager : MonoBehaviour
 
     private void AddReward()
     {
-        reward.Add(currentParData.rewards[rewardIndex].rewardType, currentParData.rewards[rewardIndex].amount);
+        if(reward.ContainsKey(currentParData.rewards[rewardIndex].rewardType))
+        {
+            reward[currentParData.rewards[rewardIndex].rewardType] += currentParData.rewards[rewardIndex].amount;
+            foreach (KeyValuePair<RewardType, int> entry in reward)
+            {
+                Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");
+            }
+
+        }
+        else
+        {
+            reward.Add(currentParData.rewards[rewardIndex].rewardType, currentParData.rewards[rewardIndex].amount);
+            foreach (KeyValuePair<RewardType, int> entry in reward)
+            {
+                Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");
+            }
+        }
     }
 
     private void RewardCheck()
@@ -116,6 +136,7 @@ public class StoryManager : MonoBehaviour
         }
         else
         {
+            storyUIUpdator.HideRewardPanel();
             LoadNext();
             rewardIndex = 0;
         }
@@ -131,7 +152,7 @@ public class StoryManager : MonoBehaviour
         }
         else
         {
-            rewardIndex = 0;
+            storyUIUpdator.HideRewardPanel();
             isEventEnd = true;
         }
     }

@@ -17,6 +17,11 @@ public class StoryUIUpdator : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textChoice1;
 
+    [SerializeField]
+    private GameObject panelReward;
+    [SerializeField]
+    private TextMeshProUGUI textReward;
+
     public void UpdateUI(string name, string text, Sprite Image)
     {
         nameText.text = name;
@@ -38,7 +43,11 @@ public class StoryUIUpdator : MonoBehaviour
 
     public void ShowRewardPanel(RewardType reward, int amount)
     {
-        //Panel On
-        //.text = reward.ToString() + " " + amount.ToString() + "만큼 획독했습니다.";
+        panelReward.SetActive(true);
+        textReward.text = $"{reward}을 {amount}만큼 획득했습니다!";
+    }
+    public void HideRewardPanel()
+    {
+        panelReward.SetActive(false);
     }
 }

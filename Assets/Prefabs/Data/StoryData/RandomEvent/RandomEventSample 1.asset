@@ -20,6 +20,7 @@ MonoBehaviour:
     contents:
     - "\uAC00\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\u314F\r\n"
     choices: []
+    rewards: []
   - contentType: 0
     speakerName: B
     speakerImage: {fileID: -9074539206338946419, guid: c80534141f80d28489b1ef92f8ff7d99, type: 3}
@@ -28,6 +29,7 @@ MonoBehaviour:
     - "\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C\u306C"
     - f
     choices: []
+    rewards: []
   - contentType: 1
     speakerName: A
     speakerImage: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
@@ -38,7 +40,8 @@ MonoBehaviour:
       jumpIndex: 3
     - choiceText: to 5
       jumpIndex: 5
-  - contentType: 2
+    rewards: []
+  - contentType: 3
     speakerName: A
     speakerImage: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
     contents:
@@ -53,6 +56,9 @@ MonoBehaviour:
       jumpIndex: 3
     - choiceText: to 5
       jumpIndex: 5
+    rewards:
+    - rewardType: 2
+      amount: 10
   - contentType: 0
     speakerName: s
     speakerImage: {fileID: 0}
@@ -66,6 +72,7 @@ MonoBehaviour:
       jumpIndex: 3
     - choiceText: to 5
       jumpIndex: 5
+    rewards: []
   - contentType: 0
     speakerName: A
     speakerImage: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
@@ -77,7 +84,8 @@ MonoBehaviour:
       jumpIndex: 3
     - choiceText: to 5
       jumpIndex: 5
-  - contentType: 2
+    rewards: []
+  - contentType: 3
     speakerName: A
     speakerImage: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
     contents:
@@ -87,3 +95,6 @@ MonoBehaviour:
       jumpIndex: 3
     - choiceText: to 5
       jumpIndex: 5
+    rewards:
+    - rewardType: 2
+      amount: 30
