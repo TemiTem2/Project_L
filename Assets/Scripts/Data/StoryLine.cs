@@ -4,6 +4,7 @@ public enum ContentType
 {
     None,
     Choice,
+    Reward,
     End
 }
 [System.Serializable]
@@ -17,4 +18,6 @@ public class StoryLine
     public string[] contents;
 
     public ChoiceData[] choices;
+
+    public RewardData[] rewards;
 }

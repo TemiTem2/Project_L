@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StoryManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class StoryManager : MonoBehaviour
     private int currentStoryIndex = 0;
     private int currentParIndex = 0;
     private int currentLineIndex = 0;
+    private int rewardIndex = 0;
 
     private StoryData currentStoryData;
     private StoryLine currentParData;
@@ -20,6 +22,7 @@ public class StoryManager : MonoBehaviour
     private string currentStoryLine;
     private string currentName;
 
+    public Dictionary<RewardType, int> reward;
     public bool isEventEnd = false; //랜덤이벤트 종료
 
     private void Start()
@@ -57,8 +60,11 @@ public class StoryManager : MonoBehaviour
             case ContentType.Choice:
                 storyUIUpdator.EnableChoice(currentParData.choices[0].choiceText, currentParData.choices[1].choiceText);
                 break;
+            case ContentType.Reward:
+                RewardCheck();
+                break;
             case ContentType.End:
-                isEventEnd = true;
+                EndCheck();
                 break;
         }
     }
@@ -93,6 +99,41 @@ public class StoryManager : MonoBehaviour
         currentParIndex = currentParData.choices[buttonIndex].jumpIndex;
         LoadPar();
         storyUIUpdator.DisableChoice();
+    }
+
+    private void AddReward()
+    {
+        reward.Add(currentParData.rewards[rewardIndex].rewardType, currentParData.rewards[rewardIndex].amount);
+    }
+
+    private void RewardCheck()
+    {
+        if (rewardIndex < currentParData.rewards.Length)
+        {
+            AddReward();
+            storyUIUpdator.ShowRewardPanel(currentParData.rewards[rewardIndex].rewardType, currentParData.rewards[rewardIndex].amount);
+            rewardIndex++;
+        }
+        else
+        {
+            LoadNext();
+            rewardIndex = 0;
+        }
+    }
+
+    private void EndCheck()
+    {
+        if (rewardIndex < currentParData.rewards.Length)
+        {
+            AddReward();
+            storyUIUpdator.ShowRewardPanel(currentParData.rewards[rewardIndex].rewardType, currentParData.rewards[rewardIndex].amount);
+            rewardIndex++;
+        }
+        else
+        {
+            rewardIndex = 0;
+            isEventEnd = true;
+        }
     }
 }
 

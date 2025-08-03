@@ -35,4 +35,10 @@ public class StoryUIUpdator : MonoBehaviour
     {
         panelChoiceTwo.SetActive(false);
     }
+
+    public void ShowRewardPanel(RewardType reward, int amount)
+    {
+        //Panel On
+        //.text = reward.ToString() + " " + amount.ToString() + "만큼 획독했습니다.";
+    }
 }
