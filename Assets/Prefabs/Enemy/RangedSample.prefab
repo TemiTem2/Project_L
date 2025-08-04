@@ -166,11 +166,13 @@ MonoBehaviour:
     attackRange: 10
     moveSpeed: 1
     attackType: 1
-    enemyState: 0
     expReward: 0
     goldReward: 0
     enemyPrefab: {fileID: 5725948130013901785}
     projectilePrefab: {fileID: 4144620963504334238, guid: 6556afe6e2ea69e4ea10afb343922a9b, type: 3}
+  enemyState: 0
+  attackScript: {fileID: 0}
+  currentHP: 0
 --- !u!50 &5362978315504106950
 Rigidbody2D:
   serializedVersion: 5
@@ -210,7 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09e6a038c75e824092f661084cd6d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 0
 --- !u!58 &7592373214303277787
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -241,7 +242,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

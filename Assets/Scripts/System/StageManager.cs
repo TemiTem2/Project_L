@@ -7,7 +7,7 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private StageTemplate[] stages;
     [SerializeField]
-    private int currentStageIndex = 0;
+    private int currentStageIndex = 2;
     [SerializeField]
     private int totalStages;
     [SerializeField]

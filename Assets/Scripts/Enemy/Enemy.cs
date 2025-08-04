@@ -10,7 +10,7 @@ public enum EnemyState
 }
 public class Enemy : MonoBehaviour
 {
-    public EnemyStats stats = new EnemyStats();
+    public EnemyStats stats = new();
     public EnemyState enemyState;
     public EnemyAttackBase attackScript;
     
