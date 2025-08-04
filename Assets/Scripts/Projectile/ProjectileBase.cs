@@ -4,9 +4,10 @@ using UnityEngine.Rendering;
 public class ProjectileBase : MonoBehaviour
 {
     [SerializeField]
-    protected ProjectileStats stats = new();
+    protected ProjectileStats stats;
 
 
+    protected Vector2 direction;
     protected Vector2 startPos;
     protected Rigidbody2D rb;
     protected float timer = 0f;
@@ -72,5 +73,9 @@ public class ProjectileBase : MonoBehaviour
     protected virtual void Move()
     {
 
+    }
+
+    public virtual void SetDirection(Vector2 dir)
+    {
     }
 }

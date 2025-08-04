@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     private Transform target;
     private Vector2 targetDirection;
     private bool canAttack = false;
+    private float attackCooldown = 0f;
 
     private EnemyTargetor enemyTargetor;
     private EnemyMover enemyMover;
@@ -44,6 +45,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
+            if (attackCooldown >= 0f) attackCooldown -= Time.deltaTime;
             UpdateTargetInformation();
             EnemyBehavior();
         }
@@ -53,8 +55,12 @@ public class EnemyAI : MonoBehaviour
     {
         if (canAttack)
         {
-            enemy.enemyState = EnemyState.attack;
-            TryAttack();
+            if (attackCooldown <= 0f)
+            {
+                attackCooldown = stats.attackSpeed;
+                enemy.enemyState = EnemyState.attack;
+                TryAttack();
+            }
         }
         else
         {

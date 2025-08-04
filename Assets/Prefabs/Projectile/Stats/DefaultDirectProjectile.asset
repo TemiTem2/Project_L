@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: DefaultDirectProjectile
   m_EditorClassIdentifier: 
   lifeType: 0
-  speed: 10
-  maxDistance: 100
+  speed: 3
+  maxDistance: 10
   lifetime: 0
   hitEffect: {fileID: 0}
   hitSound: {fileID: 0}

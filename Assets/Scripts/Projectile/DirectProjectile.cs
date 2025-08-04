@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class DirectProjectile : ProjectileBase
 {
+    public override void SetDirection(Vector2 dir)
+    {
+        direction = dir.normalized;
+    }
+
     protected override void Move()
     {
         if (rb != null)
         {
-            rb.linearVelocity = transform.position * stats.speed;
-        }
-        else
-        {
-            Debug.LogWarning("Rigidbody2D ¾øÀ½");
+            rb.linearVelocity = direction * stats.speed;
         }
     }
 }
