@@ -24,7 +24,12 @@ public class Database : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void Playerdataload()
+    private void Start()
+    {
+        LoadPlayerData();
+        LoadSkillData();
+    }
+    public void LoadPlayerData()
     {
         for (int i = 0; i < playableCharInfo.Length; i++)
         {
@@ -42,4 +47,14 @@ public class Database : MonoBehaviour
         }
     }
 
+    public void LoadSkillData()
+    {
+        for (int j = 0; j < currentCharInfo.skills.Length; j++)
+        {
+            if (currentCharInfo.skills[j].skillname == currentPlayerSkill)
+            {
+                currentSkillInfo = currentCharInfo.skills[j];
+            }
+        }
+    }
 }

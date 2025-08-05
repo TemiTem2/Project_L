@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Defend
   m_EditorClassIdentifier: 
   skillname: Defend
-  damage: 0
+  damage: 2
   cooldown: 5
   moveRange: 0
   clip: {fileID: 7400000, guid: 5748a7c4862653f459e41b78286de8d8, type: 2}

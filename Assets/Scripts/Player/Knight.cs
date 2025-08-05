@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 public class Knight : PlayerMove
 {
-    [SerializeField] private float defendDuration = 2f; // 방어 지속 시간
+    //[SerializeField] private float defendDuration = 2f; // 방어 지속 시간
 
 
     protected override void Skill1()
@@ -29,7 +29,7 @@ public class Knight : PlayerMove
         stateManager.isDefend = true;
         canMove = false; // 방어 중에는 이동 불가
         Debug.Log("Knight가 방어 자세를 취했습니다!");
-        Invoke(nameof(Defend_End), defendDuration); // 일정 시간 후 방어 자세 해제
+        Invoke(nameof(Defend_End), stateManager.skill.damage); // 일정 시간 후 방어 자세 해제
     }
 
     private void Defend_End()

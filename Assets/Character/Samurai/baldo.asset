@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 691b1c1d9a2e9494c89ded6ec9b50e07, type: 3}
-  m_Name: baldo
+  m_Name: Baldo
   m_EditorClassIdentifier: 
   skillname: Baldo
   damage: 5
