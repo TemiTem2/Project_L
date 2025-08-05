@@ -15,8 +15,8 @@ public class PlayerStatVeiwer : MonoBehaviour
     private TextMeshProUGUI[] statText;
     void Awake()
     {
-        database = FindAnyObjectByType<Database>();
-        playerStatManager = FindAnyObjectByType<PlayerStatManager>();
+        database = Database.Instance;
+        playerStatManager = PlayerStatManager.instance;
     }
     void Start()
     {
