@@ -6,7 +6,7 @@ public class tempbutton : MonoBehaviour
     public void StartFight()
     {
         Database database = FindFirstObjectByType<Database>();
-        database.Playerdataload();
+        database.LoadPlayerData();
         SceneManager.LoadScene("Test_Stage(07.27)");
     }
 }
