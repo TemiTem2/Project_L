@@ -9,16 +9,15 @@ public class StstupWindow : MonoBehaviour
     private TextMeshProUGUI skillPt;
     [SerializeField]
     [Tooltip("순서 맞추기 MaxHP, Speed, AttackRange, AttackDamage, AttackSpeed,RecoverTime, SkillDamage, SkillCooldown")]
-    private TextMeshProUGUI[] statText; // 
+    private TextMeshProUGUI[] statText;
 
     private PlayerStatManager playerStatManager;
     void Start()
     {
         playerStatManager = PlayerStatManager.instance;
+        UIUpdate();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void UIUpdate()
     {
         skillPt.text = playerStatManager.skillPoints.ToString();
         statText[0].text = playerStatManager.statPoint.MaxHP.ToString();

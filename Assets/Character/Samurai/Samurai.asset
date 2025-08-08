@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Samurai
   m_EditorClassIdentifier: 
   charName: Samurai
-  charIcon: {fileID: 0}
+  charIcon: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
   charPrefab: {fileID: 1401003900509782659, guid: e0a2f8fd850d464409afc60c653bb86f, type: 3}
-  charDesc: 
+  charDesc: "\uB0A0\uC318 \uC0AC\uBB34\uB77C\uC774 \uC785\uB2C8\uB2E4."
   maxHealth: 50
   moveSpeed: 7
   attackRange: 8
@@ -25,3 +25,4 @@ MonoBehaviour:
   recoverTime: 3
   skills:
   - {fileID: 11400000, guid: b443e0e2f95c5bb44ba7388af67b1963, type: 2}
+  - {fileID: 11400000, guid: 0814b350b74c4364eb57e614bfec1cbd, type: 2}
