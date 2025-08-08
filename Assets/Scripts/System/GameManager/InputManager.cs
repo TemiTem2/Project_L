@@ -17,6 +17,10 @@ public class InputManager : MonoBehaviour
         {
             CheckEscape();
         }
+        else if (GameManager.Instance.currentState == GameState.Main)
+        {
+            GameManager.Instance.ExitGame();
+        }
     }
 
     private void CheckEscape()

@@ -39,12 +39,17 @@ public class GameManager : MonoBehaviour
         InitializeByState(currentState);
     }
 
+    public void ChangeToMain()
+    {
+        ChangeState(GameState.Main);
+    }
+
     private void InitializeByState(GameState state)
     {
         switch (state)
         {
             case GameState.Main:
-                // Main state initialization logic
+                //RoadScene("Main");
                 break;
             case GameState.CharSelect:
                 // Character selection initialization logic
@@ -65,10 +70,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RoadScene(string scene)
+    private void RoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
     }
 
-    
+    public void ExitGame()
+    {
+        Debug.Log("게임 종료");
+        Application.Quit();
+    }
 }
