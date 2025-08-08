@@ -2,15 +2,28 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static InputManager Instance;
+    private void Awake()
     {
-        
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(GameManager.Instance.currentState != GameState.GameOver && GameManager.Instance.currentState != GameState.Main)
+        {
+            CheckEscape();
+        }
+    }
+
+    private void CheckEscape()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseManager.Instance.TogglePause();
+        }
     }
 }
