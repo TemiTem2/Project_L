@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PauseManager : MonoBehaviour
 {
-    // 재개 설정 저장 로드 타이틀 종료
+    private UIManager uiManager;
     public bool isPaused;
 
     public static PauseManager Instance;
@@ -14,16 +14,24 @@ public class PauseManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void Start()
+    {
+        uiManager = FindFirstObjectByType<UIManager>();
+        isPaused = false;
+    }
+
     public void TogglePause()
     {
         isPaused = !isPaused;
         if (isPaused)
         {
             Time.timeScale = 0f;
+            uiManager.TogglePauseUI();
             Debug.Log("일시 정지");
         }
         else
         {
+            uiManager.TogglePauseUI();
             Time.timeScale = 1f;
             Debug.Log("게임 재개");
         }

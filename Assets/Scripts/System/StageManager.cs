@@ -24,8 +24,22 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        isStageEnd = false;
+        isOver = false;
         currentStage = stages[currentStageIndex];
         StartCoroutine(RoadStage());
+    }
+
+    private void Update()
+    {
+        if (isStageEnd)
+        {
+            GameManager.Instance.ChangeState(GameState.Day);
+        }
+        else if (isOver)
+        {
+            GameManager.Instance.ChangeState(GameState.GameOver);
+        }
     }
 
     private IEnumerator RoadStage()

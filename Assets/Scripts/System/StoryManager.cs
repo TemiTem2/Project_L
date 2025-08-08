@@ -54,6 +54,7 @@ public class StoryManager : MonoBehaviour
     {
         if (isEventEnd)
         {
+            GameManager.Instance.ChangeState(GameState.Night);
             return;
         }
         switch (contentType)

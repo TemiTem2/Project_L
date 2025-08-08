@@ -9,6 +9,7 @@ public enum GameState
     Stat,
     Day,
     Night,
+    GameClear,
     GameOver
 }
 public class GameManager : MonoBehaviour
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         currentState = newState;
         Debug.Log(currentState + "·Î ÀüÈ¯");
-        InitializeByState(currentState);
+        InitializeByState(newState);
     }
 
     public void ChangeToMain()
@@ -44,28 +45,39 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.Main);
     }
 
+    public void ChangeToCharSelect()
+    {
+        ChangeState(GameState.CharSelect);
+    }
+
     private void InitializeByState(GameState state)
     {
         switch (state)
         {
             case GameState.Main:
-                //RoadScene("Main");
+                RoadScene("Test_main");
                 break;
             case GameState.CharSelect:
-                // Character selection initialization logic
+                RoadScene("SelectChar");
                 break;
             case GameState.Stat:
-                // Stat screen initialization logic
+                RoadScene("Test_statup");
                 break;
             case GameState.Day:
-                // Daytime initialization logic
+                currentDayIndex++;
+                if (currentDayIndex > maxDayIndex) ChangeState(GameState.GameClear);
+                else RoadScene("Test_RandomEvent");
                 break;
             case GameState.Night:
-                // Nighttime initialization logic
+                RoadScene("Test_Stage");
+                break;
+            case GameState.GameClear:
+                currentDayIndex = 0;
+                RoadScene("GameClear");
                 break;
             case GameState.GameOver:
                 currentDayIndex = 0;
-                //load game over scene
+                RoadScene("GameOver");
                 break;
         }
     }
