@@ -10,9 +10,9 @@ public class UIManager : MonoBehaviour
     //[SerializeField] private GameObject nightUI;
     //[SerializeField] private GameObject gameClearUI;
     //[SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject exitUI;
-    [SerializeField] private GameObject settingsUI;
     [SerializeField] private GameObject pauseUI;
+    [SerializeField] private GameObject settingsUI;
+    [SerializeField] private GameObject exitUI;
 
 
     private void Start()
