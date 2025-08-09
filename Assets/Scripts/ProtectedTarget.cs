@@ -16,6 +16,7 @@ public class ProtectedTarget : MonoBehaviour
 
     private void Start()
     {
+        stage = FindFirstObjectByType<StageManager>();
         currentHP = stats.maxHP;
     }
 
