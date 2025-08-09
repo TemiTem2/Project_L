@@ -17,20 +17,18 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameState currentState = GameState.Main;
-    private int maxDayIndex = 10;
+    private int maxDayIndex = 2;
     public int currentDayIndex;
 
     void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
             Destroy(gameObject);
-    }
-
-    private void Update()
-    {
-
     }
 
     public void ChangeState(GameState newState)
@@ -40,49 +38,39 @@ public class GameManager : MonoBehaviour
         InitializeByState(newState);
     }
 
-    public void ChangeToMain()
-    {
-        ChangeState(GameState.Main);
-    }
-
-    public void ChangeToCharSelect()
-    {
-        ChangeState(GameState.CharSelect);
-    }
-
     private void InitializeByState(GameState state)
     {
         switch (state)
         {
             case GameState.Main:
-                RoadScene("Test_main");
+                LoadScene("Test_main");
                 break;
             case GameState.CharSelect:
-                RoadScene("SelectChar");
+                LoadScene("Test_SelectChar");
                 break;
             case GameState.Stat:
-                RoadScene("Test_statup");
+                LoadScene("Test_statup");
                 break;
             case GameState.Day:
                 currentDayIndex++;
                 if (currentDayIndex > maxDayIndex) ChangeState(GameState.GameClear);
-                else RoadScene("Test_RandomEvent");
+                else LoadScene("Test_RandomEvent");
                 break;
             case GameState.Night:
-                RoadScene("Test_Stage");
+                LoadScene("Test_Stage");
                 break;
             case GameState.GameClear:
                 currentDayIndex = 0;
-                RoadScene("GameClear");
+                LoadScene("GameClear");
                 break;
             case GameState.GameOver:
                 currentDayIndex = 0;
-                RoadScene("GameOver");
+                LoadScene("GameOver");
                 break;
         }
     }
 
-    private void RoadScene(string scene)
+    private void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
     }

@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Test_main.unity
     guid: 1a223f40fb3817f42a4bca1ade1afa0b
   - enabled: 1
+    path: Assets/Scenes/Test_SelectChar.unity
+    guid: a59841d4226daa845953f24c99b1014a
+  - enabled: 1
+    path: Assets/Scenes/Test_statup.unity
+    guid: d0d43b719df7c204fb02e887ee610985
+  - enabled: 1
+    path: Assets/Scenes/Test_RandomEvent.unity
+    guid: f289dd309e9bb3e40abcdbb6fb37db3e
+  - enabled: 1
     path: Assets/Scenes/Test_Stage.unity
     guid: 80b992fd409226b4c99a4e045c560245
   - enabled: 1

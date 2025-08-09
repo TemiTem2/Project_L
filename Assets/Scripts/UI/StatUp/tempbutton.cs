@@ -7,6 +7,5 @@ public class tempbutton : MonoBehaviour
     {
         Database database = FindFirstObjectByType<Database>();
         database.LoadPlayerData();
-        SceneManager.LoadScene("Test_Stage(07.27)");
     }
 }
