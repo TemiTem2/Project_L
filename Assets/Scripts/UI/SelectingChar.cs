@@ -23,6 +23,8 @@ public class SelectingChar : MonoBehaviour
     {
         database.currentPlayCharName = charName;
         database.LoadPlayerData();
+        database.currentPlayerSkill = database.currentCharInfo.skills[0].skillname;
+        database.LoadSkillData();
         charImage.sprite = database.currentCharInfo.charIcon;
         charNameText.text = database.currentCharInfo.charName;
         charDescriptionText.text = database.currentCharInfo.charDesc;
