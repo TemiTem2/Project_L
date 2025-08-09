@@ -1205,6 +1205,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4659556542087565682, guid: 42013f5dc0c277a4aab48c2f0bed2208, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1870714668}
+    - target: {fileID: 4659556542087565682, guid: 42013f5dc0c277a4aab48c2f0bed2208, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleSettings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1505,7 +1513,7 @@ GameObject:
   - component: {fileID: 1870714664}
   - component: {fileID: 1870714668}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1620,6 +1628,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1870714667}
     m_Modifications:
+    - target: {fileID: 1105217018358474741, guid: 0c5b1a0650f95524ca834d64ad7a89e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1870714668}
+    - target: {fileID: 1105217018358474741, guid: 0c5b1a0650f95524ca834d64ad7a89e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000695304807979315, guid: 0c5b1a0650f95524ca834d64ad7a89e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1870714668}
+    - target: {fileID: 4000695304807979315, guid: 0c5b1a0650f95524ca834d64ad7a89e7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleSettings
+      objectReference: {fileID: 0}
     - target: {fileID: 7545160830470025502, guid: 0c5b1a0650f95524ca834d64ad7a89e7, type: 3}
       propertyPath: m_Name
       value: PausePanel
@@ -1997,6 +2021,14 @@ PrefabInstance:
     - target: {fileID: 5713276005542669317, guid: a1a4d34048072ae4ab25a9eb8e9609d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8421548990180012680, guid: a1a4d34048072ae4ab25a9eb8e9609d5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1870714668}
+    - target: {fileID: 8421548990180012680, guid: a1a4d34048072ae4ab25a9eb8e9609d5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleExit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

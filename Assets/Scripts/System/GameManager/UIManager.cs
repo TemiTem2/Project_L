@@ -22,12 +22,21 @@ public class UIManager : MonoBehaviour
 
     void InitializeUI()
     {
-        pauseUI?.SetActive(false);
-        settingsUI?.SetActive(false);
+        if (pauseUI != null) pauseUI.SetActive(false);
+        if (settingsUI != null) settingsUI.SetActive(false);
+        if (exitUI != null) exitUI.SetActive(false);
     }
 
     public void TogglePauseUI()
     {
         pauseUI.SetActive(!pauseUI.activeSelf);
+    }
+    public void ToggleSettings()
+    {
+        settingsUI.SetActive(!settingsUI.activeSelf);
+    }
+    public void ToggleExit()
+    {
+        exitUI.SetActive(!exitUI.activeSelf);
     }
 }

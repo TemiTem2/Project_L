@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonHandler : MonoBehaviour
+public class SceneButtonHandler : MonoBehaviour
 {
     public enum ButtonType
     {
@@ -9,7 +9,8 @@ public class ButtonHandler : MonoBehaviour
         ChangeToCharSelect,
         ChangeToStat,
         ChangeToDay,
-        Exit
+        Exit,
+        TogglePause
     }
 
     public ButtonType buttonType;
@@ -48,6 +49,9 @@ public class ButtonHandler : MonoBehaviour
                 break;
             case ButtonType.Exit:
                 GameManager.Instance.ExitGame();
+                break;
+            case ButtonType.TogglePause:
+                PauseManager.Instance.TogglePause();
                 break;
         }
     }
