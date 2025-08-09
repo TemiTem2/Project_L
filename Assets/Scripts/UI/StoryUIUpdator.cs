@@ -22,6 +22,14 @@ public class StoryUIUpdator : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textReward;
 
+    [SerializeField]
+    private TextMeshProUGUI textProgress;
+
+    private void Start()
+    {
+        textProgress.text = GameManager.Instance.currentDayIndex + "ÀÏÂ÷ ³·";
+    }
+
     public void UpdateUI(string name, string text, Sprite Image)
     {
         nameText.text = name;

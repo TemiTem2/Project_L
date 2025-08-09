@@ -19,11 +19,6 @@ public class SelectingChar : MonoBehaviour
         selectingSkill = FindFirstObjectByType<SelectingSkill>();
     }
 
-    void Update()
-    {
-
-    }
-
     public void SelectChar()
     {
         database.currentPlayCharName = charName;
