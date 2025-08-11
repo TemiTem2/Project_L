@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     public Animator anim;
     protected SpriteRenderer spriteRenderer;
     protected StateManager stateManager;
+    protected SoundManager soundManager;
 
 
     void Start()
@@ -20,6 +21,7 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         stateManager = FindFirstObjectByType<StateManager>();
+        soundManager = FindFirstObjectByType<SoundManager>();
         if (anim == null)
         {
             Debug.LogError("Animator component not found on Player object.");
@@ -86,7 +88,7 @@ public class PlayerMove : MonoBehaviour
             currentAttackCooldown = 1f;
             Attack();
             anim.SetTrigger("Attack");
-
+            soundManager.PlayAttackSFX();
         }
     }
 
@@ -154,6 +156,7 @@ public class PlayerMove : MonoBehaviour
             if ((currentSkill1Cooldown == 0))
             {
                 anim.SetTrigger("Skill1");
+                soundManager.PlaySkillSFX();
                 Skill1();
                 currentSkill1Cooldown = stateManager.skill.cooldown; // 스킬 쿨타임 초기화
             }
