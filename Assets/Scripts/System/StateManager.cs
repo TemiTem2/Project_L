@@ -1,3 +1,4 @@
+using System.Dynamic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,7 +16,6 @@ public class StateManager : MonoBehaviour
     public float recoverTime; // 넉다운 상태에서 회복에 걸리는 시간
     public float attackAngle; // 공격 각도
     public Skill skill; // 현재 플레이어의 스킬 정보
-    private Skill skilltemp; // 스킬 정보 임시 저장용
 
     public bool isKnockDown = false; // 플레이어가 넉다운 상태인지  여부
     public bool isDefend = false; // 플레이어가 방어 상태인지 여부
@@ -39,16 +39,7 @@ public class StateManager : MonoBehaviour
         recoverTime = database.currentCharInfo.recoverTime - (playerStatManager.statPoint.RecoverTime * 0.1f);
         attackAngle = database.currentCharInfo.attackAngle;
 
-        skill = new Skill // 스킬 정보 초기화
-        {
-            skillname = database.currentSkillInfo.skillname,
-            damage = database.currentSkillInfo.damage + (playerStatManager.statPoint.SkillDamage * 10),
-            cooldown = database.currentSkillInfo.cooldown - (playerStatManager.statPoint.SkillCooldown * 0.1f),
-            moveRange = database.currentSkillInfo.moveRange,
-            clip = database.currentSkillInfo.clip,
-            summonPrefab = database.currentSkillInfo.summonPrefab,
-            sound = database.currentSkillInfo.sound
-        };
+        skill = SkillDeepCopy(); // 스킬 정보 초기화
         skill.damage += playerStatManager.statPoint.SkillDamage;
         skill.cooldown -= playerStatManager.statPoint.SkillCooldown * 0.1f;
     }
@@ -84,5 +75,18 @@ public class StateManager : MonoBehaviour
         PlayerMove playerMove = FindFirstObjectByType<PlayerMove>();
         hp = Maxhp; // 체력을 최대치로 회복
         playerMove.anim.SetTrigger("Recover"); // 넉다운 애니메이션 트리거
+    }
+    public Skill SkillDeepCopy()
+    {
+        // 스킬 정보를 깊은 복사하여 반환
+        Skill skillCopy = ScriptableObject.CreateInstance<Skill>();
+        skillCopy.skillname = database.currentSkillInfo.skillname;
+        skillCopy.damage = database.currentSkillInfo.damage;
+        skillCopy.cooldown = database.currentSkillInfo.cooldown;
+        skillCopy.moveRange = database.currentSkillInfo.moveRange;
+        skillCopy.clip = database.currentSkillInfo.clip;
+        skillCopy.summonPrefab = database.currentSkillInfo.summonPrefab;
+        skillCopy.sound = database.currentSkillInfo.sound;
+        return skillCopy;
     }
 }
