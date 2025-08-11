@@ -8,8 +8,8 @@ public class PlayerMove : MonoBehaviour
 
     protected bool canMove = true; // 플레이어가 이동 가능한지 여부
     
-    protected float currentAttackCooldown;
-    protected float currentSkill1Cooldown;
+    protected float currentAttackCooldown = 1f;
+    protected float currentSkill1Cooldown = 0f;
     public Animator anim;
     protected SpriteRenderer spriteRenderer;
     protected StateManager stateManager;
@@ -17,8 +17,6 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        currentAttackCooldown = 1f;
-        currentSkill1Cooldown = 0f; // 스킬 1 쿨타임 초기화
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         stateManager = FindFirstObjectByType<StateManager>();
