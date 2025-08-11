@@ -9,6 +9,7 @@ public class SceneButtonHandler : MonoBehaviour
         ChangeToCharSelect,
         ChangeToStat,
         ChangeToDay,
+        ChangeToNight,
         Exit,
         TogglePause
     }
@@ -46,6 +47,9 @@ public class SceneButtonHandler : MonoBehaviour
                 break;
             case ButtonType.ChangeToDay:
                 GameManager.Instance.ChangeState(GameState.Day);
+                break;
+            case ButtonType.ChangeToNight:
+                GameManager.Instance.ChangeState(GameState.Night);
                 break;
             case ButtonType.Exit:
                 GameManager.Instance.ExitGame();
