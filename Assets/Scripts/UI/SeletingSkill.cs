@@ -29,6 +29,8 @@ public class SelectingSkill : MonoBehaviour
             int index = i; 
             skillButtons[i].onClick.AddListener(() => SelectSkill(index));
         }
+        SkillNameText.text = database.currentSkillInfo.skillname;
+        SkillDescriptionText.text = database.currentSkillInfo.skillDesc;
     }
 
     void SelectSkill(int index)
