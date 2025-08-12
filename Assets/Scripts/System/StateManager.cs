@@ -1,3 +1,5 @@
+using System.Dynamic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StateManager : MonoBehaviour
@@ -37,38 +39,9 @@ public class StateManager : MonoBehaviour
         recoverTime = database.currentCharInfo.recoverTime - (playerStatManager.statPoint.RecoverTime * 0.1f);
         attackAngle = database.currentCharInfo.attackAngle;
 
-        skill = database.currentSkillInfo;
+        skill = SkillDeepCopy(); // 스킬 정보 초기화
         skill.damage += playerStatManager.statPoint.SkillDamage;
         skill.cooldown -= playerStatManager.statPoint.SkillCooldown * 0.1f;
-
-        //for (int i = 0; i < database.playableCharInfo.Length; i++)
-        // {
-        //     if (database.playableCharInfo[i].charName == database.currentPlayCharName)
-        //     {
-        //         Instantiate(database.playableCharInfo[i].charPrefab, transform.position, Quaternion.identity);
-
-
-        //         Maxhp = database.playableCharInfo[i].maxHealth;
-        //         hp = Maxhp; // 플레이어의 체력을 초기화
-        //         speed = database.playableCharInfo[i].moveSpeed;
-        //         attackRange = database.playableCharInfo[i].attackRange;
-        //         attackDamage = database.playableCharInfo[i].attackDamage;
-        //         attackSpeed = database.playableCharInfo[i].attackSpeed;
-        //         recoverTime = database.playableCharInfo[i].recoverTime;
-        //         attackAngle = database.playableCharInfo[i].attackAngle;
-        //         for (int j = 0; j < database.playableCharInfo[i].skills.Length; j++)
-        //         {
-        //             if (database.playableCharInfo[i].skills[j].skillname == database.currentPlayerSkill)
-        //             {
-        //                 skill = database.playableCharInfo[i].skills[j];
-        //             }
-        //         }
-        //         //skill1Damage = playableCharInfo[i].skill1Damage;
-        //         //skill1Cooldown = playableCharInfo[i].skill1Cooldown;
-        //         //skill1MoveRange = playableCharInfo[i].skill1MoveRange;
-        //         Debug.Log($"Current Playable Character: {database.playableCharInfo[i].charName}");
-        //     }
-        // }
     }
 
     void Update()
@@ -102,5 +75,18 @@ public class StateManager : MonoBehaviour
         PlayerMove playerMove = FindFirstObjectByType<PlayerMove>();
         hp = Maxhp; // 체력을 최대치로 회복
         playerMove.anim.SetTrigger("Recover"); // 넉다운 애니메이션 트리거
+    }
+    public Skill SkillDeepCopy()
+    {
+        // 스킬 정보를 깊은 복사하여 반환
+        Skill skillCopy = ScriptableObject.CreateInstance<Skill>();
+        skillCopy.skillname = database.currentSkillInfo.skillname;
+        skillCopy.damage = database.currentSkillInfo.damage;
+        skillCopy.cooldown = database.currentSkillInfo.cooldown;
+        skillCopy.moveRange = database.currentSkillInfo.moveRange;
+        skillCopy.clip = database.currentSkillInfo.clip;
+        skillCopy.summonPrefab = database.currentSkillInfo.summonPrefab;
+        skillCopy.sound = database.currentSkillInfo.sound;
+        return skillCopy;
     }
 }

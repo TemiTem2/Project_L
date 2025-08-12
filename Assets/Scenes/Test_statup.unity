@@ -2418,6 +2418,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonIndex: 6
+  statWindow: {fileID: 775561013}
+  buttonSound:
+  - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
+  - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
 --- !u!1 &646282217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3345,6 +3349,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonIndex: 3
+  statWindow: {fileID: 775561013}
+  buttonSound:
+  - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
+  - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
 --- !u!1 &814486760
 GameObject:
   m_ObjectHideFlags: 0
@@ -7408,6 +7416,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonIndex: 7
+  statWindow: {fileID: 775561013}
+  buttonSound:
+  - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
+  - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
 --- !u!1 &1570012123
 GameObject:
   m_ObjectHideFlags: 0
@@ -8056,6 +8068,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonIndex: 1
+  statWindow: {fileID: 775561013}
+  buttonSound:
+  - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
+  - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
 --- !u!1 &1728210356
 GameObject:
   m_ObjectHideFlags: 0
@@ -8325,6 +8341,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonIndex: 2
+  statWindow: {fileID: 775561013}
+  buttonSound:
+  - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
+  - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
 --- !u!1 &1786378266
 GameObject:
   m_ObjectHideFlags: 0
@@ -8635,6 +8655,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonIndex: 0
+  statWindow: {fileID: 775561013}
+  buttonSound:
+  - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
+  - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
 --- !u!1 &1797742222
 GameObject:
   m_ObjectHideFlags: 0
@@ -9752,6 +9776,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonIndex: 5
+  statWindow: {fileID: 775561013}
+  buttonSound:
+  - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
+  - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
 --- !u!1 &1971800465
 GameObject:
   m_ObjectHideFlags: 0
@@ -10961,6 +10989,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonIndex: 4
+  statWindow: {fileID: 775561013}
+  buttonSound:
+  - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
+  - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
 --- !u!1 &2059609979
 GameObject:
   m_ObjectHideFlags: 0

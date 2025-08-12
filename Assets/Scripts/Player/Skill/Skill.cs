@@ -9,6 +9,7 @@ public class Skill : ScriptableObject
     public float moveRange; // 스킬 이동 범위
     public AnimationClip clip; // 스킬 애니매이션 클립
     public GameObject summonPrefab; // 스킬 소환 프리팹
+    public AudioClip sound; // 스킬 사운드
     [TextArea]
     public string skillDesc; // 스킬 설명
 }
