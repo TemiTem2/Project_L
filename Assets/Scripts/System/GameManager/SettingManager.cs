@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class SettingManager : MonoBehaviour
 {
     public static SettingManager Instance { get; private set; }
+    public SoundManager soundManager;
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -37,12 +38,22 @@ public class SettingManager : MonoBehaviour
     private void ApplySettings()
     {
         GetFullScreen();
+        SetGameVolume();
     }
 
     private void GetFullScreen()
     {
         bool isFullScreen = settings["FullScreen"] != 0f;
         Screen.fullScreen = isFullScreen;
+    }
+
+    private void SetGameVolume()
+    {
+        soundManager.bgmSource.volume = settings["BGMVolume"] * settings["MainVolume"];
+        foreach (var source in soundManager.sfxSource)
+        {
+            source.volume = settings["SFXVolume"]* settings["MainVolume"];
+        }
     }
 
     public void ToggleSetting()
