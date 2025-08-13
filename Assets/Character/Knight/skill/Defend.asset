@@ -18,5 +18,6 @@ MonoBehaviour:
   moveRange: 0
   clip: {fileID: 7400000, guid: 5748a7c4862653f459e41b78286de8d8, type: 2}
   summonPrefab: {fileID: 0}
+  sound: {fileID: 8300000, guid: 7a9de5c4d998126449cf964a6b27a8b0, type: 3}
   skillDesc: "\uB9C9\uB294 \uC790\uC138\uB97C \uCDE8\uD574 \uBB34\uC801\uC0C1\uD0DC\uAC00
     \uB41C\uB2E4"
