@@ -12,7 +12,8 @@ public class SceneButtonHandler : MonoBehaviour
         ChangeToNight,
         Exit,
         TogglePause,
-        ToggleSetting
+        ToggleSetting,
+        ToggleExit
     }
 
     public ButtonType buttonType;
@@ -60,6 +61,9 @@ public class SceneButtonHandler : MonoBehaviour
                 break;
             case ButtonType.ToggleSetting:
                 SettingManager.Instance.ToggleSetting();
+                break;
+            case ButtonType.ToggleExit:
+                PauseManager.Instance.ToggleExit();
                 break;
         }
     }

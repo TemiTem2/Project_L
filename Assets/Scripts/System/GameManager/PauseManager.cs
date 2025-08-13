@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    private UIManager uiManager;
     public bool isPaused;
 
     public static PauseManager Instance;
@@ -13,28 +12,15 @@ public class PauseManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+
+
+    [SerializeField] private UIRelay uiRelay;
+
+
+
     private void Start()
     {
         isPaused = false;
-    }
-
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        uiManager = FindFirstObjectByType<UIManager>();
-        if (uiManager == null)
-        {
-            Debug.LogError("UIManager 없음");
-        }
     }
 
     public void TogglePause()
@@ -45,20 +31,28 @@ public class PauseManager : MonoBehaviour
             if (isPaused)
             {
                 Time.timeScale = 0f;
-                uiManager.TogglePauseUI();
+                uiRelay.TogglePauseUI();
                 Debug.Log("일시 정지");
             }
             else
             {
-                uiManager.TogglePauseUI();
+                uiRelay.TogglePauseUI();
                 Time.timeScale = 1f;
                 Debug.Log("게임 재개");
             }
         }
-        else if (GameManager.Instance.currentState == GameState.Main)
+        else ToggleExit();
+    }
+
+    public void ToggleExit()
+    {
+        if (GameManager.Instance.currentState == GameState.Main)
         {
-            uiManager.ToggleExit();
+            uiRelay.ToggleExitUI();
         }
-        else uiManager.TogglePauseUI();
+        else
+        {
+            uiRelay.TogglePauseUI();
+        }
     }
 }

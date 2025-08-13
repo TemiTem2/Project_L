@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
     {
         settingsUI.SetActive(!settingsUI.activeSelf);
     }
-    public void ToggleExit()
+    public void ToggleExitUI()
     {
         exitUI.SetActive(!exitUI.activeSelf);
     }

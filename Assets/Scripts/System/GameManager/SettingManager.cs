@@ -11,8 +11,7 @@ public class SettingManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    private UIManager uiManager;
-    private bool isOnSetting = false;
+    [SerializeField] private UIRelay uiRelay;
 
     private Dictionary<string, float> settings = new Dictionary<string, float>
     {
@@ -23,28 +22,6 @@ public class SettingManager : MonoBehaviour
         //{ "Brightness", 1.0f },
         //{ "Sensitivity", 0.5f }
     };
-
-
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        uiManager = FindFirstObjectByType<UIManager>();
-        if (uiManager == null)
-        {
-            Debug.LogError("UIManager 없음");
-        }
-    }
-
-
 
     public Dictionary<string, float> LoadSettings()
     {
@@ -70,17 +47,6 @@ public class SettingManager : MonoBehaviour
 
     public void ToggleSetting()
     {
-        isOnSetting = !isOnSetting;
-        if (isOnSetting)
-        {
-            uiManager.ToggleSettingUI();
-            Debug.Log("설정창 열림");
-        }
-        else
-        {
-            uiManager.ToggleSettingUI();
-            Debug.Log("설정창 닫힘");
-        }
-
+        uiRelay.ToggleSettingUI();
     }
 }
