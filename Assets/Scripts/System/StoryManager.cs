@@ -22,6 +22,9 @@ public class StoryManager : MonoBehaviour
     private string currentStoryLine;
     private string currentName;
 
+    private PlayerStatManager playerstat => PlayerStatManager.instance;
+    private Database database => Database.Instance;
+
     public Dictionary<RewardType, int> reward = new();
     public bool isEventEnd = false; //랜덤이벤트 종료
 
@@ -110,7 +113,22 @@ public class StoryManager : MonoBehaviour
     {
         if(reward.ContainsKey(currentParData.rewards[rewardIndex].rewardType))
         {
-            reward[currentParData.rewards[rewardIndex].rewardType] += currentParData.rewards[rewardIndex].amount;
+            switch (currentParData.rewards[rewardIndex].rewardType)
+            {
+                case RewardType.SkillPoint:
+                    playerstat.skillPoints += currentParData.rewards[rewardIndex].amount;
+                    break;
+                case RewardType.HP:
+                    playerstat.protectedTargetHP += currentParData.rewards[rewardIndex].amount;
+                    break;
+                case RewardType.Exp:
+                    playerstat.exp += currentParData.rewards[rewardIndex].amount;
+                    break;
+                default:
+                    Debug.LogWarning("Unknown Reward Type");
+                    break;
+            }
+            //reward[currentParData.rewards[rewardIndex].rewardType] += currentParData.rewards[rewardIndex].amount;
             foreach (KeyValuePair<RewardType, int> entry in reward)
             {
                 Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");
@@ -119,6 +137,21 @@ public class StoryManager : MonoBehaviour
         }
         else
         {
+            switch (currentParData.rewards[rewardIndex].rewardType)
+            {
+                case RewardType.SkillPoint:
+                    playerstat.skillPoints += currentParData.rewards[rewardIndex].amount;
+                    break;
+                case RewardType.HP:
+                    playerstat.protectedTargetHP += currentParData.rewards[rewardIndex].amount;
+                    break;
+                case RewardType.Exp:
+                    playerstat.exp += currentParData.rewards[rewardIndex].amount;
+                    break;
+                default:
+                    Debug.LogWarning("Unknown Reward Type");
+                    break;
+            }
             reward.Add(currentParData.rewards[rewardIndex].rewardType, currentParData.rewards[rewardIndex].amount);
             foreach (KeyValuePair<RewardType, int> entry in reward)
             {

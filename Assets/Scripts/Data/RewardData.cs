@@ -3,8 +3,8 @@ using UnityEngine;
 public enum RewardType
 {
     None,
-    Item,
-    Gold,
+    SkillPoint,
+    HP,
     Exp
 }
 [System.Serializable]
