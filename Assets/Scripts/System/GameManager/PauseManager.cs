@@ -7,12 +7,10 @@ public class PauseManager : MonoBehaviour
     public bool isPaused;
 
     public static PauseManager Instance;
-    private void Awake()
+    void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     private void Start()

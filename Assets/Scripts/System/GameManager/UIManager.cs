@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     {
         pauseUI.SetActive(!pauseUI.activeSelf);
     }
-    public void ToggleSettings()
+    public void ToggleSettingUI()
     {
         settingsUI.SetActive(!settingsUI.activeSelf);
     }
