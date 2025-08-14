@@ -1,19 +1,13 @@
-using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    [SerializeField]
-    private StageTemplate[] stages;
-    [SerializeField]
-    private int currentStageIndex = 1;
-    [SerializeField]
-    private int totalStages;
-    [SerializeField]
-    private EnemySpawner enemySpawner;
+    [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private StageTemplate[] stages;
 
-    private List<Enemy> enemies = new();
+    [SerializeField] private int currentStageIndex = 1;
+    [SerializeField] private int totalStages;
 
     public bool isOver = false;
     public bool isStageEnd = false;
@@ -31,7 +25,7 @@ public class StageManager : MonoBehaviour
         isOver = false;
         currentStage = stages[currentStageIndex];
         totalEnemiesToSpawn = currentStage.stageData.totalEnemies;
-        StartCoroutine(RoadStage());
+        StartCoroutine(LoadStage());
     }
 
     private void Update()
@@ -46,7 +40,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    private IEnumerator RoadStage()
+    private IEnumerator LoadStage()
     {
         while (currentWaveIndex <= currentStage.stageData.maxWave-1)
         {
@@ -65,7 +59,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-
+    #region Enemy Dead Event Handler
     private void OnEnable()
     {
         Enemy.OnEnemyDeadGlobal += HandleEnemyDead;
@@ -82,4 +76,5 @@ public class StageManager : MonoBehaviour
         if (enemiesDefeated >= totalEnemiesToSpawn)
             isStageEnd = true;
     }
-} 
+    #endregion
+}
