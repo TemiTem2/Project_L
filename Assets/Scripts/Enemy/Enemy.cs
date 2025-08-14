@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour, IPoolable
     public EnemyAttackBase attackScript;
 
     public static event Action<Enemy> OnEnemyDeadGlobal;
-    public static event Action<float> OnEnemyExpGained;
+    public static event Action<int> OnEnemyExpGained;
 
 
     public float currentHP;

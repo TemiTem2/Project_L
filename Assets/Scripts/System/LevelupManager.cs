@@ -9,12 +9,14 @@ public class LevelupManager : MonoBehaviour
         playerstat = PlayerStatManager.instance;
     }
 
-    void Update()
+    private void OnEnable()
     {
-        if (playerstat.exp >= playerstat.expToNextLevel)
-        {
-            LevelUp();
-        }
+        Enemy.OnEnemyExpGained += AddExp;
+    }
+
+    private void OnDisable()
+    {
+        Enemy.OnEnemyExpGained -= AddExp;
     }
 
     private void LevelUp()
@@ -30,5 +32,9 @@ public class LevelupManager : MonoBehaviour
     {
         playerstat.exp += amount;
         Debug.Log("경험치 추가: " + amount + ", 현재 경험치: " + playerstat.exp);
+        while (playerstat.exp >= playerstat.expToNextLevel)
+        {
+            LevelUp();
+        }
     }
 }
