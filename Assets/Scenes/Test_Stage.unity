@@ -684,6 +684,10 @@ MonoBehaviour:
     prefab: {fileID: 3517723174568728595, guid: 5e75da5c67204a447aaaba14ec94a25f, type: 3}
     size: 20
     maxExpandSize: 50
+  - tag: Bat
+    prefab: {fileID: 8619892577276350838, guid: c305c5f4b2314494db37cbe6d3c25c21, type: 3}
+    size: 20
+    maxExpandSize: 50
 --- !u!1 &1214511310
 GameObject:
   m_ObjectHideFlags: 0
