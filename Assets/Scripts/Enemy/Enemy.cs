@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour, IPoolable
         {
             yield return null;
         }
-
+        animEvent.isDead = false;
         Dead();
     }
 

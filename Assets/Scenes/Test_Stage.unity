@@ -549,6 +549,10 @@ MonoBehaviour:
     prefab: {fileID: -6435176975264355363, guid: 6556afe6e2ea69e4ea10afb343922a9b, type: 3}
     size: 30
     maxExpandSize: 200
+  - tag: WizardProjectile
+    prefab: {fileID: -6435176975264355363, guid: 7566c53bbcb55914a83e02f9b7d1e8f5, type: 3}
+    size: 3
+    maxExpandSize: 20
 --- !u!1 &434035375
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +851,10 @@ MonoBehaviour:
     prefab: {fileID: 8619892577276350838, guid: c305c5f4b2314494db37cbe6d3c25c21, type: 3}
     size: 20
     maxExpandSize: 50
+  - tag: Wizard
+    prefab: {fileID: 8619892577276350838, guid: 386af653ad0d7544aaa67427e31ee327, type: 3}
+    size: 2
+    maxExpandSize: 5
   - tag: Wizard
     prefab: {fileID: 8619892577276350838, guid: 386af653ad0d7544aaa67427e31ee327, type: 3}
     size: 2
