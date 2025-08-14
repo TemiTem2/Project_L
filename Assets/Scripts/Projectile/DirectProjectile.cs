@@ -12,6 +12,7 @@ public class DirectProjectile : ProjectileBase
         if (rb != null)
         {
             rb.linearVelocity = direction * stats.speed;
+            Debug.Log($"Direction: {direction}, rb.velocity: {rb.linearVelocity}");
         }
     }
 }

@@ -12,12 +12,6 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     protected Rigidbody2D rb;
     protected float timer = 0f;
 
-    protected virtual void Start()
-    {
-        startPos = transform.position;
-        rb = GetComponent<Rigidbody2D>();
-        Move();
-    }
     void FixedUpdate()
     {
         CheckLife();
@@ -31,14 +25,16 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         }
     }
 
-    public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 direction, float damage)
+    public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 dir, float damage)
     {
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
         transform.position = position;
         transform.rotation = rotation;
         timer = 0f;
-        startPos = transform.position;
-        rb.linearVelocity = direction * stats.speed;
+        startPos = position;
+        direction = dir;
         gameObject.SetActive(true);
+        Move();
     }
 
     public void OnDespawn()

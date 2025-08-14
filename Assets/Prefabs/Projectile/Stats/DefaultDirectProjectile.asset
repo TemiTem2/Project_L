@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ad37e9ddc81644eaa8f03a0a1930af, type: 3}
   m_Name: DefaultDirectProjectile
   m_EditorClassIdentifier: 
+  projectileName: Circle
   lifeType: 0
   speed: 3
   maxDistance: 10

@@ -166,6 +166,7 @@ MonoBehaviour:
     attackRange: 5
     moveSpeed: 1
     attackType: 1
+    projectileName: Circle
     expReward: 0
     goldReward: 0
     enemyPrefab: {fileID: 5725948130013901785}
