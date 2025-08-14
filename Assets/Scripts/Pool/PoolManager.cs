@@ -99,11 +99,10 @@ public class PoolManager : MonoBehaviour
             obj = Instantiate(setting.prefab, poolParents[(category, tag)].transform);
         }
 
-        obj.SetActive(true);
-        obj.transform.SetPositionAndRotation(position, rotation);
 
         if (obj.TryGetComponent<IPoolable>(out var poolable))
             poolable.OnSpawn();
+        obj.transform.SetPositionAndRotation(position, rotation);
 
         return obj;
     }
@@ -118,9 +117,8 @@ public class PoolManager : MonoBehaviour
 
         if (obj.TryGetComponent<IPoolable>(out var poolable))
             poolable.OnDespawn();
-
-        obj.SetActive(false);
         obj.transform.SetParent(poolParents[(category, tag)].transform);
+
         poolDictionary[category][tag].Enqueue(obj);
     }
 }

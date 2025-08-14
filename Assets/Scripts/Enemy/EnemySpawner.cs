@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
-    private Enemy[] enemies;
-
-    private Dictionary<string, Enemy> enemyDictionary = new Dictionary<string, Enemy>();
-
     private Vector2 fieldRangeX;
     private Vector2 fieldRangeY;
 
@@ -16,25 +11,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        GenerateDict();
         SetFieldRange();
     }
 
-    private void GenerateDict()
-    {
-        enemyDictionary.Clear();
-        foreach (Enemy enemy in enemies)
-        {
-            if (!enemyDictionary.ContainsKey(enemy.stats.enemyName))
-            {
-                enemyDictionary.Add(enemy.stats.enemyName, enemy);
-            }
-            else
-            {
-                Debug.LogWarning("enemyName ม฿บน: " + enemy.stats.enemyName);
-            }
-        }
-    }
 
     private void SetFieldRange()
     {
