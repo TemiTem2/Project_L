@@ -24,7 +24,7 @@ public class StageManager : MonoBehaviour
         isStageEnd = false;
         isOver = false;
         currentStage = stages[currentStageIndex];
-        totalEnemiesToSpawn = currentStage.stageData.totalEnemies;
+        totalEnemiesToSpawn = CountEnemy();
         StartCoroutine(LoadStage());
     }
 
@@ -38,6 +38,19 @@ public class StageManager : MonoBehaviour
         {
             GameManager.Instance.ChangeState(GameState.GameOver);
         }
+    }
+
+    private int CountEnemy()
+    {
+        int count = 0;
+        foreach (StageTemplate.WaveData wave in currentStage.waves)
+        {
+            for (int i = 0; i < wave.enemyCounts.Length; i++)
+            {
+                count += wave.enemyCounts[i];
+            }
+        }
+        return count;
     }
 
     private IEnumerator LoadStage()
