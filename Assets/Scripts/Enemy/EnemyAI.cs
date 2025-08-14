@@ -77,7 +77,7 @@ public class EnemyAI : MonoBehaviour
 
     private void TryAttack()
     {
-            enemy.attackScript.TryAttack(targetType, targetDirection, stats.projectilePrefab, stats.damage);
+            enemy.attackScript.TryAttack(targetType, targetDirection, stats.projectileName, stats.damage);
     }
 
 }

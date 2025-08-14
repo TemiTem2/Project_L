@@ -9,6 +9,7 @@ public enum LifeType
 public class ProjectileStats: ScriptableObject
 {
     [Header("Projectile Stats")]
+    public string projectileName;
     public LifeType lifeType;
     public float speed;
     public float maxDistance;

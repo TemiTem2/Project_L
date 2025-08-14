@@ -1,5 +1,3 @@
-using System.Dynamic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class StateManager : MonoBehaviour

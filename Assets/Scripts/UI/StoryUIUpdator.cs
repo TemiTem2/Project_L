@@ -4,26 +4,22 @@ using UnityEngine.UI;
 
 public class StoryUIUpdator : MonoBehaviour
 {
-    [SerializeField]
-    private Image imageCharacter;
-    [SerializeField]
-    private TextMeshProUGUI nameText;
-    [SerializeField]
-    private TextMeshProUGUI storyText;
-    [SerializeField]
-    private GameObject panelChoiceTwo;
-    [SerializeField]
-    private TextMeshProUGUI textChoice0;
-    [SerializeField]
-    private TextMeshProUGUI textChoice1;
+    [Header("Story")]
+    [SerializeField] private Image imageCharacter;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI storyText;
 
-    [SerializeField]
-    private GameObject panelReward;
-    [SerializeField]
-    private TextMeshProUGUI textReward;
+    [Header("Choice Panel")]
+    [SerializeField] private GameObject panelChoiceTwo;
+    [SerializeField] private TextMeshProUGUI textChoice0;
+    [SerializeField] private TextMeshProUGUI textChoice1;
 
-    [SerializeField]
-    private TextMeshProUGUI textProgress;
+    [Header("Reward Panel")]
+    [SerializeField] private GameObject panelReward;
+    [SerializeField] private TextMeshProUGUI textReward;
+
+    [Header("Progress")]
+    [SerializeField] private TextMeshProUGUI textProgress;
 
     private void Start()
     {

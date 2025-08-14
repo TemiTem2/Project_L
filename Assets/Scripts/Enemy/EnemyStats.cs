@@ -18,6 +18,7 @@ public class EnemyStats
     public float attackRange;
     public float moveSpeed;
     public AttackType attackType;
+    public string projectileName;
 
     [Header("Rewards")]
     public int expReward;

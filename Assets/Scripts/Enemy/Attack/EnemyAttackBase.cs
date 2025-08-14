@@ -14,5 +14,5 @@ public abstract class EnemyAttackBase : MonoBehaviour
         this.enemy = enemy;
     }
 
-    public abstract void TryAttack(TargetType targetType, Vector2 direction, GameObject projectile, float damage);
+    public abstract void TryAttack(TargetType targetType, Vector2 direction, string tag, float damage);
 }

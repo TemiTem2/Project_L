@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum EnemyState
 {
@@ -37,8 +38,9 @@ public class Enemy : MonoBehaviour, IPoolable
 
     }
 
-    public void OnSpawn()
+    public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 direction, float damage)
     {
+        transform.position = position;
         currentHP = stats.maxHP;
         attackScript.Initialize(this);
         gameObject.SetActive(true);
@@ -73,6 +75,6 @@ public class Enemy : MonoBehaviour, IPoolable
         OnEnemyExpGained?.Invoke(stats.expReward);
         OnEnemyDeadGlobal?.Invoke(this);
 
-        PoolManager.Instance.ReturnObject(PoolType.Enemy, stats.enemyName, gameObject);
+        EnemyPool.Instance.ReturnObject(stats.enemyName, this);
     }
 }

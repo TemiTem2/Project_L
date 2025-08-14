@@ -238,11 +238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67970e3bfa6f0040a99dda7424bf694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 1302091865285117471, guid: 9bc170cf5a30af249b1bed9480312baa, type: 3}
-  - {fileID: 6737569592527278584, guid: ee48542b14cd4c94096e2ce9cee46b40, type: 3}
-  - {fileID: 8633246951114792950, guid: 8a27ee78aae84f8448ba9340214af9d6, type: 3}
-  - {fileID: 3517723174568728595, guid: 5e75da5c67204a447aaaba14ec94a25f, type: 3}
 --- !u!1 &291938491
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +500,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &415268271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 415268272}
+  - component: {fileID: 415268273}
+  m_Layer: 0
+  m_Name: ProjectilePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &415268272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415268271}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1651925560}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &415268273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415268271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7181a79d7e18ae94a81510c351438648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Circle
+    prefab: {fileID: -6435176975264355363, guid: 6556afe6e2ea69e4ea10afb343922a9b, type: 3}
+    size: 30
+    maxExpandSize: 200
 --- !u!1 &434035375
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +623,67 @@ RectTransform:
   m_AnchoredPosition: {x: 100, y: 40}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &913934092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913934093}
+  - component: {fileID: 913934094}
+  m_Layer: 0
+  m_Name: EnemyPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &913934093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913934092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1651925560}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &913934094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913934092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d8643049669e84ba606f9ef8a30cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: SlimeBlue
+    prefab: {fileID: 1302091865285117471, guid: 9bc170cf5a30af249b1bed9480312baa, type: 3}
+    size: 20
+    maxExpandSize: 50
+  - tag: SlimeGreen
+    prefab: {fileID: 6737569592527278584, guid: ee48542b14cd4c94096e2ce9cee46b40, type: 3}
+    size: 20
+    maxExpandSize: 50
+  - tag: SlimeRed
+    prefab: {fileID: 8633246951114792950, guid: 8a27ee78aae84f8448ba9340214af9d6, type: 3}
+    size: 20
+    maxExpandSize: 50
+  - tag: RangedSample
+    prefab: {fileID: 3517723174568728595, guid: 5e75da5c67204a447aaaba14ec94a25f, type: 3}
+    size: 20
+    maxExpandSize: 50
 --- !u!1 &1214511310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1227,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1651925560}
-  - component: {fileID: 1651925559}
   m_Layer: 0
   m_Name: PoolManager
   m_TagString: Untagged
@@ -1130,34 +1234,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1651925559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651925558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64001abf3f72a684b8e03e2fee23711f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pools:
-  - category: 0
-    tag: SlimeBlue
-    prefab: {fileID: 856615596420568033, guid: 9bc170cf5a30af249b1bed9480312baa, type: 3}
-    size: 20
-    maxExpandSize: 40
-  - category: 0
-    tag: SlimeGreen
-    prefab: {fileID: 1401839040036639707, guid: ee48542b14cd4c94096e2ce9cee46b40, type: 3}
-    size: 20
-    maxExpandSize: 40
-  - category: 0
-    tag: SlimeRed
-    prefab: {fileID: 9142851872544699734, guid: 8a27ee78aae84f8448ba9340214af9d6, type: 3}
-    size: 20
-    maxExpandSize: 40
 --- !u!4 &1651925560
 Transform:
   m_ObjectHideFlags: 0
@@ -1170,7 +1246,9 @@ Transform:
   m_LocalPosition: {x: 1156.0729, y: 637.7073, z: -3.014235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 913934093}
+  - {fileID: 415268272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1757639275
@@ -1964,13 +2042,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd711ce9f697c0341be7efacc038a84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpawner: {fileID: 101070726}
   stages:
   - {fileID: 11400000, guid: 0f4d3a04e2ce17a4b942b715dc8a6930, type: 2}
   - {fileID: 11400000, guid: 6ed12dac28ba9d746baa8a5f04c88c15, type: 2}
   - {fileID: 11400000, guid: ce3dfb9b56af84e448932a79c4f8b30e, type: 2}
-  currentStageIndex: 1
+  currentStageIndex: 0
   totalStages: 3
-  enemySpawner: {fileID: 101070726}
   isOver: 0
   isStageEnd: 0
 --- !u!4 &2142442271

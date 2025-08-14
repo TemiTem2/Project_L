@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class StoryManager : MonoBehaviour
 {
-    [SerializeField]
-    private StoryUIUpdator storyUIUpdator;
+    [SerializeField] private StoryUIUpdator storyUIUpdator;
 
-    [SerializeField]
-    private StoryData[] storyDatas;
+    [SerializeField] private StoryData[] storyDatas;
 
     private int currentStoryIndex = 0;
     private int currentParIndex = 0;
@@ -95,8 +93,7 @@ public class StoryManager : MonoBehaviour
 
     private int RandomSelector()
     {
-        int index = storyDatas.Length;
-        return Random.Range(0, index);
+        return Random.Range(0, storyDatas.Length);
     }
 
     public void LoadByButton(int buttonIndex)
@@ -126,6 +123,7 @@ public class StoryManager : MonoBehaviour
             }
         }
     }
+
 
     private void RewardCheck()
     {

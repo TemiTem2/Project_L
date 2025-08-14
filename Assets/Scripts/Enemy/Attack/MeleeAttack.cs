@@ -39,7 +39,7 @@ public class MeleeAttack : EnemyAttackBase
         }
     }
 
-    public override void TryAttack(TargetType targetType, Vector2 direct, GameObject projectile, float damage)
+    public override void TryAttack(TargetType targetType, Vector2 direct, string tag, float damage)
     {
         switch (targetType)
         {

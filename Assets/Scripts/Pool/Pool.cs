@@ -8,11 +8,10 @@ public enum PoolType
 }
 
 [System.Serializable]
-public class Pool
+public class Pool<T> where T : MonoBehaviour
 {
-    public PoolType category;
     public string tag;
-    public GameObject prefab;
+    public T prefab;
     public int size;
     public int maxExpandSize;
 }

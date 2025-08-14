@@ -1,7 +1,7 @@
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
-public class ProjectileBase : MonoBehaviour
+public class ProjectileBase : MonoBehaviour, IPoolable
 {
     [SerializeField]
     protected ProjectileStats stats;
@@ -31,6 +31,22 @@ public class ProjectileBase : MonoBehaviour
         }
     }
 
+    public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 direction, float damage)
+    {
+        transform.position = position;
+        transform.rotation = rotation;
+        timer = 0f;
+        startPos = transform.position;
+        rb.linearVelocity = direction * stats.speed;
+        gameObject.SetActive(true);
+    }
+
+    public void OnDespawn()
+    {
+        rb.linearVelocity = Vector2.zero;
+        gameObject.SetActive(false);
+    }
+
     private void CheckLife()
     { 
         switch(stats.lifeType)
@@ -38,14 +54,14 @@ public class ProjectileBase : MonoBehaviour
             case LifeType.Distance:
                 if (Vector2.Distance(startPos, transform.position) >= stats.maxDistance)
                 {
-                    Destroy(gameObject);
+                    ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
                 }
                 break;
             case LifeType.Time:
                 timer += Time.deltaTime;
                 if (timer >= stats.lifetime)
                 {
-                    Destroy(gameObject);
+                    ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
                 }
                 break;
             default:
@@ -58,7 +74,7 @@ public class ProjectileBase : MonoBehaviour
     {
         Debug.Log("Hit: " + target.name);
         PlayHitEffect();
-        Destroy(gameObject);
+        ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
     }
 
     protected virtual void PlayHitEffect()

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private Vector2 fieldRangeX;
-    private Vector2 fieldRangeY;
+    private Vector3 fieldRangeX;
+    private Vector3 fieldRangeY;
 
     private GameObject field;
 
@@ -21,8 +21,8 @@ public class EnemySpawner : MonoBehaviour
             BoxCollider2D fieldCollider = field.GetComponent<BoxCollider2D>();
             if (fieldCollider != null)
             {
-                fieldRangeX = new Vector2(fieldCollider.bounds.min.x, fieldCollider.bounds.max.x);
-                fieldRangeY = new Vector2(fieldCollider.bounds.min.y, fieldCollider.bounds.max.y);
+                fieldRangeX = new Vector3(fieldCollider.bounds.min.x, fieldCollider.bounds.max.x);
+                fieldRangeY = new Vector3(fieldCollider.bounds.min.y, fieldCollider.bounds.max.y);
             }
             else
             {
@@ -37,12 +37,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy(string tag)
     {
-        Vector2 position = GenerateSpwanPos();
-        GameObject enemy = PoolManager.Instance.GetObject(PoolType.Enemy, tag, position, Quaternion.identity);
-        if (enemy == null) Debug.LogWarning("풀에서 꺼낼 수 없음: " + tag);
+        Vector3 position = GenerateSpwanPos();
+        EnemyPool.Instance.GetObject(tag, position, Quaternion.identity, Vector2.zero, 0);
     }
 
-    private Vector2 GenerateSpwanPos()
+    private Vector3 GenerateSpwanPos()
     {
         int randomDirection = Random.Range(0, 4);
         float posX = GenerateRandomPosX();
@@ -63,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
                 posY = fieldRangeY.x + 1f;
                 break;
         }
-                return new Vector2(posX, posY);
+                return new Vector3(posX, posY, 0);
     }
 
     private float GenerateRandomPosX()
