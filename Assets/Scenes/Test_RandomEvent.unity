@@ -2255,6 +2255,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 261b627695b7ba54f8a2dee9dfb66489, type: 2}
   - {fileID: 11400000, guid: d656764c1f56fb141a64b45d4eca2af1, type: 2}
   - {fileID: 11400000, guid: 834bdd81ec9c8e748a1fe07e4fb2625d, type: 2}
+  - {fileID: 11400000, guid: 7d3ddd191e44ef04e817d1bb16ad07ff, type: 2}
   isEventEnd: 0
 --- !u!4 &1862140068
 Transform:
