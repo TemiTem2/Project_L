@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,11 +7,16 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     [SerializeField]
     protected ProjectileStats stats;
 
+    public static event Action<float> OnEnemyProjectileHitPlayer;
+    public static event Action<float> OnEnemyProjectileHitProtect;
+
 
     protected Vector2 direction;
     protected Vector2 startPos;
     protected Rigidbody2D rb;
     protected float timer = 0f;
+
+    private float damage;
 
     void FixedUpdate()
     {
@@ -25,7 +31,7 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         }
     }
 
-    public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 dir, float damage)
+    public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 dir, float dam)
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         transform.position = position;
@@ -33,6 +39,7 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         timer = 0f;
         startPos = position;
         direction = dir;
+        damage = dam;
         gameObject.SetActive(true);
         Move();
     }
@@ -69,6 +76,14 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     protected virtual void OnHit(GameObject target)
     {
         Debug.Log("Hit: " + target.name);
+        if (target.CompareTag("Player"))
+        {
+            OnEnemyProjectileHitPlayer?.Invoke(damage);
+        }
+        else if (target.CompareTag("Protect"))
+        {
+            OnEnemyProjectileHitProtect?.Invoke(damage);
+        }
         PlayHitEffect();
         ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
     }

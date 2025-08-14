@@ -20,6 +20,17 @@ public class ProtectedTarget : MonoBehaviour
         currentHP = stats.maxHP;
     }
 
+    #region Projectile Hit Event
+    private void OnEnable()
+    {
+        ProjectileBase.OnEnemyProjectileHitProtect += TakeDamage;
+    }
+    private void OnDisable()
+    {
+        ProjectileBase.OnEnemyProjectileHitProtect -= TakeDamage;
+    }
+    #endregion
+
     void Update()
     {
         if (currentHP <= 0)

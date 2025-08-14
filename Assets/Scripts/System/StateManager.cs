@@ -54,6 +54,17 @@ public class StateManager : MonoBehaviour
         }
     }
 
+    #region Projectile Hit Event
+    private void OnEnable()
+    {
+        ProjectileBase.OnEnemyProjectileHitPlayer += TakeDamage;
+    }
+    private void OnDisable()
+    {
+        ProjectileBase.OnEnemyProjectileHitPlayer -= TakeDamage;
+    }
+    #endregion
+
     public void TakeDamage(float damage) //플레이어가 공격 받을떄 호출
     {
         if (isDefend) // 방어 상태일 때
