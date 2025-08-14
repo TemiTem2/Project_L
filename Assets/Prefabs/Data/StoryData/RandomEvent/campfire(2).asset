@@ -10,52 +10,58 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 313bff327122b7b44a99d02222c12975, type: 3}
-  m_Name: campfire
+  m_Name: campfire(2)
   m_EditorClassIdentifier: 
-  storyName: campfire
+  storyName: campfire(2)
   pars:
   - contentType: 0
     speakerName: 
-    speakerImage: {fileID: 0}
+    speakerImage: {fileID: 21300000, guid: 8efcafb568b0ce84c92bc93e78ff9521, type: 3}
     contents:
     - "\uC57C\uC601\uC9C0\uB97C \uBC1C\uACAC\uD558\uC600\uB2E4."
     choices: []
     rewards: []
   - contentType: 0
     speakerName: 
-    speakerImage: {fileID: 0}
+    speakerImage: {fileID: 21300000, guid: 8efcafb568b0ce84c92bc93e78ff9521, type: 3}
     contents:
     - "\uC870\uAE08 \uC26C\uB294\uAC83\uB3C4 \uAD1C\uCC2E\uC544 \uBCF4\uC774\uB294\uB370... "
     choices: []
     rewards: []
   - contentType: 1
     speakerName: 
-    speakerImage: {fileID: 0}
+    speakerImage: {fileID: 21300000, guid: 8efcafb568b0ce84c92bc93e78ff9521, type: 3}
     contents:
     - "\uD558\uC9C0\uB9CC \uACBD\uACC4\uB97C \uB2A6\uCD94\uB294\uAC83\uC740 \uC704\uD5D8\uD558\uB2E4,"
-    - "\uC5B4\uB5BB\uAC8C \uD574\uC57C\uD560\uAE4C.."
     choices:
-    - choiceText: "\uD734\uC2DD\uD55C\uB2E4"
-      jumpIndex: 3
     - choiceText: "\uACBD\uACC4\uD55C\uB2E4"
+      jumpIndex: 3
+    - choiceText: "\uD734\uC2DD\uD55C\uB2E4"
       jumpIndex: 4
     rewards: []
   - contentType: 3
     speakerName: 
     speakerImage: {fileID: 0}
     contents:
-    - "\uD734\uC2DD\uD558\uC5EC \uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uC600\uB2E4."
-    choices: []
-    rewards:
-    - rewardType: 2
-      amount: 10
-  - contentType: 1
-    speakerName: 
-    speakerImage: {fileID: 0}
-    contents:
-    - "\uACBD\uACC4\uB97C \uC8FC\uC2DC\uD558\uC5EC \uC804\uD22C\uC5D0\uC11C \uC774\uC810\uC744
-      \uAC00\uC838\uAC08 \uC218 \uC788\uAC8C \uB418\uC5C8\uB2E4"
+    - "\uAE30\uC2B5\uD574\uC624\uB294 \uC801\uB4E4\uC744 \uC7A1\uC544 \uACBD\uD5D8\uCE58\uB97C
+      \uD68D\uB4DD\uD588\uB2E4."
     choices: []
     rewards:
     - rewardType: 3
       amount: 30
+  - contentType: 0
+    speakerName: 
+    speakerImage: {fileID: -7967351678771783304, guid: 0ba61f9dd40068e4999bb58f3c876283, type: 3}
+    contents:
+    - "\uC801\uC758 \uAE30\uC2B5\uC774\uB2E4!"
+    choices: []
+    rewards: []
+  - contentType: 3
+    speakerName: 
+    speakerImage: {fileID: -7967351678771783304, guid: 0ba61f9dd40068e4999bb58f3c876283, type: 3}
+    contents:
+    - "\uACF5\uACA9\uC744 \uB2F9\uD574 \uCCB4\uB825\uC774 \uAC10\uC18C\uD558\uC600\uB2E4."
+    choices: []
+    rewards:
+    - rewardType: 2
+      amount: -15
