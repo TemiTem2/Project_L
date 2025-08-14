@@ -33,6 +33,11 @@ public class GameManager : MonoBehaviour
 
     public void ChangeState(GameState newState)
     {
+        if (currentState == GameState.Night)
+        {
+            EnemyPool.Instance.ReturnAllObjects();
+            ProjectilePool.Instance.ReturnAllObjects();
+        }
         currentState = newState;
         Debug.Log(currentState + "·Î ÀüÈ¯");
         InitializeByState(newState);

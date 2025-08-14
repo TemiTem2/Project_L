@@ -71,6 +71,23 @@ public class PoolManagerBase<T> : MonoBehaviour where T : MonoBehaviour, IPoolab
         poolDictionary[tag].Enqueue(obj);
     }
 
+    public void ReturnAllObjects()
+    {
+        foreach (var tag in poolDictionary.Keys)
+        {
+            Transform parent = poolParents[tag];
+
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                T obj = parent.GetChild(i).GetComponent<T>();
+                if (obj != null && obj.gameObject.activeSelf)
+                {
+                    ReturnObject(tag, obj);
+                }
+            }
+        }
+    }
+
     private Pool<T> GetPoolSetting(string tag)
     {
         return poolSettings[tag];
