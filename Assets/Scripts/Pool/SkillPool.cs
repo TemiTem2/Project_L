@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class ProjectilePool : PoolManagerBase<ProjectileBase>
+public class SkillPool : PoolManagerBase<Enemy>
 {
-    public static ProjectilePool Instance { get; private set; }
+    public static SkillPool Instance { get; private set; }
 
     protected override void Awake()
     {
@@ -13,7 +13,7 @@ public class ProjectilePool : PoolManagerBase<ProjectileBase>
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(transform.root.gameObject);
+        DontDestroyOnLoad(gameObject);
         Instance = this;
         #endregion
     }

@@ -52,6 +52,7 @@ public class PoolManagerBase<T> : MonoBehaviour where T : MonoBehaviour, IPoolab
         if (!poolDictionary.ContainsKey(tag)) return;
         T obj;
         if (poolDictionary[tag].Count > 0)  obj = poolDictionary[tag].Dequeue();
+        else if (poolDictionary[tag].Count >= poolSettings[tag].maxExpandSize) return;
         else
         {
             Pool<T> setting = GetPoolSetting(tag);

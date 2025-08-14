@@ -4,6 +4,7 @@ public class AnimationEventRelay : MonoBehaviour
 {
     public bool canAttack = false;
     public bool isAttacked = false;
+    public bool isDead = false;
 
     public void EnableAttack()
     {
@@ -13,5 +14,10 @@ public class AnimationEventRelay : MonoBehaviour
     {
         canAttack = false;
         isAttacked = false;
+    }
+
+    public void CompleteDead()
+    {
+        isDead = true;
     }
 }

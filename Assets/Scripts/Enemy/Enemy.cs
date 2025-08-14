@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
+using System.Collections;
 
 public enum EnemyState
 {
@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour, IPoolable
     public EnemyStats stats = new();
     public EnemyState enemyState;
     public EnemyAttackBase attackScript;
+
+    private AnimationEventRelay animEvent;
 
     public static event Action<Enemy> OnEnemyDeadGlobal;
     public static event Action<int> OnEnemyExpGained;
@@ -35,11 +37,13 @@ public class Enemy : MonoBehaviour, IPoolable
                 Debug.LogWarning("attackType error");
                 break;
         }
+        animEvent = GetComponentInChildren<AnimationEventRelay>();
 
     }
 
     public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 direction, float damage)
     {
+        enemyState = EnemyState.idle;
         transform.position = position;
         currentHP = stats.maxHP;
         attackScript.Initialize(this);
@@ -61,7 +65,7 @@ public class Enemy : MonoBehaviour, IPoolable
     {
         if (currentHP <= 0)
         {
-            Dead();
+            PlayDead();
         }
         else
         {
@@ -69,9 +73,25 @@ public class Enemy : MonoBehaviour, IPoolable
         }
     }
 
-    public void Dead()
+    public void PlayDead()
     {
         enemyState = EnemyState.dead;
+        if (animEvent != null) StartCoroutine(DeadCoroutine());
+        else Dead();
+    }
+
+    private IEnumerator DeadCoroutine()
+    {
+        while (!animEvent.isDead)
+        {
+            yield return null;
+        }
+
+        Dead();
+    }
+
+    public void Dead()
+    {
         OnEnemyExpGained?.Invoke(stats.expReward);
         OnEnemyDeadGlobal?.Invoke(this);
 

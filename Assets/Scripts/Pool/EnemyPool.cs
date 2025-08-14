@@ -14,7 +14,7 @@ public class EnemyPool : PoolManagerBase<Enemy>
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(transform.root.gameObject);
         Instance = this;
         #endregion
     }

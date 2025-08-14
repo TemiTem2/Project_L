@@ -15,7 +15,7 @@ MonoBehaviour:
   stageData:
     stageNumber: 1
     maxWave: 4
-    maxEnemies: 0
+    totalEnemies: 13
     spawnInterval: 2
   waves:
   - waveNumber: 1
