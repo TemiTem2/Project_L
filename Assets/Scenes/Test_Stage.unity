@@ -847,6 +847,10 @@ MonoBehaviour:
     prefab: {fileID: 8619892577276350838, guid: c305c5f4b2314494db37cbe6d3c25c21, type: 3}
     size: 20
     maxExpandSize: 50
+  - tag: Wizard
+    prefab: {fileID: 8619892577276350838, guid: 386af653ad0d7544aaa67427e31ee327, type: 3}
+    size: 2
+    maxExpandSize: 5
 --- !u!1 &1214511310
 GameObject:
   m_ObjectHideFlags: 0
