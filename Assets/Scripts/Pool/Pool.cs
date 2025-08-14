@@ -7,6 +7,7 @@ public enum PoolType
     Effect
 }
 
+[System.Serializable]
 public class Pool
 {
     public PoolType category;

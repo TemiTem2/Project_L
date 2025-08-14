@@ -18,6 +18,9 @@ public class StageManager : MonoBehaviour
     public bool isOver = false;
     public bool isStageEnd = false;
 
+    private int totalEnemiesToSpawn;
+    private int enemiesDefeated;
+
 
     private StageTemplate currentStage;
     private int currentWaveIndex = 0;
@@ -27,6 +30,7 @@ public class StageManager : MonoBehaviour
         isStageEnd = false;
         isOver = false;
         currentStage = stages[currentStageIndex];
+        totalEnemiesToSpawn = currentStage.stageData.totalEnemies;
         StartCoroutine(RoadStage());
     }
 
@@ -53,9 +57,7 @@ public class StageManager : MonoBehaviour
                 int enemyCount = wave.enemyCounts[i];
                 for (int j = 0; j < enemyCount; j++)
                 {
-                    Vector2 spawnPos = enemySpawner.GenerateSpwanPos();
-                    Enemy enemy = enemySpawner.SpawnEnemy(enemyName, new Vector3(spawnPos.x, spawnPos.y, 0));
-                    RegisterEnemy(enemy);
+                    enemySpawner.SpawnEnemy(enemyName);
                     yield return new WaitForSeconds(currentStage.stageData.spawnInterval);
                 }
             }
@@ -63,18 +65,21 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    private void RegisterEnemy(Enemy enemy)
+
+    private void OnEnable()
     {
-        enemies.Add(enemy);
-        enemy.OnDeathCallBack = UnregisterEnemy;
+        Enemy.OnEnemyDeadGlobal += HandleEnemyDead;
     }
 
-    private void UnregisterEnemy(Enemy enemy)
+    private void OnDisable()
     {
-        enemies.Remove(enemy);
-        if (enemies.Count == 0)
-        {
+        Enemy.OnEnemyDeadGlobal -= HandleEnemyDead;
+    }
+
+    private void HandleEnemyDead(Enemy enemy)
+    {
+        enemiesDefeated++;
+        if (enemiesDefeated >= totalEnemiesToSpawn)
             isStageEnd = true;
-        }
     }
 } 

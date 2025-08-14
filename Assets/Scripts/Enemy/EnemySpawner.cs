@@ -58,21 +58,14 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public Enemy SpawnEnemy(string name, Vector3 position)
+    public void SpawnEnemy(string tag)
     {
-        if (enemyDictionary.TryGetValue(name, out Enemy enemyPrefab))
-        {
-            Enemy newEnemy = Instantiate(enemyPrefab, position, Quaternion.identity);
-            return newEnemy;
-        }
-        else
-        {
-            Debug.LogWarning("해당 이름 없음: " + name);
-            return null;
-        }
+        Vector2 position = GenerateSpwanPos();
+        GameObject enemy = PoolManager.Instance.GetObject(PoolType.Enemy, tag, position, Quaternion.identity);
+        if (enemy == null) Debug.LogWarning("풀에서 꺼낼 수 없음: " + tag);
     }
 
-    public Vector2 GenerateSpwanPos()
+    private Vector2 GenerateSpwanPos()
     {
         int randomDirection = Random.Range(0, 4);
         float posX = GenerateRandomPosX();

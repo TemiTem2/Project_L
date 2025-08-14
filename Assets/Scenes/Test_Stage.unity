@@ -1113,6 +1113,66 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.7
+--- !u!1 &1651925558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1651925560}
+  - component: {fileID: 1651925559}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1651925559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651925558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64001abf3f72a684b8e03e2fee23711f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - category: 0
+    tag: SlimeBlue
+    prefab: {fileID: 856615596420568033, guid: 9bc170cf5a30af249b1bed9480312baa, type: 3}
+    size: 20
+    maxExpandSize: 40
+  - category: 0
+    tag: SlimeGreen
+    prefab: {fileID: 1401839040036639707, guid: ee48542b14cd4c94096e2ce9cee46b40, type: 3}
+    size: 20
+    maxExpandSize: 40
+  - category: 0
+    tag: SlimeRed
+    prefab: {fileID: 9142851872544699734, guid: 8a27ee78aae84f8448ba9340214af9d6, type: 3}
+    size: 20
+    maxExpandSize: 40
+--- !u!4 &1651925560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651925558}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1156.0729, y: 637.7073, z: -3.014235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1757639275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2057,3 +2117,4 @@ SceneRoots:
   - {fileID: 393824920}
   - {fileID: 1870714667}
   - {fileID: 1225731421}
+  - {fileID: 1651925560}

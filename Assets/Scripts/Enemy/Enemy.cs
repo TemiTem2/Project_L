@@ -8,20 +8,20 @@ public enum EnemyState
     hurt,
     dead
 }
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IPoolable
 {
     public EnemyStats stats = new();
     public EnemyState enemyState;
     public EnemyAttackBase attackScript;
-    
-    public Action<Enemy> OnDeathCallBack;
+
+    public static event Action<Enemy> OnEnemyDeadGlobal;
+    public static event Action<float> OnEnemyExpGained;
+
 
     public float currentHP;
 
-    private void Start()
+    private void Awake()
     {
-        currentHP = stats.maxHP;
-
         switch (stats.attackType)
         {
             case AttackType.melee:
@@ -35,7 +35,18 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
+    }
+
+    public void OnSpawn()
+    {
+        currentHP = stats.maxHP;
         attackScript.Initialize(this);
+        gameObject.SetActive(true);
+    }
+
+    public void OnDespawn()
+    {
+        gameObject.SetActive(false);
     }
 
     public void TakeDamage(float damage)
@@ -59,9 +70,9 @@ public class Enemy : MonoBehaviour
     public void Dead()
     {
         enemyState = EnemyState.dead;
-        LevelupManager levelupManager = FindFirstObjectByType<LevelupManager>();
-        levelupManager.AddExp(stats.expReward);
-        OnDeathCallBack?.Invoke(this);
-        Destroy(gameObject, 3f);
+        OnEnemyExpGained?.Invoke(stats.expReward);
+        OnEnemyDeadGlobal?.Invoke(this);
+
+        PoolManager.Instance.ReturnObject(PoolType.Enemy, stats.enemyName, gameObject);
     }
 }

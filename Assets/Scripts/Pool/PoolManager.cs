@@ -6,7 +6,6 @@ public class PoolManager : MonoBehaviour
 {
     public static PoolManager Instance;
 
-    [Header("풀 설정")]
     public List<Pool> pools;
 
     private Dictionary<PoolType, Dictionary<string, Queue<GameObject>>> poolDictionary;
@@ -15,6 +14,7 @@ public class PoolManager : MonoBehaviour
 
     void Awake()
     {
+        #region Singleton
         if (Instance == null)
         {
             Instance = this;
@@ -25,6 +25,7 @@ public class PoolManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        #endregion
 
         poolDictionary = new Dictionary<PoolType, Dictionary<string, Queue<GameObject>>>();
         poolParents = new Dictionary<(PoolType, string), GameObject>();
@@ -53,17 +54,21 @@ public class PoolManager : MonoBehaviour
                 poolParents[(pool.category, pool.tag)] = poolParent;
                 poolSettings[(pool.category, pool.tag)] = pool;
             }
-
-            // 오브젝트 미리 생성
-            var objectPool = poolDictionary[pool.category][pool.tag];
-            for (int i = 0; i < pool.size; i++)
-            {
-                GameObject obj = Instantiate(pool.prefab, poolParents[(pool.category, pool.tag)].transform);
-                obj.SetActive(false);
-                objectPool.Enqueue(obj);
-            }
+            Make_Queue(pool);
         }
     }
+
+    private void Make_Queue(Pool pool)
+    {
+        var objectPool = poolDictionary[pool.category][pool.tag];
+        for (int i = 0; i < pool.size; i++)
+        {
+            GameObject obj = Instantiate(pool.prefab, poolParents[(pool.category, pool.tag)].transform);
+            obj.SetActive(false);
+            objectPool.Enqueue(obj);
+        }
+    }
+
 
     public GameObject GetObject(PoolType category, string tag, Vector3 position, Quaternion rotation)
     {

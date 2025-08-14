@@ -8,7 +8,7 @@ public class StageTemplate : ScriptableObject
     {
         public int stageNumber;
         public int maxWave;
-        public int maxEnemies;
+        public int totalEnemies;
         public float spawnInterval;
     }
     [System.Serializable]
