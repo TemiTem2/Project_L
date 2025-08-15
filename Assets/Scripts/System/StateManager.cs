@@ -54,13 +54,15 @@ public class StateManager : MonoBehaviour
         }
     }
 
-    #region Projectile Hit Event
+    #region Hit Event
     private void OnEnable()
     {
+        MeleeAttack.OnPlayerAttacked += TakeDamage;
         ProjectileBase.OnEnemyProjectileHitPlayer += TakeDamage;
     }
     private void OnDisable()
     {
+        MeleeAttack.OnPlayerAttacked -= TakeDamage;
         ProjectileBase.OnEnemyProjectileHitPlayer -= TakeDamage;
     }
     #endregion

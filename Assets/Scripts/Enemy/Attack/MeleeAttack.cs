@@ -1,65 +1,54 @@
-using System.Collections;
+using System;
 using UnityEngine;
 
 public class MeleeAttack : EnemyAttackBase
 {
-    private AnimationEventRelay animEvent;
-    private bool isCollisionPlayer = false;
-    private bool isCollisionProtect = false;
-    private ProtectedTarget protect;
+    private bool isAttacking = false;
 
-    private void Start()
+    public static event Action<float> OnPlayerAttacked;
+    public static event Action<float> OnProtectAttacked;
+
+    #region Events
+    protected override void OnEnable()
     {
-        animEvent = GetComponentInChildren<AnimationEventRelay>();
-        protect = FindFirstObjectByType<ProtectedTarget>();
-        player = GameObject.FindGameObjectWithTag("PlayerManager");
-        stateManager = player.GetComponent<StateManager>();
+        base.OnEnable();
+        animEvent.OnAnimationAttack += CheckAttack;
     }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        animEvent.OnAnimationAttack -= CheckAttack;
+    }
+    private void CheckAttack(bool isAttacking)
+    {
+        this.isAttacking = isAttacking;
+    }
+    #endregion
 
+    #region Trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isCollisionPlayer = true;
-        }
-        if (collision.gameObject.CompareTag("Protect"))
-        {
-            isCollisionProtect = true;
-        }
+        CheckCollide(collision);
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isCollisionPlayer = false;
-        }
-        if (collision.gameObject.CompareTag("Protect"))
-        {
-            isCollisionProtect = false;
-        }
+        CheckCollide(other);
     }
+    #endregion
 
-    public override void TryAttack(TargetType targetType, Vector2 direct, string tag, float damage)
+    private void CheckCollide(Collider2D other)
     {
-        switch (targetType)
+        if (!isAttacking || haveAttacked) return;
+
+        if (other.CompareTag("Player"))
         {
-            case TargetType.Player:
-                if (animEvent.canAttack && isCollisionPlayer && !animEvent.isAttacked)
-                {
-                    stateManager.TakeDamage(damage);
-                    animEvent.isAttacked = true;
-                }
-                break;
-            case TargetType.Protect:
-                if (animEvent.canAttack && isCollisionProtect && !animEvent.isAttacked)
-                {
-                    protect.TakeDamage(damage);
-                    animEvent.isAttacked = true;
-                }
-                break;
-            default:
-                Debug.LogWarning("Unknown target type");
-                break;
+            OnPlayerAttacked?.Invoke(damage);
+            haveAttacked = true;
+        }
+        else if (other.CompareTag("Protect"))
+        {
+            OnProtectAttacked?.Invoke(damage);
+            haveAttacked = true;
         }
     }
 }

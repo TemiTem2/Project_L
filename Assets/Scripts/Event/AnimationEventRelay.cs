@@ -1,29 +1,26 @@
+using System;
 using UnityEngine;
 
 public class AnimationEventRelay : MonoBehaviour
 {
-    public bool canAttack = false;
     public bool isAttacked = false;
     public bool isDead = false;
 
+    public event Action<bool> OnAnimationAttack;
+    public event Action OnAnimationProjectile;
+
     public void CreateProjectile()
     {
-        if (canAttack)
-        {
-            // Assuming there's a method to create a projectile
-            // CreateProjectileLogic();
-            Debug.Log("Projectile created");
-        }
+        OnAnimationProjectile?.Invoke();
     }
 
     public void EnableAttack()
     {
-        canAttack = true;
+        OnAnimationAttack?.Invoke(true);
     }
     public void DisableAttack()
     {
-        canAttack = false;
-        isAttacked = false;
+        OnAnimationAttack?.Invoke(false);
     }
 
     public void CompleteDead()

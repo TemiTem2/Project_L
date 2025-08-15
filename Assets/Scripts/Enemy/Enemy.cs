@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IPoolable
     public EnemyState currentState;
 
     private Rigidbody2D rb;
+    private Animator animator;
 
     private Transform player;
     private Transform protect;
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour, IPoolable
     public EnemyAttackBase attackScript;
     public EnemyTargetor targetor;
     private EnemyMover mover;
+    private EnemyAnim anim;
     private EnemyAI ai;
 
     private AnimationEventRelay animEvent;
@@ -26,12 +28,12 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public float currentHP;
 
-    private void Awake()
+    public void SetTargets(Transform player, Transform protect)
     {
-
-        animEvent = GetComponentInChildren<AnimationEventRelay>();
-
+        this.player = player;
+        this.protect = protect;
     }
+    
     #region IPoolable
     public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 direction, float damage)
     {
@@ -40,6 +42,8 @@ public class Enemy : MonoBehaviour, IPoolable
         currentHP = stats.maxHP;
 
         if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
+        if (animEvent == null) animEvent = GetComponentInChildren<AnimationEventRelay>();
 
         if (player == null) player = GameObject.FindGameObjectWithTag("Player").transform;
         if (protect == null) protect = GameObject.FindGameObjectWithTag("Protect").transform;
@@ -51,7 +55,9 @@ public class Enemy : MonoBehaviour, IPoolable
         if (mover == null) mover = gameObject.AddComponent<EnemyMover>();
         mover.Initialize(this, targetor, rb, stats.moveSpeed);
         if (attackScript == null) GetAttackScript();
-        attackScript.Initialize(this);
+        attackScript.Initialize(this, mover, animEvent);
+        if (anim == null) anim = gameObject.AddComponent<EnemyAnim>();
+        anim.Initialize(this, animator);
 
         gameObject.SetActive(true);
     }
@@ -95,7 +101,7 @@ public class Enemy : MonoBehaviour, IPoolable
     {
         if (currentHP <= 0)
         {
-            Dead();
+            StartDead();
         }
         else
         {
@@ -103,22 +109,24 @@ public class Enemy : MonoBehaviour, IPoolable
         }
     }
 
+    public void StartDead()
+    {
+        if(currentState == EnemyState.dead) return;
+        ChangeState(EnemyState.dead);
+        if (animEvent != null) StartCoroutine(DeadCoroutine());
+        else Dead();
+    }
 
     private IEnumerator DeadCoroutine()
     {
-        while (!animEvent.isDead)
-        {
-            yield return null;
-        }
-        animEvent.isDead = false;
+        while (!animEvent.isDead) yield return null;
         Dead();
     }
 
     public void Dead()
     {
-        ChangeState(EnemyState.dead);
-        if (animEvent != null) StartCoroutine(DeadCoroutine());
-        else Dead();
+        animEvent.isDead = false;
+
         OnEnemyExpGained?.Invoke(stats.expReward);
         OnEnemyDeadGlobal?.Invoke(this);
 

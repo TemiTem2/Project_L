@@ -8,6 +8,8 @@ public class EnemyMover: MonoBehaviour
     private Transform target;
     private float moveSpeed;
 
+    public event System.Action<Vector2> OnDirectionUpdated;
+
     public void Initialize(Enemy enemy, EnemyTargetor targetor, Rigidbody2D rb, float moveSpeed)
     {
         this.enemy = enemy;
@@ -36,12 +38,14 @@ public class EnemyMover: MonoBehaviour
     private void ChangeState(EnemyState state)
     {
         if (target == null) return;
+        Vector2 targetDirection = GetTargetDirection(transform, target);
         if (state == EnemyState.idle) rb.linearVelocity = Vector2.zero;
         else if (state == EnemyState.trace)
         {
-            Vector2 targetDirection = GetTargetDirection(transform, target);
             rb.linearVelocity = targetDirection * moveSpeed;
         }
+
+        OnDirectionUpdated?.Invoke(targetDirection);
     }
     #endregion
 

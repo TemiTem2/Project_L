@@ -2,48 +2,43 @@ using UnityEngine;
 
 public class EnemyAnim : MonoBehaviour
 {
-    private Animator enemyAnim;
+    private Animator animator;
     private Enemy enemy;
-    private EnemyState prevState;
 
-    private void Start()
+    public void Initialize(Enemy enemy, Animator animator)
     {
-        enemyAnim = GetComponent<Animator>();
-        enemy = GetComponentInParent<Enemy>();
-        prevState = enemy.enemyState;
+        this.enemy = enemy;
+        this.animator = animator;
+        UpdateAnimState(EnemyState.idle);
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (enemy.enemyState != prevState)
-        {
-            UpdateAnimState();
-            prevState = enemy.enemyState;
-        }
+        enemy.OnStateChanged += UpdateAnimState;
     }
-
-    public void DisableAttack()
+    private void OnDisable()
     {
-        UpdateAnimState();
+        enemy.OnStateChanged -= UpdateAnimState;
     }
-
-    public void UpdateAnimState()
+    private void UpdateAnimState(EnemyState state)
     {
-        switch(enemy.enemyState)
+        if (animator == null || enemy == null) return;
+        switch(state)
         {
             case EnemyState.idle:
-                enemyAnim.SetBool("isDead", false);
+                animator.SetBool("isDead", false);
                 break;
-            case EnemyState.run:
-                enemyAnim.SetTrigger("run");
+            case EnemyState.trace:
+                animator.SetTrigger("run");
                 break;
             case EnemyState.attack:
-                enemyAnim.SetTrigger("attack");
+                animator.SetTrigger("attack");
                 break;
             case EnemyState.hurt:
-                enemyAnim.SetTrigger("hurt");
+                animator.SetTrigger("hurt");
                 break;
             case EnemyState.dead:
+                animator.SetBool("isDead", true);
                 break;
         }
     }
