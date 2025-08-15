@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ProjectileBase : MonoBehaviour, IPoolable
 {
-    [SerializeField]
-    protected ProjectileStats stats;
+    [SerializeField] protected ProjectileStats stats;
+
+    protected Animator animator;
+    protected ProjectileAnim anim;
 
     public static event Action<float> OnEnemyProjectileHitPlayer;
     public static event Action<float> OnEnemyProjectileHitProtect;
@@ -15,33 +16,57 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     protected Vector2 startPos;
     protected Rigidbody2D rb;
     protected float timer = 0f;
+    private bool isReturned = false;
 
     private float damage;
 
-    void FixedUpdate()
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        if (stats.haveAnim)
+        {
+            animator = GetComponent<Animator>();
+            anim = gameObject.AddComponent<ProjectileAnim>();
+        }
+    }
+
+    void Update()
     {
         CheckLife();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Protect"))
+        if (collision.CompareTag("Player"))
         {
-            OnHit(collision.gameObject);
+            OnEnemyProjectileHitPlayer?.Invoke(damage);
+            OnHit();
+        }
+        else if (collision.CompareTag("Protect"))
+        {
+            OnEnemyProjectileHitProtect?.Invoke(damage);
+            OnHit();
         }
     }
 
     public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 dir, float dam)
     {
-        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        ResetProjectile(position, rotation, dir, dam);
+        Move();
+    }
+    private void ResetProjectile(Vector3 position, Quaternion rotation, Vector2 dir, float dam)
+    {
         transform.position = position;
         transform.rotation = rotation;
         timer = 0f;
         startPos = position;
         direction = dir;
         damage = dam;
+        isReturned = false;
+        rb.linearVelocity = Vector2.zero;
+        if (stats.haveAnim && animator != null) anim.Initialize(animator);
         gameObject.SetActive(true);
-        Move();
     }
 
     public void OnDespawn()
@@ -55,17 +80,10 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         switch(stats.lifeType)
         {
             case LifeType.Distance:
-                if (Vector2.Distance(startPos, transform.position) >= stats.maxDistance)
-                {
-                    ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
-                }
+                CheckDistanceLife();
                 break;
             case LifeType.Time:
-                timer += Time.deltaTime;
-                if (timer >= stats.lifetime)
-                {
-                    ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
-                }
+                CheckTimeLife();
                 break;
             default:
                 Debug.LogWarning("LifeType error");
@@ -73,26 +91,39 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         }
     }
 
-    protected virtual void OnHit(GameObject target)
+    private void CheckDistanceLife()
     {
-        Debug.Log("Hit: " + target.name);
-        if (target.CompareTag("Player"))
+        if (Vector2.Distance(startPos, transform.position) >= stats.maxDistance)
         {
-            OnEnemyProjectileHitPlayer?.Invoke(damage);
+            ReturnToPool();
         }
-        else if (target.CompareTag("Protect"))
+    }
+    private void CheckTimeLife()
+    {
+        timer += Time.deltaTime;
+        if (timer >= stats.lifetime)
         {
-            OnEnemyProjectileHitProtect?.Invoke(damage);
+            ReturnToPool();
         }
-        PlayHitEffect();
+    }
+
+    private void ReturnToPool()
+    {
+        if (isReturned) return;
+        isReturned = true;
         ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
+    }
+    protected virtual void OnHit()
+    {
+        PlayHitEffect();
+        ReturnToPool();
     }
 
     protected virtual void PlayHitEffect()
     {
-        if (stats.hitEffect != null)
+        if (stats.hitEffectName != null)
         {
-            Instantiate(stats.hitEffect, transform.position, Quaternion.identity);
+            EffectPool.Instance.GetObject(stats.hitEffectName, transform.position, Quaternion.identity, Vector2.zero, 0);
         }
         //play hit sound
     }

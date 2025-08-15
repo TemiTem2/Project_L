@@ -14,6 +14,7 @@ public class ProjectileStats: ScriptableObject
     public float speed;
     public float maxDistance;
     public float lifetime;
-    public GameObject hitEffect;
+    public bool haveAnim;
+    public string hitEffectName;
     public AudioClip hitSound;
 }

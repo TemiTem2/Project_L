@@ -13,8 +13,8 @@ public class Enemy : MonoBehaviour, IPoolable
     private Transform player;
     private Transform protect;
 
-    public EnemyAttackBase attackScript;
-    public EnemyTargetor targetor;
+    private EnemyAttackBase attackScript;
+    private EnemyTargetor targetor;
     private EnemyMover mover;
     private EnemyAnim anim;
     private EnemyAI ai;

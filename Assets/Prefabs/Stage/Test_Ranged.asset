@@ -15,14 +15,13 @@ MonoBehaviour:
   stageData:
     stageNumber: 0
     maxWave: 2
-    totalEnemies: 6
     spawnInterval: 2
   waves:
   - waveNumber: 1
     enemyNames:
-    - RangedSample
+    - WizardRanged
     enemyCounts: 03000000
   - waveNumber: 2
     enemyNames:
-    - RangedSample
+    - Wizard
     enemyCounts: 03000000
