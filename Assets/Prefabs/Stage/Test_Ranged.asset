@@ -20,8 +20,8 @@ MonoBehaviour:
   - waveNumber: 1
     enemyNames:
     - WizardRanged
-    enemyCounts: 03000000
+    enemyCounts: 02000000
   - waveNumber: 2
     enemyNames:
     - Wizard
-    enemyCounts: 03000000
+    enemyCounts: 02000000

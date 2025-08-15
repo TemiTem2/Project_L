@@ -5,7 +5,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour, IPoolable
 {
     public EnemyStats stats = new();
-    public EnemyState currentState;
+    private EnemyState currentState;
 
     private Rigidbody2D rb;
     private Animator animator;

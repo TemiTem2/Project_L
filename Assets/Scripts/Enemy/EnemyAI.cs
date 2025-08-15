@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     private Transform target;
     private float attackCooldown = 0f;
     private bool isCollided = false;
+    private int collideCount = 0;
 
     private EnemyTargetor targetor;
 
@@ -39,11 +40,20 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Protect")) isCollided = true;
+        if (other.CompareTag("Player") || other.CompareTag("Protect"))
+        {
+            collideCount++;
+            isCollided = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Protect")) isCollided = false;
+        if (other.CompareTag("Player") || other.CompareTag("Protect"))
+        {
+            collideCount = Mathf.Max(0, collideCount - 1);
+            if (collideCount == 0)
+                isCollided = false;
+        }
     }
 
     private void EnemyBehavior()

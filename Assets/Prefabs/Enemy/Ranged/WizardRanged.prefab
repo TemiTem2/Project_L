@@ -52,13 +52,12 @@ MonoBehaviour:
     maxHP: 50
     damage: 30
     attackSpeed: 10
-    targetRange: 2
+    targetRange: 4
     moveSpeed: 2
     attackType: 1
     projectileName: WizardProjectile
     expReward: 20
     goldReward: 10
-  currentState: 0
   currentHP: 0
 --- !u!50 &-5197976179537856895
 Rigidbody2D:

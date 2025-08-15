@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6445666186361868710}
   - component: {fileID: 1436309047349132044}
   - component: {fileID: 3395880293739772733}
+  - component: {fileID: -8572931198301728713}
   m_Layer: 0
   m_Name: FX003_01
   m_TagString: Untagged
@@ -173,3 +174,15 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0}
   moveSpeed: 2
   lifeTime: 3
+--- !u!114 &-8572931198301728713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445666186361868711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ae0bf2eef3bc24d9a0a7ba25c8436c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

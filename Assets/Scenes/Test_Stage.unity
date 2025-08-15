@@ -910,7 +910,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7011952de396d343b80fa2b00065134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools: []
+  pools:
+  - tag: SmashedGround
+    prefab: {fileID: -8572931198301728713, guid: 2faef1773552d32448b8cfbca6821598, type: 3}
+    size: 10
+    maxExpandSize: 20
 --- !u!1 &568150595
 GameObject:
   m_ObjectHideFlags: 0

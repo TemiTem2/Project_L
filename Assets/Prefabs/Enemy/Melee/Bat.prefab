@@ -52,13 +52,12 @@ MonoBehaviour:
     maxHP: 5
     damage: 1
     attackSpeed: 2
-    targetRange: 2
+    targetRange: 4
     moveSpeed: 5
     attackType: 0
     projectileName: 
     expReward: 1
     goldReward: 1
-  currentState: 0
   currentHP: 0
 --- !u!50 &-5197976179537856895
 Rigidbody2D:

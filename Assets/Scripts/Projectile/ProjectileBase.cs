@@ -149,5 +149,4 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         }
         //play hit sound
     }
-
 }
