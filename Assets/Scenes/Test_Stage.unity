@@ -1594,6 +1594,63 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1534225850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1534225851}
+  - component: {fileID: 1534225852}
+  m_Layer: 0
+  m_Name: EnvironmentSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1534225851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534225850}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2142442271}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1534225852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534225850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 575344d0fd5a1bf44b675c6c1c9c45df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallObjs:
+  - {fileID: 6859041295756773884, guid: dc4eba40e59ce0c49ba910521c1f2d85, type: 3}
+  - {fileID: 7414029148129145023, guid: 59418bf33a8306f42a391cce486d90e0, type: 3}
+  - {fileID: 5492650234229582308, guid: c5d46f2d2f9816544addee40ae7198e3, type: 3}
+  - {fileID: 1973299714767566962, guid: 65bf30270629cd64f82da70f14443da9, type: 3}
+  largeObjs:
+  - {fileID: 2603795512937051754, guid: 02edce7a372932b46b41134c4178c758, type: 3}
+  - {fileID: 5190732446359680097, guid: 53b6f05d22b693f49bb48bbe5967a7e4, type: 3}
+  - {fileID: 7556738931457113578, guid: 5b6e15da50e86d44b8aa2637643b1268, type: 3}
+  smallObjCount: 10
+  largeObjCount: 2
+  field: {fileID: 1830275559}
+  Background: {fileID: 81266481}
 --- !u!1 &1578657871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,6 +2801,7 @@ Transform:
   m_Children:
   - {fileID: 101070725}
   - {fileID: 1373407353}
+  - {fileID: 1534225851}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6140512165292355655
