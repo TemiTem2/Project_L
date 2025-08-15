@@ -744,8 +744,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
+  - tag: WizardProjectile
+    prefab: {fileID: -7397688857959968649, guid: 7566c53bbcb55914a83e02f9b7d1e8f5, type: 3}
+    size: 30
+    maxExpandSize: 200
   - tag: Circle
-    prefab: {fileID: -6435176975264355363, guid: 6556afe6e2ea69e4ea10afb343922a9b, type: 3}
+    prefab: {fileID: 2943590415574032739, guid: 6556afe6e2ea69e4ea10afb343922a9b, type: 3}
     size: 30
     maxExpandSize: 200
 --- !u!1 &434035375
@@ -862,6 +866,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505089757}
   m_CullTransparentMesh: 1
+--- !u!1 &506137433
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 506137434}
+  - component: {fileID: 506137435}
+  m_Layer: 0
+  m_Name: SkillPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &506137434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506137433}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1651925560}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &506137435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506137433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7011952de396d343b80fa2b00065134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools: []
 --- !u!1 &568150595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,19 +1070,47 @@ MonoBehaviour:
   pools:
   - tag: SlimeBlue
     prefab: {fileID: 1302091865285117471, guid: 9bc170cf5a30af249b1bed9480312baa, type: 3}
-    size: 20
-    maxExpandSize: 50
+    size: 10
+    maxExpandSize: 100
   - tag: SlimeGreen
     prefab: {fileID: 6737569592527278584, guid: ee48542b14cd4c94096e2ce9cee46b40, type: 3}
-    size: 20
-    maxExpandSize: 50
+    size: 10
+    maxExpandSize: 100
   - tag: SlimeRed
     prefab: {fileID: 8633246951114792950, guid: 8a27ee78aae84f8448ba9340214af9d6, type: 3}
-    size: 20
+    size: 10
+    maxExpandSize: 100
+  - tag: Bat
+    prefab: {fileID: 8619892577276350838, guid: c305c5f4b2314494db37cbe6d3c25c21, type: 3}
+    size: 10
+    maxExpandSize: 100
+  - tag: Crab
+    prefab: {fileID: 8619892577276350838, guid: 3642fa3098c700745a4646bd0bf17483, type: 3}
+    size: 10
+    maxExpandSize: 100
+  - tag: Pebble
+    prefab: {fileID: 8619892577276350838, guid: 3a92bd0122f45f74abe8d7770d30bc18, type: 3}
+    size: 10
+    maxExpandSize: 100
+  - tag: Rat
+    prefab: {fileID: 8619892577276350838, guid: 19d1e193c484ccc4d856c1f5e133c26a, type: 3}
+    size: 10
+    maxExpandSize: 100
+  - tag: SingleSkull
+    prefab: {fileID: 8619892577276350838, guid: 2ff3469365c38c9488ea58c2a8aed57f, type: 3}
+    size: 10
+    maxExpandSize: 100
+  - tag: SlimeSpiked
+    prefab: {fileID: 8619892577276350838, guid: 2ff3469365c38c9488ea58c2a8aed57f, type: 3}
+    size: 10
+    maxExpandSize: 100
+  - tag: Wizard
+    prefab: {fileID: 8619892577276350838, guid: 386af653ad0d7544aaa67427e31ee327, type: 3}
+    size: 5
     maxExpandSize: 50
-  - tag: RangedSample
-    prefab: {fileID: 3517723174568728595, guid: 5e75da5c67204a447aaaba14ec94a25f, type: 3}
-    size: 20
+  - tag: WizardRanged
+    prefab: {fileID: 8619892577276350838, guid: 683da3ddb7b817d4798c5d6f826ea4b9, type: 3}
+    size: 5
     maxExpandSize: 50
 --- !u!1 &1214511310
 GameObject:
@@ -1757,6 +1834,8 @@ Transform:
   m_Children:
   - {fileID: 913934093}
   - {fileID: 415268272}
+  - {fileID: 1928542793}
+  - {fileID: 506137434}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1757639275
@@ -2492,6 +2571,51 @@ MonoBehaviour:
   pauseUI: {fileID: 2004918351}
   settingsUI: {fileID: 1757639276}
   exitUI: {fileID: 6140512165292355656}
+--- !u!1 &1928542792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1928542793}
+  - component: {fileID: 1928542794}
+  m_Layer: 0
+  m_Name: EffectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1928542793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928542792}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1651925560}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1928542794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928542792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837d73087eccbcc47b82d0d609869d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools: []
 --- !u!1001 &2004918350
 PrefabInstance:
   m_ObjectHideFlags: 0
