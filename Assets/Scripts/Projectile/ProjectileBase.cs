@@ -1,6 +1,13 @@
 using System;
 using UnityEngine;
+using System.Collections;
 
+public enum ProjState
+{
+    None,
+    Idle,
+    Hit
+}
 public class ProjectileBase : MonoBehaviour, IPoolable
 {
     [SerializeField] protected ProjectileStats stats;
@@ -9,15 +16,16 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     private ProjectileAnim anim;
     private ProjectileMoveBase move;
     private ProjectileLifeBase life;
+    private AnimationEventRelay animEvent;
 
     public static event Action<float> OnEnemyProjectileHitPlayer;
     public static event Action<float> OnEnemyProjectileHitProtect;
+    public event Action<ProjState> OnProjStateChange;
 
-
+    private ProjState state;
     private Vector2 direction;
     private Rigidbody2D rb;
     private float lifeFloat;
-    private bool isReturned = false;
 
     private float damage;
 
@@ -29,6 +37,7 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         {
             animator = GetComponent<Animator>();
             anim = gameObject.AddComponent<ProjectileAnim>();
+            animEvent = GetComponent<AnimationEventRelay>();
         }
         AddMove();
         AddLife();
@@ -78,38 +87,58 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     #region IPoolable
     public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 dir, float dam)
     {
+        state = ProjState.None;
+        ChangeState(ProjState.Idle);
         transform.position = position;
         transform.rotation = rotation;
         direction = dir;
         damage = dam;
-        isReturned = false;
-        if (stats.haveAnim && animator != null) anim.Initialize(animator);
+        if (stats.haveAnim && animator != null) anim.Initialize(animator, this);
         move.Initialize(direction, rb, stats.speed);
         life.Initialize(lifeFloat, position);
-        life.OnLifeEnd += ReturnToPool;
+        life.OnLifeEnd += StartHit;
         gameObject.SetActive(true);
 
     }
     public void OnDespawn()
     {
         rb.linearVelocity = Vector2.zero;
-        life.OnLifeEnd -= ReturnToPool;
+        life.OnLifeEnd -= StartHit;
         gameObject.SetActive(false);
     }
     #endregion
 
+    private void ChangeState(ProjState newState)
+    {
+        if (state != newState && state != ProjState.Hit)
+        {
+            state = newState;
+            OnProjStateChange?.Invoke(newState);
+        }
+    }
 
+    public void StartHit()
+    {
+        ChangeState(ProjState.Hit);
+        if (animEvent != null) StartCoroutine(HitCoroutine());
+        else ReturnToPool();
+    }
+
+    private IEnumerator HitCoroutine()
+    {
+        while (!animEvent.isDead) yield return null;
+        ReturnToPool();
+    }
 
     private void ReturnToPool()
     {
-        if (isReturned) return;
-        isReturned = true;
+        animEvent.isDead = false;
         ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
     }
     protected void OnHit()
     {
         PlayHitEffect();
-        ReturnToPool();
+        StartHit();
     }
 
     protected void PlayHitEffect()
