@@ -129,7 +129,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   anim: {fileID: 358502373267005105}
-  defendDuration: 2
+  fieldMin: {x: -14, y: -8}
+  fieldMax: {x: 14, y: 8}
 --- !u!70 &122378209979712388
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class PlayerMove : MonoBehaviour
     protected StateManager stateManager;
     protected SoundManager soundManager;
 
+    [SerializeField] private Vector2 fieldMin = new Vector2(-14f, -8f); // 필드 최소 좌표
+    [SerializeField] private Vector2 fieldMax = new Vector2(14f, 8f);   // 필드 최대 좌표
 
     void Start()
     {
@@ -58,7 +60,12 @@ public class PlayerMove : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, vertical, 0).normalized;
         if (direction.magnitude >= 0.1f)
         {
-            transform.position += direction * stateManager.speed * Time.deltaTime;
+            Vector3 nextPos = transform.position + direction * stateManager.speed * Time.deltaTime;
+
+            nextPos.x = Mathf.Clamp(nextPos.x, fieldMin.x, fieldMax.x);
+            nextPos.y = Mathf.Clamp(nextPos.y, fieldMin.y, fieldMax.y);
+
+            transform.position = nextPos;
             anim.SetBool("Running", true);
 
             // 이동 방향에 따라 바라보는 방향 변경
