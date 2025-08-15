@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageData:
     stageNumber: 1
-    maxWave: 1
+    maxWave: 2
     spawnInterval: 0.5
   waves:
   - waveNumber: 1
     enemyNames:
-    - Bat
+    - Pebble
     enemyCounts: 1e000000
-  - waveNumber: 1
+  - waveNumber: 2
     enemyNames:
     - Crab
     enemyCounts: 1e000000
