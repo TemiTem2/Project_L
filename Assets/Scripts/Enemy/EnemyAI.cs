@@ -1,83 +1,61 @@
-using System.Xml.Serialization;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using System;
 using UnityEngine;
 
-public enum TargetType
-{
-    Player,
-    Protect
-}
 public class EnemyAI : MonoBehaviour
 {
     private Enemy enemy;
     private EnemyStats stats;
 
-
-    private TargetType targetType;
     private Transform target;
-    private Vector2 targetDirection;
-    private bool canAttack = false;
     private float attackCooldown = 0f;
 
-    private EnemyTargetor enemyTargetor;
-    private EnemyMover enemyMover;
+    private EnemyTargetor targetor;
 
-    private void Awake()
-    {
-        enemyTargetor = new EnemyTargetor();
-        enemyMover = new EnemyMover();
-    }
-
-    void Start()
-    {
-        enemy = GetComponent<Enemy>();
-        stats = enemy.stats;
-
-        enemyTargetor.InitializeEnemyTargetor();
-        enemyMover.InitializeEnemyMover(enemy);
-    }
 
     private void Update()
     {
-        if (enemy.enemyState == EnemyState.dead)
-        {
-            this.enabled = false;
-        }
-        else
-        {
-            if (attackCooldown >= 0f) attackCooldown -= Time.deltaTime;
-            UpdateTargetInformation();
-            EnemyBehavior();
-        }
+        EnemyBehavior();
     }
+
+    public void Initialize(Enemy enemy, EnemyStats stats, EnemyTargetor targetor)
+    {
+        this.enemy = enemy;
+        this.stats = stats;
+        this.targetor = targetor;
+    }
+
+    #region TargetChange Event
+    private void OnEnable()
+    {
+        targetor.OnTargetChanged += SetTarget;
+    }
+    private void OnDisable()
+    {
+        targetor.OnTargetChanged -= SetTarget;
+    }
+    private void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+    #endregion
 
     private void EnemyBehavior()
     {
-        if (canAttack)
+        if (target == null) return;
+        if (attackCooldown >= 0f) attackCooldown -= Time.deltaTime;
+        if (targetor.IsTargetInRange(target))
         {
             if (attackCooldown <= 0f)
             {
                 attackCooldown = stats.attackSpeed;
-                enemy.enemyState = EnemyState.attack;
-                TryAttack();
+                enemy.ChangeState(EnemyState.attack);
+                return;
             }
+            enemy.ChangeState(EnemyState.idle);
         }
         else
         {
-            enemyMover.MoveEnemy(targetDirection, stats.moveSpeed);
+            enemy.ChangeState(EnemyState.trace);
         }
     }
-    private void UpdateTargetInformation()
-    {
-        targetType = enemyTargetor.UpdateTarget(stats, transform);
-        target = enemyTargetor.GetTargetTransform(targetType);
-        targetDirection = enemyMover.GetTargetDirection(transform, target);
-        canAttack = enemyMover.IsTargetInRange(transform, target, stats.attackRange);
-    }
-
-    private void TryAttack()
-    {
-            enemy.attackScript.TryAttack(targetType, targetDirection, stats.projectileName, stats.damage);
-    }
-
 }

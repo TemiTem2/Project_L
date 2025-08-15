@@ -1,32 +1,45 @@
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using System;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class EnemyTargetor
+public class EnemyTargetor: MonoBehaviour
 {   
-    private GameObject player;
-    private GameObject protect;
+    private Transform player;
+    private Transform protect;
+    private float sqrAttackRange;
 
-    public void InitializeEnemyTargetor()
+    private TargetType currentTarget;
+
+    public event Action<Transform> OnTargetChanged;
+
+    private void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        protect = GameObject.FindGameObjectWithTag("Protect");
+        CheckTarget();
     }
 
-    public TargetType UpdateTarget(EnemyStats stats, Transform transform)
+    public void Initialize(Transform player, Transform protect, float attackRange)
     {
-        float playerDistance = Vector2.Distance(transform.position, player.transform.position);
-        float protectDistance = Vector2.Distance(transform.position, protect.transform.position);
-        float attackRange = stats.attackRange;
+        this.player = player;
+        this.protect = protect;
+        this.sqrAttackRange = attackRange * attackRange;
+    }
 
-        if (playerDistance <= attackRange && protectDistance > attackRange)
+    public void CheckTarget()
+    {
+        TargetType newTarget = UpdateTarget();
+        if (currentTarget != newTarget)
         {
-            return TargetType.Player;
+            currentTarget = newTarget;
+            OnTargetChanged?.Invoke(GetTargetTransform(currentTarget));
         }
-        else
-        {
-            return TargetType.Protect;
-        }
+    }
+
+    public TargetType UpdateTarget()
+    {
+        float playerSqr = (transform.position - player.position).sqrMagnitude;
+        float protectSqr = (transform.position - protect.position).sqrMagnitude;
+
+        if (playerSqr <= sqrAttackRange && protectSqr > sqrAttackRange) return TargetType.Player;
+        else return TargetType.Protect;
     }
 
     public Transform GetTargetTransform(TargetType targetType)
@@ -34,11 +47,17 @@ public class EnemyTargetor
         switch (targetType)
         {
             case TargetType.Player:
-                return player.transform;
+                return player;
             case TargetType.Protect:
-                return protect.transform;
+                return protect;
             default:
                 return null;
         }
+    }
+
+    public bool IsTargetInRange(Transform target)
+    {
+        float sqrDistance = (transform.position - target.position).sqrMagnitude;
+        return sqrDistance <= sqrAttackRange;
     }
 }

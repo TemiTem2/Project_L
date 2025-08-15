@@ -1,29 +1,52 @@
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class EnemyMover
+public class EnemyMover: MonoBehaviour
 {
+    private Enemy enemy;
+    private EnemyTargetor targetor;
     private Rigidbody2D rb;
+    private Transform target;
+    private float moveSpeed;
 
-    public void InitializeEnemyMover(Enemy enemy)
+    public void Initialize(Enemy enemy, EnemyTargetor targetor, Rigidbody2D rb, float moveSpeed)
     {
-        rb = enemy.GetComponent<Rigidbody2D>();
+        this.enemy = enemy;
+        this.targetor = targetor;
+        this.rb = rb;
+        this.moveSpeed = moveSpeed;
     }
 
-    public bool IsTargetInRange(Transform self, Transform target, float attackRange)
+    #region Events
+    private void OnEnable()
     {
-        float distance = Vector2.Distance(self.position, target.position);
-        return distance <= attackRange;
+        targetor.OnTargetChanged += ChangeTarget;
+        enemy.OnStateChanged += ChangeState;
     }
+    private void OnDisable()
+    {
+        targetor.OnTargetChanged -= ChangeTarget;
+        enemy.OnStateChanged -= ChangeState;
+    }
+
+    private void ChangeTarget(Transform target)
+    {
+        this.target = target;
+    }
+
+    private void ChangeState(EnemyState state)
+    {
+        if (target == null) return;
+        if (state == EnemyState.idle) rb.linearVelocity = Vector2.zero;
+        else if (state == EnemyState.trace)
+        {
+            Vector2 targetDirection = GetTargetDirection(transform, target);
+            rb.linearVelocity = targetDirection * moveSpeed;
+        }
+    }
+    #endregion
 
     public Vector2 GetTargetDirection(Transform transform, Transform target)
     {
         return (target.position - transform.position).normalized;
-    }
-
-    public void MoveEnemy(Vector2 targetDirection, float moveSpeed)
-    {
-        rb.MovePosition(rb.position + targetDirection * moveSpeed * Time.fixedDeltaTime);
     }
 }

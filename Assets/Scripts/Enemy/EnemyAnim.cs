@@ -32,6 +32,10 @@ public class EnemyAnim : MonoBehaviour
         switch(enemy.enemyState)
         {
             case EnemyState.idle:
+                enemyAnim.SetBool("isDead", false);
+                break;
+            case EnemyState.run:
+                enemyAnim.SetTrigger("run");
                 break;
             case EnemyState.attack:
                 enemyAnim.SetTrigger("attack");
@@ -40,8 +44,6 @@ public class EnemyAnim : MonoBehaviour
                 enemyAnim.SetTrigger("hurt");
                 break;
             case EnemyState.dead:
-                enemyAnim.SetBool("isDead", true);
-                this.enabled = false;
                 break;
         }
     }
