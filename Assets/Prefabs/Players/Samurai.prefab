@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1401003900509782659}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6170447, y: 1.0889604, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -166,6 +166,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   anim: {fileID: 3014500805202314346}
+  fieldMin: {x: -14, y: -8}
+  fieldMax: {x: 14, y: -8}
 --- !u!50 &7462393084946270225
 Rigidbody2D:
   serializedVersion: 5

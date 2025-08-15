@@ -10,10 +10,10 @@ public class ProtectedTarget : MonoBehaviour
 
     public ProtectedObjectStats stats = new ProtectedObjectStats();
 
-    [SerializeField]
-    private float currentHP;
+    public float currentHP;
     private StageManager stage;
     private PlayerStatManager playerStatManager;
+    private Animator anim;
 
     private void Start()
     {
@@ -21,6 +21,7 @@ public class ProtectedTarget : MonoBehaviour
         playerStatManager = PlayerStatManager.instance;
         //stats.maxHP = database.protectedTargetHP;
         currentHP = playerStatManager.protectedTargetHP;
+        anim = GetComponent<Animator>();
     }
 
     #region Projectile Hit Event
@@ -45,5 +46,6 @@ public class ProtectedTarget : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHP -= damage;
+        anim.SetTrigger("TakingDamage");
     }
 }
