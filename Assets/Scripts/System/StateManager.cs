@@ -22,8 +22,8 @@ public class StateManager : MonoBehaviour
 
     void Start()
     {
-        database = FindFirstObjectByType<Database>();
-        playerStatManager = FindFirstObjectByType<PlayerStatManager>();
+        database = Database.Instance;
+        playerStatManager = PlayerStatManager.instance;
 
         Instantiate(database.currentCharInfo.charPrefab, transform.position, Quaternion.identity);
 

@@ -10,10 +10,7 @@ public class SoundManager : MonoBehaviour
     [Header("오디오 클립들")]
     public AudioClip[] bgmClip;
     public int sfxIndex = 0;
-    void Start()
-    {
 
-    }
 
     // Update is called once per frame
     void Update()
@@ -38,6 +35,11 @@ public class SoundManager : MonoBehaviour
                 bgmSource.clip = bgmClip[0];
                 bgmSource.Play();
             }
+        }
+
+        if (!bgmSource.isPlaying)
+        {
+            bgmSource.Play();
         }
     }
 

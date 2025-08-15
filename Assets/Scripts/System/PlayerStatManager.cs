@@ -8,6 +8,7 @@ public class PlayerStatManager : MonoBehaviour
     public int exp;
     public int expToNextLevel=100;
     public int skillPoints;
+    public float protectedTargetHP = 100f;
 
     public StatPoint statPoint = new StatPoint();
 
