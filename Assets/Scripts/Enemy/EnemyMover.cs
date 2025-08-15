@@ -40,9 +40,13 @@ public class EnemyMover: MonoBehaviour
         if (target == null) return;
         Vector2 targetDirection = GetTargetDirection(transform, target);
         if (state == EnemyState.trace) rb.linearVelocity = targetDirection * moveSpeed;
-        else
+        else rb.linearVelocity = Vector2.zero;
+
+        if (targetDirection.x != 0)
         {
-            rb.linearVelocity = Vector2.zero;
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * (targetDirection.x > 0 ? 1 : -1);
+            transform.localScale = scale;
         }
 
         OnDirectionUpdated?.Invoke(targetDirection);

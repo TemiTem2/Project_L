@@ -13,7 +13,7 @@ public class SkillPool : PoolManagerBase<SkillBase>
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(transform.root.gameObject);
         Instance = this;
         #endregion
     }

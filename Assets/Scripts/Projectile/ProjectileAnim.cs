@@ -14,11 +14,11 @@ public class ProjectileAnim : MonoBehaviour
 
     private void OnEnable()
     {
-        projectile.OnProjStateChange += CheckHit;
+        if (projectile != null)  projectile.OnProjStateChange += CheckHit;
     }
     private void OnDiasble()
     {
-        projectile.OnProjStateChange -= CheckHit;
+        if (projectile != null)  projectile.OnProjStateChange -= CheckHit;
     }
 
     private void CheckHit(ProjState state)

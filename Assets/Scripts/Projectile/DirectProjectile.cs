@@ -2,24 +2,17 @@ using UnityEngine;
 
 public class DirectProjectile : ProjectileMoveBase
 {
-    private Rigidbody2D rb;
-    private Vector2 direction;
     private float speed;
 
-    public override void Initialize(Vector2 dir, Rigidbody2D rb, float speed)
+    public override void Initialize(ProjectileBase projectile, Vector2 dir, Rigidbody2D rb, float speed)
     {
-        direction = dir.normalized;
-        this.rb = rb;
+        base.Initialize(projectile, dir, rb, speed);
         this.speed = speed;
+        Move(dir.normalized);
     }
 
 
-    private void Update()
-    {
-        Move();
-    }
-
-    private void Move()
+    private void Move(Vector2 direction)
     {
         if (rb != null)
         {

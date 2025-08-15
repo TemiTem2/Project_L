@@ -22,7 +22,7 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     public static event Action<float> OnEnemyProjectileHitProtect;
     public event Action<ProjState> OnProjStateChange;
 
-    private ProjState state;
+    private ProjState state = ProjState.None;
     private Vector2 direction;
     private Rigidbody2D rb;
     private float lifeFloat;
@@ -88,16 +88,16 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 dir, float dam)
     {
         state = ProjState.None;
-        ChangeState(ProjState.Idle);
         transform.position = position;
         transform.rotation = rotation;
         direction = dir;
         damage = dam;
         if (stats.haveAnim && animator != null) anim.Initialize(animator, this);
-        move.Initialize(direction, rb, stats.speed);
+        gameObject.SetActive(true);
+        move.Initialize(this, direction, rb, stats.speed);
         life.Initialize(lifeFloat, position);
         life.OnLifeEnd += StartHit;
-        gameObject.SetActive(true);
+        ChangeState(ProjState.Idle);
 
     }
     public void OnDespawn()
