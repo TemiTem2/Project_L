@@ -50,14 +50,8 @@ public class Knight : PlayerMove
         Vector2 direction = (mouseWorldPos - transform.position).normalized;
 
         // 프리팹 생성
-        GameObject effect = Instantiate(stateManager.skill.summonPrefab, transform.position, Quaternion.identity);
+        SkillPool.Instance.GetObject(stateManager.skill.skillname, transform.position, Quaternion.identity, direction, stateManager.skill.damage);
 
-        // 이동 방향 지정
-        smashedGroundFX effectMove = effect.GetComponent<smashedGroundFX>();
-        if (effectMove != null)
-        {
-            effectMove.moveDir = direction;
-        }
         Debug.Log("Knight가 땅을 내리쳤습니다!");
         anim.SetTrigger("Skill1End"); // 스킬 사용 후 애니메이션 트리거
     }

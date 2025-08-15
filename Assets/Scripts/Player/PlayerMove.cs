@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] protected LayerMask enemyLayerMask; // Inspector에서 Enemy 레이어만 선택
 
     protected bool canMove = true; // 플레이어가 이동 가능한지 여부
+    protected bool isKnockDown = false;
     
     protected float currentAttackCooldown = 1f;
     protected float currentSkill1Cooldown = 0f;
@@ -18,6 +19,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private Vector2 fieldMin = new Vector2(-14f, -8f); // 필드 최소 좌표
     [SerializeField] private Vector2 fieldMax = new Vector2(14f, 8f);   // 필드 최대 좌표
 
+
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -28,21 +31,36 @@ public class PlayerMove : MonoBehaviour
         {
             Debug.LogError("Animator component not found on Player object.");
         }
+
+        stateManager.OnPlayerKnockDown += KnockDown;
+    }
+
+    private void OnDisable()
+    {
+        stateManager.OnPlayerKnockDown -= KnockDown;
+    }
+    private void KnockDown()
+    {
+        if (!isKnockDown)
+        {
+            isKnockDown = true;
+            StartCoroutine(KnockDownRoutine());
+        }
     }
 
     void Update()
     {
-        if (!stateManager.isKnockDown) 
-        {
+        //if (!stateManager.isKnockDown) 
+        //{
             
             TryMove();
             TryAttack();
             TrySkill1();
-        }
-        else
-        {
-            StartCoroutine(KnockDownRoutine());
-        }
+        //}
+        //else
+        //{
+        //    StartCoroutine(KnockDownRoutine());
+        //}
 
     }
 
@@ -187,6 +205,7 @@ public class PlayerMove : MonoBehaviour
         Debug.Log("플레이어가 넉다운 상태입니다. 회복 중...");
         yield return new WaitForSeconds(stateManager.recoverTime); // 3초 대기
         stateManager.Recover(); // 넉다운 상태에서 회복 함수 호출
+        isKnockDown = false;
     }
     
 }

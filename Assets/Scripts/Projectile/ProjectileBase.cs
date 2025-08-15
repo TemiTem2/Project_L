@@ -6,7 +6,8 @@ public enum ProjState
 {
     None,
     Idle,
-    Hit
+    Hit,
+    Dead
 }
 public class ProjectileBase : MonoBehaviour, IPoolable
 {
@@ -27,7 +28,7 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     private Rigidbody2D rb;
     private float lifeFloat;
 
-    private float damage;
+    protected float damage;
 
 
     private void Awake()
@@ -96,35 +97,35 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         gameObject.SetActive(true);
         move.Initialize(this, direction, rb, stats.speed);
         life.Initialize(lifeFloat, position);
-        life.OnLifeEnd += StartHit;
+        life.OnLifeEnd += StartDead;
         ChangeState(ProjState.Idle);
 
     }
     public void OnDespawn()
     {
         rb.linearVelocity = Vector2.zero;
-        life.OnLifeEnd -= StartHit;
+        life.OnLifeEnd -= StartDead;
         gameObject.SetActive(false);
     }
     #endregion
 
     private void ChangeState(ProjState newState)
     {
-        if (state != newState && state != ProjState.Hit)
+        if (state != newState && state != ProjState.Dead)
         {
             state = newState;
             OnProjStateChange?.Invoke(newState);
         }
     }
 
-    public void StartHit()
+    protected void StartDead()
     {
-        ChangeState(ProjState.Hit);
-        if (animEvent != null) StartCoroutine(HitCoroutine());
+        ChangeState(ProjState.Dead);
+        if (animEvent != null) StartCoroutine(DeadCoroutine());
         else ReturnToPool();
     }
 
-    private IEnumerator HitCoroutine()
+    private IEnumerator DeadCoroutine()
     {
         while (!animEvent.isDead) yield return null;
         ReturnToPool();
@@ -135,10 +136,10 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         animEvent.isDead = false;
         ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
     }
-    protected void OnHit()
+    protected virtual void OnHit()
     {
         PlayHitEffect();
-        StartHit();
+        StartDead();
     }
 
     protected void PlayHitEffect()

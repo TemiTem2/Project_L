@@ -12,7 +12,6 @@ public class smashedGroundFX : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position += (Vector3)(moveDir * moveSpeed * Time.deltaTime);

@@ -1,15 +1,21 @@
 using UnityEngine;
 
-public class SkillBase : MonoBehaviour, IPoolable
+public class SkillBase : ProjectileBase
 {
-    [SerializeField] private Skill stats;
 
-    public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 direction, float f)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            // 적에게 데미지 적용
+            Enemy enemy = col.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
+        }
     }
-    public void OnDespawn()
-    {
 
-    }
+    protected override void OnHit()
+    { }
 }

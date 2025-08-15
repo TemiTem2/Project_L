@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class StateManager : MonoBehaviour
@@ -19,6 +20,8 @@ public class StateManager : MonoBehaviour
     public bool isDefend = false; // 플레이어가 방어 상태인지 여부
 
     public PlayerStatManager playerStatManager;
+
+    public event Action OnPlayerKnockDown;
 
     void Start()
     {
@@ -44,14 +47,15 @@ public class StateManager : MonoBehaviour
 
     void Update()
     {
-        if (hp > 0)
-        {
-            isKnockDown = false; // 플레이어가 넉다운 상태가 아니면 false로 설정
-        }
-        else
-        {
-            isKnockDown = true; // 플레이어가 넉다운 상태로 전환
-        }
+        if (hp <= 0) OnPlayerKnockDown?.Invoke();
+        //if (hp > 0)
+        //{
+        //    isKnockDown = false; // 플레이어가 넉다운 상태가 아니면 false로 설정
+        //}
+        //else
+        //{
+        //    isKnockDown = true; // 플레이어가 넉다운 상태로 전환
+        //}
     }
 
     #region Hit Event

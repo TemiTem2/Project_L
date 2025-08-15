@@ -12,7 +12,7 @@ public class ProjectileMoveBase : MonoBehaviour
 
     private void CheckState(ProjState state)
     {
-        if (state == ProjState.Hit) StopMove();
+        if (state == ProjState.Dead) StopMove();
     }
     private void StopMove()
     {

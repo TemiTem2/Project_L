@@ -911,9 +911,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: SmashedGround
-    prefab: {fileID: -8572931198301728713, guid: 2faef1773552d32448b8cfbca6821598, type: 3}
-    size: 10
+  - tag: SmashingGround
+    prefab: {fileID: -8572931198301728713, guid: 17717478990ef60488eac390d51ba480, type: 3}
+    size: 3
     maxExpandSize: 20
 --- !u!1 &568150595
 GameObject:

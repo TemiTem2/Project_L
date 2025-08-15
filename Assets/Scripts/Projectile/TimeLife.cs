@@ -11,6 +11,10 @@ public class TimeLife : ProjectileLifeBase
         timer = 0f;
     }
 
+    private void Update()
+    {
+        CheckLife();
+    }
 
     private void CheckLife()
     {

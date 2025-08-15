@@ -23,7 +23,7 @@ public class ProjectileAnim : MonoBehaviour
 
     private void CheckHit(ProjState state)
     {
-        if (state == ProjState.Hit) animator.SetBool("isHit", true);
+        if (state == ProjState.Dead) animator.SetBool("isHit", true);
     }
 
 }
