@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 396170897204601630}
   - component: {fileID: 5295034739605305155}
   - component: {fileID: 7628424026990454666}
-  - component: {fileID: 5822392306976785217}
   m_Layer: 0
   m_Name: WizardRanged
   m_TagString: Untagged
@@ -124,18 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb85096d047e34488e5d2a0029f6663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canAttack: 0
   isAttacked: 0
   isDead: 0
---- !u!114 &5822392306976785217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5938679917381992003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 774029a6ab8898b489fce0d358fd3fa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

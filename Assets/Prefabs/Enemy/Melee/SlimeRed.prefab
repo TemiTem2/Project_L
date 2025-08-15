@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8633246951114792950}
   - component: {fileID: 6269898982055837501}
   - component: {fileID: 5056108969202814499}
-  - component: {fileID: 2870079657907479319}
   m_Layer: 7
   m_Name: SlimeRed
   m_TagString: Enemy
@@ -56,12 +55,14 @@ MonoBehaviour:
     attackRange: 1
     moveSpeed: 1
     attackType: 0
+    projectileName: 
     expReward: 3
     goldReward: 1
     enemyPrefab: {fileID: 6149090450193341056}
     projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
-  enemyState: 0
+  currentState: 0
   attackScript: {fileID: 0}
+  targetor: {fileID: 0}
   currentHP: 0
 --- !u!50 &6269898982055837501
 Rigidbody2D:
@@ -127,18 +128,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2, y: 1.5}
   m_Direction: 1
---- !u!114 &2870079657907479319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9142851872544699734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09e6a038c75e824092f661084cd6d06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1212619478572968768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151,14 +140,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Idle
       objectReference: {fileID: 0}
-    - target: {fileID: 5008534755244437952, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5008534755244437953, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 4cd860bbe42d18e4bb046dfd15870a24, type: 2}
     - target: {fileID: 5008534755244437955, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -202,45 +183,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5008534755244437952, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7707301200571156306}
-    - targetCorrespondingSourceObject: {fileID: 5008534755244437952, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6089917765367627617}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}
 --- !u!1 &6149090450193341056 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5008534755244437952, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}
   m_PrefabInstance: {fileID: 1212619478572968768}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7707301200571156306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6149090450193341056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb85096d047e34488e5d2a0029f6663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canAttack: 0
-  isAttacked: 0
---- !u!114 &6089917765367627617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6149090450193341056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 774029a6ab8898b489fce0d358fd3fa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6149090450193341059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5008534755244437955, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}

@@ -7,7 +7,7 @@ public class EnemyTargetor: MonoBehaviour
     private Transform protect;
     private float sqrAttackRange;
 
-    private TargetType currentTarget;
+    private TargetType currentTarget = TargetType.None;
 
     public event Action<Transform> OnTargetChanged;
 
@@ -20,7 +20,7 @@ public class EnemyTargetor: MonoBehaviour
     {
         this.player = player;
         this.protect = protect;
-        this.sqrAttackRange = attackRange * attackRange;
+        sqrAttackRange = attackRange * attackRange;
     }
 
     public void CheckTarget()

@@ -9,6 +9,7 @@ public enum EnemyState
 }
 public enum TargetType
 {
+    None,
     Player,
     Protect
 }

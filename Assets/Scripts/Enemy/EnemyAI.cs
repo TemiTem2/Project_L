@@ -27,11 +27,11 @@ public class EnemyAI : MonoBehaviour
     #region TargetChange Event
     private void OnEnable()
     {
-        targetor.OnTargetChanged += SetTarget;
+        if (enemy != null) targetor.OnTargetChanged += SetTarget;
     }
     private void OnDisable()
     {
-        targetor.OnTargetChanged -= SetTarget;
+        if (enemy != null) targetor.OnTargetChanged -= SetTarget;
     }
     private void SetTarget(Transform newTarget)
     {

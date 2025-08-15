@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9085015900171323431}
   - component: {fileID: 8619892577276350838}
   - component: {fileID: -5197976179537856895}
-  - component: {fileID: 3141199778491935555}
   - component: {fileID: 7303644055946244262}
   m_Layer: 7
   m_Name: WizardRanged
@@ -61,8 +60,9 @@ MonoBehaviour:
     goldReward: 0
     enemyPrefab: {fileID: 4144620963504334238, guid: 7566c53bbcb55914a83e02f9b7d1e8f5, type: 3}
     projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
-  enemyState: 0
+  currentState: 0
   attackScript: {fileID: 0}
+  targetor: {fileID: 0}
   currentHP: 0
 --- !u!50 &-5197976179537856895
 Rigidbody2D:
@@ -91,18 +91,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3141199778491935555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9170904826936486227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09e6a038c75e824092f661084cd6d06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &7303644055946244262
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

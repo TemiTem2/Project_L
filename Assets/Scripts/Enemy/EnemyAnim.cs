@@ -27,17 +27,21 @@ public class EnemyAnim : MonoBehaviour
         {
             case EnemyState.idle:
                 animator.SetBool("isDead", false);
+                animator.SetBool("isRun", false);
                 break;
             case EnemyState.trace:
-                animator.SetTrigger("run");
+                animator.SetBool("isRun", true);
                 break;
             case EnemyState.attack:
+                animator.SetBool("isRun", false);
                 animator.SetTrigger("attack");
                 break;
             case EnemyState.hurt:
+                animator.SetBool("isRun", false);
                 animator.SetTrigger("hurt");
                 break;
             case EnemyState.dead:
+                animator.SetBool("isRun", false);
                 animator.SetBool("isDead", true);
                 break;
         }
