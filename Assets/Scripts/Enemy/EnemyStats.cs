@@ -15,7 +15,7 @@ public class EnemyStats
     public float maxHP;
     public float damage;
     public float attackSpeed;
-    public float attackRange;
+    public float targetRange;
     public float moveSpeed;
     public AttackType attackType;
     public string projectileName;

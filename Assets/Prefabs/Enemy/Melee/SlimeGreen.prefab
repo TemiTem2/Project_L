@@ -51,18 +51,14 @@ MonoBehaviour:
     enemyName: SlimeGreen
     maxHP: 10
     damage: 1
-    attackSpeed: 0
-    attackRange: 1
+    attackSpeed: 3
+    targetRange: 2
     moveSpeed: 1
     attackType: 0
     projectileName: 
     expReward: 3
     goldReward: 1
-    enemyPrefab: {fileID: 5995106263421928881}
-    projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
   currentState: 0
-  attackScript: {fileID: 0}
-  targetor: {fileID: 0}
   currentHP: 0
 --- !u!50 &-2863900543481881165
 Rigidbody2D:
@@ -185,11 +181,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27bf31f6833d5b742a6b7841e983dd6b, type: 3}
---- !u!1 &5995106263421928881 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8068589428734277748, guid: 27bf31f6833d5b742a6b7841e983dd6b, type: 3}
-  m_PrefabInstance: {fileID: 4380742620575858117}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5995106263421928884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8068589428734277745, guid: 27bf31f6833d5b742a6b7841e983dd6b, type: 3}

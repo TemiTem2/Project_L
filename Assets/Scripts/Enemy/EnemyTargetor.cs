@@ -5,7 +5,7 @@ public class EnemyTargetor: MonoBehaviour
 {   
     private Transform player;
     private Transform protect;
-    private float sqrAttackRange;
+    private float sqrTargetRange;
 
     private TargetType currentTarget = TargetType.None;
 
@@ -16,11 +16,11 @@ public class EnemyTargetor: MonoBehaviour
         CheckTarget();
     }
 
-    public void Initialize(Transform player, Transform protect, float attackRange)
+    public void Initialize(Transform player, Transform protect, float targetRange)
     {
         this.player = player;
         this.protect = protect;
-        sqrAttackRange = attackRange * attackRange;
+        sqrTargetRange = targetRange * targetRange;
     }
 
     public void CheckTarget()
@@ -38,7 +38,7 @@ public class EnemyTargetor: MonoBehaviour
         float playerSqr = (transform.position - player.position).sqrMagnitude;
         float protectSqr = (transform.position - protect.position).sqrMagnitude;
 
-        if (playerSqr < protectSqr && playerSqr <= sqrAttackRange) return TargetType.Player;
+        if (playerSqr < protectSqr && playerSqr <= sqrTargetRange) return TargetType.Player;
         else return TargetType.Protect;
     }
 
@@ -53,11 +53,5 @@ public class EnemyTargetor: MonoBehaviour
             default:
                 return null;
         }
-    }
-
-    public bool IsTargetInRange(Transform target)
-    {
-        float sqrDistance = (transform.position - target.position).sqrMagnitude;
-        return sqrDistance <= sqrAttackRange;
     }
 }

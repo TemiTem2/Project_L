@@ -52,7 +52,7 @@ MonoBehaviour:
     maxHP: 7
     damage: 2
     attackSpeed: 2
-    attackRange: 1
+    targetRange: 2
     moveSpeed: 4
     attackType: 0
     projectileName: 

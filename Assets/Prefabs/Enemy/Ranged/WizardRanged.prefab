@@ -52,14 +52,12 @@ MonoBehaviour:
     maxHP: 50
     damage: 30
     attackSpeed: 10
-    attackRange: 5
+    targetRange: 2
     moveSpeed: 2
     attackType: 1
     projectileName: WizardProjectile
     expReward: 20
     goldReward: 10
-    enemyPrefab: {fileID: 4144620963504334238, guid: 7566c53bbcb55914a83e02f9b7d1e8f5, type: 3}
-    projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
   currentState: 0
   currentHP: 0
 --- !u!50 &-5197976179537856895

@@ -7,6 +7,7 @@ public class EnemyMover: MonoBehaviour
     private Rigidbody2D rb;
     private Transform target;
     private float moveSpeed;
+    private EnemyState state;
 
     public event System.Action<Vector2> OnDirectionUpdated;
 
@@ -31,8 +32,17 @@ public class EnemyMover: MonoBehaviour
     {
         this.target = target;
     }
-
     private void ChangeState(EnemyState state)
+    {
+        this.state = state;
+    }
+
+    private void Update()
+    {
+        UpdateMove();
+    }
+
+    private void UpdateMove()
     {
         if (target == null) return;
         Vector2 targetDirection = GetTargetDirection(transform, target);

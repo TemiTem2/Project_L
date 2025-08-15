@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
 
     private Transform target;
     private float attackCooldown = 0f;
+    private bool isCollided = false;
 
     private EnemyTargetor targetor;
 
@@ -22,6 +23,7 @@ public class EnemyAI : MonoBehaviour
         this.enemy = enemy;
         this.stats = stats;
         this.targetor = targetor;
+        isCollided = false;
         if (enemy != null) targetor.OnTargetChanged += SetTarget;
     }
 
@@ -34,23 +36,32 @@ public class EnemyAI : MonoBehaviour
         target = newTarget;
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Protect")) isCollided = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Protect")) isCollided = false;
+    }
+
     private void EnemyBehavior()
     {
         if (target == null) return;
-        if (attackCooldown >= 0f) attackCooldown -= Time.deltaTime;
-        if (targetor.IsTargetInRange(target))
+        if (isCollided)
         {
-            if (attackCooldown <= 0f)
+            if (attackCooldown > 0f)
+            {
+                attackCooldown -= Time.deltaTime;
+                enemy.ChangeState(EnemyState.idle);
+            }
+            else
             {
                 attackCooldown = stats.attackSpeed;
                 enemy.ChangeState(EnemyState.attack);
-                return;
             }
-            else enemy.ChangeState(EnemyState.idle);
         }
-        else
-        {
-            enemy.ChangeState(EnemyState.trace);
-        }
+        else enemy.ChangeState(EnemyState.trace);
     }
 }

@@ -51,18 +51,14 @@ MonoBehaviour:
     enemyName: SlimeSpiked
     maxHP: 12
     damage: 2
-    attackSpeed: 0
-    attackRange: 1
+    attackSpeed: 3
+    targetRange: 2
     moveSpeed: 1
     attackType: 0
     projectileName: 
     expReward: 5
     goldReward: 1
-    enemyPrefab: {fileID: 1770819368224236610}
-    projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
   currentState: 0
-  attackScript: {fileID: 0}
-  targetor: {fileID: 0}
   currentHP: 0
 --- !u!50 &-5197976179537856895
 Rigidbody2D:
@@ -187,10 +183,5 @@ PrefabInstance:
 --- !u!4 &1276113074968890044 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6180657377470849368, guid: 6964a7683ce3fe3469b99e9368b69fd1, type: 3}
-  m_PrefabInstance: {fileID: 4932480870847917028}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1770819368224236610 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6692498454027931558, guid: 6964a7683ce3fe3469b99e9368b69fd1, type: 3}
   m_PrefabInstance: {fileID: 4932480870847917028}
   m_PrefabAsset: {fileID: 0}

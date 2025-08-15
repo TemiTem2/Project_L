@@ -51,18 +51,14 @@ MonoBehaviour:
     enemyName: SlimeRed
     maxHP: 10
     damage: 1
-    attackSpeed: 0
-    attackRange: 1
+    attackSpeed: 3
+    targetRange: 2
     moveSpeed: 1
     attackType: 0
     projectileName: 
     expReward: 3
     goldReward: 1
-    enemyPrefab: {fileID: 6149090450193341056}
-    projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
   currentState: 0
-  attackScript: {fileID: 0}
-  targetor: {fileID: 0}
   currentHP: 0
 --- !u!50 &6269898982055837501
 Rigidbody2D:
@@ -185,11 +181,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}
---- !u!1 &6149090450193341056 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5008534755244437952, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}
-  m_PrefabInstance: {fileID: 1212619478572968768}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6149090450193341059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5008534755244437955, guid: 45075b6f428ffe04e9c20aef94eefdd0, type: 3}

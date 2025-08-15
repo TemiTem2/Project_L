@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour, IPoolable
         if (protect == null) protect = GameObject.FindGameObjectWithTag("Protect").transform;
 
         if (targetor == null) targetor = gameObject.AddComponent<EnemyTargetor>();
-        targetor.Initialize(player, protect, stats.attackRange);
+        targetor.Initialize(player, protect, stats.targetRange);
         if (ai == null) ai = gameObject.AddComponent<EnemyAI>();
         ai.Initialize(this, stats, targetor);
         if (mover == null) mover = gameObject.AddComponent<EnemyMover>();

@@ -51,18 +51,14 @@ MonoBehaviour:
     enemyName: SlimeBlue
     maxHP: 10
     damage: 1
-    attackSpeed: 0
-    attackRange: 1
+    attackSpeed: 3
+    targetRange: 2
     moveSpeed: 1
     attackType: 0
     projectileName: 
     expReward: 3
     goldReward: 1
-    enemyPrefab: {fileID: 3421015669534653039}
-    projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
   currentState: 0
-  attackScript: {fileID: 0}
-  targetor: {fileID: 0}
   currentHP: 0
 --- !u!50 &875989355527898278
 Rigidbody2D:
@@ -185,11 +181,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dab528ea53eeba489429a176c686bf4, type: 3}
---- !u!1 &3421015669534653039 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8048524908834707888, guid: 6dab528ea53eeba489429a176c686bf4, type: 3}
-  m_PrefabInstance: {fileID: 4669099641043788767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3421015669534653042 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8048524908834707885, guid: 6dab528ea53eeba489429a176c686bf4, type: 3}
