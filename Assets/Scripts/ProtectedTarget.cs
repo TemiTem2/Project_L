@@ -13,11 +13,14 @@ public class ProtectedTarget : MonoBehaviour
     [SerializeField]
     private float currentHP;
     private StageManager stage;
+    private PlayerStatManager playerStatManager;
 
     private void Start()
     {
         stage = FindFirstObjectByType<StageManager>();
-        currentHP = stats.maxHP;
+        playerStatManager = PlayerStatManager.instance;
+        //stats.maxHP = database.protectedTargetHP;
+        currentHP = playerStatManager.protectedTargetHP;
     }
 
     #region Projectile Hit Event

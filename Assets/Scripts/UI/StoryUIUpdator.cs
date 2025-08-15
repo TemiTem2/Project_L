@@ -21,6 +21,8 @@ public class StoryUIUpdator : MonoBehaviour
     [Header("Progress")]
     [SerializeField] private TextMeshProUGUI textProgress;
 
+    private Database database => Database.Instance;
+
     private void Start()
     {
         textProgress.text = GameManager.Instance.currentDayIndex + "ÀÏÂ÷ ³·";
@@ -30,7 +32,15 @@ public class StoryUIUpdator : MonoBehaviour
     {
         nameText.text = name;
         storyText.text = text;
-        imageCharacter.sprite = Image;
+        if(Image != null)
+        {
+            imageCharacter.sprite = Image;
+            return;
+        }
+        else
+        {
+            imageCharacter.sprite = database.currentCharInfo.charIcon;
+        }
     }
 
     public void EnableChoice(string choice0, string choice1)
