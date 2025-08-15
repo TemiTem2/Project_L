@@ -16,14 +16,11 @@ public class EnemyMover: MonoBehaviour
         this.targetor = targetor;
         this.rb = rb;
         this.moveSpeed = moveSpeed;
-    }
 
-    #region Events
-    private void OnEnable()
-    {
         targetor.OnTargetChanged += ChangeTarget;
         enemy.OnStateChanged += ChangeState;
     }
+
     private void OnDisable()
     {
         targetor.OnTargetChanged -= ChangeTarget;
@@ -51,7 +48,6 @@ public class EnemyMover: MonoBehaviour
 
         OnDirectionUpdated?.Invoke(targetDirection);
     }
-    #endregion
 
     public Vector2 GetTargetDirection(Transform transform, Transform target)
     {

@@ -21,3 +21,7 @@ MonoBehaviour:
     enemyNames:
     - Bat
     enemyCounts: 1e000000
+  - waveNumber: 1
+    enemyNames:
+    - Crab
+    enemyCounts: 1e000000

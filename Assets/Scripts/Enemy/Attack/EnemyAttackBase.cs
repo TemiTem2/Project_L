@@ -17,20 +17,15 @@ public abstract class EnemyAttackBase : MonoBehaviour
         this.animEvent = animEvent;
         stats = enemy.stats;
         damage = stats.damage;
-    }
-
-    #region Events
-    protected virtual void OnEnable()
-    {
         enemy.OnStateChanged += InitAttack;
     }
+
     protected virtual void OnDisable()
     {
         enemy.OnStateChanged -= InitAttack;
     }
-    private void InitAttack(EnemyState state)
+    protected void InitAttack(EnemyState state)
     {
         if (state == EnemyState.attack) haveAttacked = false;
     }
-    #endregion
 }

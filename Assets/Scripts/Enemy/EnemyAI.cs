@@ -22,13 +22,9 @@ public class EnemyAI : MonoBehaviour
         this.enemy = enemy;
         this.stats = stats;
         this.targetor = targetor;
-    }
-
-    #region TargetChange Event
-    private void OnEnable()
-    {
         if (enemy != null) targetor.OnTargetChanged += SetTarget;
     }
+
     private void OnDisable()
     {
         if (enemy != null) targetor.OnTargetChanged -= SetTarget;
@@ -37,7 +33,6 @@ public class EnemyAI : MonoBehaviour
     {
         target = newTarget;
     }
-    #endregion
 
     private void EnemyBehavior()
     {
@@ -51,7 +46,7 @@ public class EnemyAI : MonoBehaviour
                 enemy.ChangeState(EnemyState.attack);
                 return;
             }
-            enemy.ChangeState(EnemyState.idle);
+            else enemy.ChangeState(EnemyState.idle);
         }
         else
         {

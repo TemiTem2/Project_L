@@ -9,17 +9,15 @@ public class EnemyAnim : MonoBehaviour
     {
         this.enemy = enemy;
         this.animator = animator;
+        enemy.OnStateChanged += UpdateAnimState;
         UpdateAnimState(EnemyState.idle);
     }
 
-    private void OnEnable()
-    {
-        enemy.OnStateChanged += UpdateAnimState;
-    }
     private void OnDisable()
     {
         enemy.OnStateChanged -= UpdateAnimState;
     }
+
     private void UpdateAnimState(EnemyState state)
     {
         if (animator == null || enemy == null) return;

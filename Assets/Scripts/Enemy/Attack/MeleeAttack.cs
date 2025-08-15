@@ -4,14 +4,16 @@ using UnityEngine;
 public class MeleeAttack : EnemyAttackBase
 {
     private bool isAttacking = false;
+    private bool isPlayer = false;
+    private bool isProtect = false;
 
     public static event Action<float> OnPlayerAttacked;
     public static event Action<float> OnProtectAttacked;
 
     #region Events
-    protected override void OnEnable()
+    public override void Initialize(Enemy enemy, EnemyMover mover, AnimationEventRelay animEvent)
     {
-        base.OnEnable();
+        base.Initialize(enemy, mover, animEvent);
         animEvent.OnAnimationAttack += CheckAttack;
     }
     protected override void OnDisable()
@@ -22,30 +24,35 @@ public class MeleeAttack : EnemyAttackBase
     private void CheckAttack(bool isAttacking)
     {
         this.isAttacking = isAttacking;
+        if (!isAttacking)
+        {
+            haveAttacked = false;
+        }
     }
     #endregion
 
     #region Trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CheckCollide(collision);
+        if (collision.CompareTag("Player")) isPlayer = true;
+        else if (collision.CompareTag("Protect")) isProtect = true;
     }
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        CheckCollide(other);
+        if (collision.CompareTag("Player")) isPlayer = false;
+        else if (collision.CompareTag("Protect")) isProtect = false;
     }
     #endregion
 
-    private void CheckCollide(Collider2D other)
+    private void Update()
     {
         if (!isAttacking || haveAttacked) return;
-
-        if (other.CompareTag("Player"))
+        if (isPlayer)
         {
             OnPlayerAttacked?.Invoke(damage);
             haveAttacked = true;
         }
-        else if (other.CompareTag("Protect"))
+        else if (isProtect)
         {
             OnProtectAttacked?.Invoke(damage);
             haveAttacked = true;

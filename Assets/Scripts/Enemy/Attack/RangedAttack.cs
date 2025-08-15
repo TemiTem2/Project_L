@@ -10,15 +10,10 @@ public class RangedAttack : EnemyAttackBase
     {
         base.Initialize(enemy, mover, animEvent);
         projectileTag = stats.projectileName;
-    }
-
-    #region Events
-    protected override void OnEnable()
-    {
-        base.OnEnable();
         mover.OnDirectionUpdated += UpdateDirection;
         animEvent.OnAnimationProjectile += TryAttack;
     }
+
     protected override void OnDisable()
     {
         base.OnDisable();
@@ -29,7 +24,6 @@ public class RangedAttack : EnemyAttackBase
     {
         attackDirection = direction;
     }
-    #endregion
 
     protected void TryAttack()
     {

@@ -2175,7 +2175,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0f4d3a04e2ce17a4b942b715dc8a6930, type: 2}
   - {fileID: 11400000, guid: 6ed12dac28ba9d746baa8a5f04c88c15, type: 2}
   - {fileID: 11400000, guid: ce3dfb9b56af84e448932a79c4f8b30e, type: 2}
-  currentStageIndex: 2
+  currentStageIndex: 1
   totalStages: 3
   isOver: 0
   isStageEnd: 0
