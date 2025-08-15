@@ -15,10 +15,9 @@ MonoBehaviour:
   stageData:
     stageNumber: 1
     maxWave: 1
-    totalEnemies: 1
-    spawnInterval: 2
+    spawnInterval: 0.5
   waves:
   - waveNumber: 1
     enemyNames:
-    - SlimeBlue
-    enemyCounts: 01000000
+    - Bat
+    enemyCounts: 1e000000

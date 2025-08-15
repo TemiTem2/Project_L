@@ -23,8 +23,4 @@ public class EnemyStats
     [Header("Rewards")]
     public int expReward;
     public int goldReward;
-
-    [Header("Enemy Prefab")]
-    public GameObject enemyPrefab;
-    public GameObject projectilePrefab;
 }

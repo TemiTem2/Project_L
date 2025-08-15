@@ -1,18 +1,29 @@
 using UnityEngine;
 
-public class DirectProjectile : ProjectileBase
+public class DirectProjectile : ProjectileMoveBase
 {
-    public override void SetDirection(Vector2 dir)
+    private Rigidbody2D rb;
+    private Vector2 direction;
+    private float speed;
+
+    public override void Initialize(Vector2 dir, Rigidbody2D rb, float speed)
     {
         direction = dir.normalized;
+        this.rb = rb;
+        this.speed = speed;
     }
 
-    protected override void Move()
+
+    private void Update()
+    {
+        Move();
+    }
+
+    private void Move()
     {
         if (rb != null)
         {
-            rb.linearVelocity = direction * stats.speed;
-            Debug.Log($"Direction: {direction}, rb.velocity: {rb.linearVelocity}");
+            rb.linearVelocity = direction * speed;
         }
     }
 }

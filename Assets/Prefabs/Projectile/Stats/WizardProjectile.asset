@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileName: WizardProjectile
   lifeType: 0
+  moveType: 0
   speed: 5
-  maxDistance: 20
+  maxDistance: 30
   lifetime: 0
-  hitEffect: {fileID: 0}
+  haveAnim: 1
+  hitEffectName: 
   hitSound: {fileID: 0}

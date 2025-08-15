@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour, IPoolable
     #region IPoolable
     public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 direction, float damage)
     {
+        currentState = EnemyState.None;
         ChangeState(EnemyState.idle);
         transform.position = position;
         currentHP = stats.maxHP;
@@ -86,7 +87,7 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public void ChangeState(EnemyState newState)
     {
-        if (currentState == newState) return;
+        if (currentState == newState || currentState == EnemyState.dead) return;
         currentState = newState;
         OnStateChanged?.Invoke(newState);
     }
@@ -111,7 +112,6 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public void StartDead()
     {
-        if(currentState == EnemyState.dead) return;
         ChangeState(EnemyState.dead);
         if (animEvent != null) StartCoroutine(DeadCoroutine());
         else Dead();

@@ -5,17 +5,18 @@ public class ProjectileBase : MonoBehaviour, IPoolable
 {
     [SerializeField] protected ProjectileStats stats;
 
-    protected Animator animator;
-    protected ProjectileAnim anim;
+    private Animator animator;
+    private ProjectileAnim anim;
+    private ProjectileMoveBase move;
+    private ProjectileLifeBase life;
 
     public static event Action<float> OnEnemyProjectileHitPlayer;
     public static event Action<float> OnEnemyProjectileHitProtect;
 
 
-    protected Vector2 direction;
-    protected Vector2 startPos;
-    protected Rigidbody2D rb;
-    protected float timer = 0f;
+    private Vector2 direction;
+    private Rigidbody2D rb;
+    private float lifeFloat;
     private bool isReturned = false;
 
     private float damage;
@@ -29,12 +30,10 @@ public class ProjectileBase : MonoBehaviour, IPoolable
             animator = GetComponent<Animator>();
             anim = gameObject.AddComponent<ProjectileAnim>();
         }
+        AddMove();
+        AddLife();
     }
 
-    void Update()
-    {
-        CheckLife();
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -50,62 +49,56 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         }
     }
 
-    public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 dir, float dam)
+    private void AddMove()
     {
-        ResetProjectile(position, rotation, dir, dam);
-        Move();
+        switch(stats.moveType)
+        {
+            case (MoveType.DirectProjectile):
+                move = gameObject.AddComponent<DirectProjectile>();
+                break;
+            case (MoveType.Laser):
+                break;
+        }
     }
-    private void ResetProjectile(Vector3 position, Quaternion rotation, Vector2 dir, float dam)
+    private void AddLife()
+    {
+        switch(stats.lifeType)
+        {
+            case (LifeType.Distance):
+                life = gameObject.AddComponent<DistanceLife>();
+                lifeFloat = stats.maxDistance;
+                return;
+            case (LifeType.Time):
+                life = gameObject.AddComponent<TimeLife>();
+                lifeFloat = stats.lifetime;
+                return;
+        }
+    }
+
+    #region IPoolable
+    public void OnSpawn(Vector3 position, Quaternion rotation, Vector2 dir, float dam)
     {
         transform.position = position;
         transform.rotation = rotation;
-        timer = 0f;
-        startPos = position;
         direction = dir;
         damage = dam;
         isReturned = false;
-        rb.linearVelocity = Vector2.zero;
         if (stats.haveAnim && animator != null) anim.Initialize(animator);
+        move.Initialize(direction, rb, stats.speed);
+        life.Initialize(lifeFloat, position);
+        life.OnLifeEnd += ReturnToPool;
         gameObject.SetActive(true);
-    }
 
+    }
     public void OnDespawn()
     {
         rb.linearVelocity = Vector2.zero;
+        life.OnLifeEnd -= ReturnToPool;
         gameObject.SetActive(false);
     }
+    #endregion
 
-    private void CheckLife()
-    { 
-        switch(stats.lifeType)
-        {
-            case LifeType.Distance:
-                CheckDistanceLife();
-                break;
-            case LifeType.Time:
-                CheckTimeLife();
-                break;
-            default:
-                Debug.LogWarning("LifeType error");
-                break;
-        }
-    }
 
-    private void CheckDistanceLife()
-    {
-        if (Vector2.Distance(startPos, transform.position) >= stats.maxDistance)
-        {
-            ReturnToPool();
-        }
-    }
-    private void CheckTimeLife()
-    {
-        timer += Time.deltaTime;
-        if (timer >= stats.lifetime)
-        {
-            ReturnToPool();
-        }
-    }
 
     private void ReturnToPool()
     {
@@ -113,13 +106,13 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         isReturned = true;
         ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
     }
-    protected virtual void OnHit()
+    protected void OnHit()
     {
         PlayHitEffect();
         ReturnToPool();
     }
 
-    protected virtual void PlayHitEffect()
+    protected void PlayHitEffect()
     {
         if (stats.hitEffectName != null)
         {
@@ -128,12 +121,4 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         //play hit sound
     }
 
-    protected virtual void Move()
-    {
-
-    }
-
-    public virtual void SetDirection(Vector2 dir)
-    {
-    }
 }

@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6207397895105233939}
@@ -58,11 +58,7 @@ MonoBehaviour:
     projectileName: 
     expReward: 1
     goldReward: 1
-    enemyPrefab: {fileID: 2411355335996282011}
-    projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
   currentState: 0
-  attackScript: {fileID: 0}
-  targetor: {fileID: 0}
   currentHP: 0
 --- !u!50 &-5197976179537856895
 Rigidbody2D:
@@ -184,11 +180,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794abf29435b16a4492d938f2377b71d, type: 3}
---- !u!1 &2411355335996282011 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3952236286179167596, guid: 794abf29435b16a4492d938f2377b71d, type: 3}
-  m_PrefabInstance: {fileID: 1706850036380555767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6207397895105233939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4722842725946367460, guid: 794abf29435b16a4492d938f2377b71d, type: 3}

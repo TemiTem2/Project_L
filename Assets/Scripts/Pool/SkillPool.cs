@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SkillPool : PoolManagerBase<Enemy>
+public class SkillPool : PoolManagerBase<SkillBase>
 {
     public static SkillPool Instance { get; private set; }
 

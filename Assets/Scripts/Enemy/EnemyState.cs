@@ -1,6 +1,7 @@
 
 public enum EnemyState
 {
+    None,
     idle,
     trace,
     attack,

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9085015900171323431}
   - component: {fileID: 8619892577276350838}
   - component: {fileID: -5197976179537856895}
-  - component: {fileID: 4163986025755976189}
+  - component: {fileID: 6128988235298085454}
   m_Layer: 7
   m_Name: Wizard
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3325612821659754260}
@@ -58,11 +58,7 @@ MonoBehaviour:
     projectileName: 
     expReward: 20
     goldReward: 10
-    enemyPrefab: {fileID: 1692701141639435633}
-    projectilePrefab: {fileID: 8704401967662445797, guid: 1cb5eb0f23665434f8fd3956113adffa, type: 3}
   currentState: 0
-  attackScript: {fileID: 0}
-  targetor: {fileID: 0}
   currentHP: 0
 --- !u!50 &-5197976179537856895
 Rigidbody2D:
@@ -91,8 +87,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &4163986025755976189
-CircleCollider2D:
+--- !u!70 &6128988235298085454
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,12 +117,13 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 1
+  m_Offset: {x: 0.6, y: 0.1}
+  m_Size: {x: 0.6, y: 1.2}
+  m_Direction: 0
 --- !u!1001 &3483169915621639126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,11 +181,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00af8e51904b4c6489bba9f868c00753, type: 3}
---- !u!1 &1692701141639435633 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2822378373037528743, guid: 00af8e51904b4c6489bba9f868c00753, type: 3}
-  m_PrefabInstance: {fileID: 3483169915621639126}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3325612821659754260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2193331808219110594, guid: 00af8e51904b4c6489bba9f868c00753, type: 3}

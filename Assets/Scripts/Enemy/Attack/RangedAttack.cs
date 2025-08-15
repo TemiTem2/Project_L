@@ -9,7 +9,7 @@ public class RangedAttack : EnemyAttackBase
     public override void Initialize(Enemy enemy, EnemyMover mover, AnimationEventRelay animEvent)
     {
         base.Initialize(enemy, mover, animEvent);
-        tag = stats.projectileName;
+        projectileTag = stats.projectileName;
     }
 
     #region Events
