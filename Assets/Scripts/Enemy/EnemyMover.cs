@@ -39,10 +39,10 @@ public class EnemyMover: MonoBehaviour
     {
         if (target == null) return;
         Vector2 targetDirection = GetTargetDirection(transform, target);
-        if (state == EnemyState.idle) rb.linearVelocity = Vector2.zero;
-        else if (state == EnemyState.trace)
+        if (state == EnemyState.trace) rb.linearVelocity = targetDirection * moveSpeed;
+        else
         {
-            rb.linearVelocity = targetDirection * moveSpeed;
+            rb.linearVelocity = Vector2.zero;
         }
 
         OnDirectionUpdated?.Invoke(targetDirection);
