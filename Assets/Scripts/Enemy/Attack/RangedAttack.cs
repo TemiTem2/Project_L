@@ -33,7 +33,7 @@ public class RangedAttack : EnemyAttackBase
 
     protected void TryAttack()
     {
-        float angle = Mathf.Atan2(attackDirection.x, attackDirection.y) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         ProjectilePool.Instance.GetObject(projectileTag, transform.position, rotation, attackDirection, damage);

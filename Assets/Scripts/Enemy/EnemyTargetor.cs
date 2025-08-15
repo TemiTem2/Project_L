@@ -38,7 +38,7 @@ public class EnemyTargetor: MonoBehaviour
         float playerSqr = (transform.position - player.position).sqrMagnitude;
         float protectSqr = (transform.position - protect.position).sqrMagnitude;
 
-        if (playerSqr <= sqrAttackRange && protectSqr > sqrAttackRange) return TargetType.Player;
+        if (playerSqr < protectSqr && playerSqr <= sqrAttackRange) return TargetType.Player;
         else return TargetType.Protect;
     }
 
