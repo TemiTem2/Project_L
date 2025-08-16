@@ -83,8 +83,8 @@ public class SaveManager : MonoBehaviour
         var database = Database.Instance;
         database.currentPlayCharName = player.currentPlayCharName;
         database.currentPlayerSkill = player.currentPlayerSkill;
-        database.currentCharInfo = player.currentCharInfo;
-        database.currentSkillInfo = player.currentSkillInfo;
+        database.LoadPlayerData();
+        database.LoadSkillData();
     }
     private void SetStatdata(GameData.StatData stat)
     {
