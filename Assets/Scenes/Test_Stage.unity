@@ -3066,9 +3066,13 @@ MonoBehaviour:
   stages:
   - {fileID: 11400000, guid: 0f4d3a04e2ce17a4b942b715dc8a6930, type: 2}
   - {fileID: 11400000, guid: 6ed12dac28ba9d746baa8a5f04c88c15, type: 2}
-  - {fileID: 11400000, guid: ce3dfb9b56af84e448932a79c4f8b30e, type: 2}
+  - {fileID: 11400000, guid: b6874683476239e4b9d60a5c4a72d2f8, type: 2}
+  - {fileID: 11400000, guid: b0c2e22ae58077f489764ecffb554b72, type: 2}
+  - {fileID: 11400000, guid: a447ee37088f669428740cab4cf7f9f0, type: 2}
+  - {fileID: 11400000, guid: 1ed6ae416e43c8a4f89fc2d5a7f1e2d9, type: 2}
+  - {fileID: 11400000, guid: 5c9e9f21397cee4418d69462f1fb1da1, type: 2}
   currentStageIndex: 2
-  totalStages: 3
+  totalStages: 7
   isOver: 0
   isStageEnd: 0
 --- !u!4 &2142442271

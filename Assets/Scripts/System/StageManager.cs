@@ -23,6 +23,7 @@ public class StageManager : MonoBehaviour
     {
         isStageEnd = false;
         isOver = false;
+        currentStageIndex = GameManager.Instance.currentDayIndex - 1;
         currentStage = stages[currentStageIndex];
         totalEnemiesToSpawn = CountEnemy();
         StartCoroutine(LoadStage());

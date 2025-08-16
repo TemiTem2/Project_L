@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameState currentState = GameState.Main;
-    private int maxDayIndex = 2;
+    private int maxDayIndex = 7;
     public int currentDayIndex;
 
     void Awake()

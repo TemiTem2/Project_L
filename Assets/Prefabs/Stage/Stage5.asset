@@ -10,18 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beb590dd8d494cc43906b3d6c5e684d0, type: 3}
-  m_Name: Stage2
+  m_Name: Stage5
   m_EditorClassIdentifier: 
   stageData:
-    stageNumber: 1
-    maxWave: 2
-    spawnInterval: 0.5
+    stageNumber: 0
+    maxWave: 4
+    spawnInterval: 0
   waves:
-  - waveNumber: 1
+  - waveNumber: 0
+    enemyNames:
+    - SlimeBlue
+    - SlimeGreen
+    - SlimeRed
+    enemyCounts: 070000000500000007000000
+  - waveNumber: 0
     enemyNames:
     - Pebble
-    enemyCounts: 0f000000
-  - waveNumber: 2
+    - SingleSkull
+    enemyCounts: 0400000004000000
+  - waveNumber: 0
     enemyNames:
-    - Crab
-    enemyCounts: 14000000
+    - Wizard
+    enemyCounts: 02000000
+  - waveNumber: 0
+    enemyNames:
+    - WizardRanged
+    enemyCounts: 02000000
