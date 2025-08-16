@@ -1,8 +1,23 @@
+using System;
 using System.IO;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
+    #region Singleton
+    public static SaveManager Instance;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this )
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+    #endregion
+
     private string GetPath(int slot)
     {
         return Path.Combine(Application.persistentDataPath, $"save{slot}.json");
@@ -121,5 +136,15 @@ public class SaveManager : MonoBehaviour
     public bool HasSave(int slot)
     {
         return File.Exists(GetPath(slot));
+    }
+
+    public Tuple<GameData.StageData, string> GetPreview(int slot)
+    {
+        if (!HasSave(slot)) return null;
+        string path = GetPath(slot);
+        if (!File.Exists(path)) return null;
+        string json = File.ReadAllText(path);
+        GameData data  = JsonUtility.FromJson<GameData>(json);
+        return Tuple.Create(data.stageData, data.playerData.currentPlayCharName);
     }
 }

@@ -8,11 +8,11 @@ public class UIManager : MonoBehaviour
     //[SerializeField] private GameObject statUI;
     //[SerializeField] private GameObject dayUI;
     //[SerializeField] private GameObject nightUI;
-    //[SerializeField] private GameObject gameClearUI;
-    //[SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private GameObject settingsUI;
     [SerializeField] private GameObject exitUI;
+    [SerializeField] private GameObject saveUI;
+    [SerializeField] private GameObject loadUI;
 
 
     private void Start()
@@ -38,5 +38,13 @@ public class UIManager : MonoBehaviour
     public void ToggleExitUI()
     {
         exitUI.SetActive(!exitUI.activeSelf);
+    }
+    public void ToggleSaveUI()
+    {
+        saveUI.SetActive(!saveUI.activeSelf);
+    }
+    public void ToggleLoadUI()
+    {
+        loadUI.SetActive(!loadUI.activeSelf);
     }
 }

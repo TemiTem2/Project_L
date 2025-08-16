@@ -13,7 +13,9 @@ public class SceneButtonHandler : MonoBehaviour
         Exit,
         TogglePause,
         ToggleSetting,
-        ToggleExit
+        ToggleExit,
+        ToggleSave,
+        ToggleLoad
     }
 
     public ButtonType buttonType;
@@ -64,6 +66,12 @@ public class SceneButtonHandler : MonoBehaviour
                 break;
             case ButtonType.ToggleExit:
                 PauseManager.Instance.ToggleExit();
+                break;
+            case ButtonType.ToggleSave:
+                UIRelay.Instance.ToggleSaveUI();
+                break;
+            case ButtonType.ToggleLoad:
+                UIRelay.Instance.ToggleLoadUI();
                 break;
         }
     }

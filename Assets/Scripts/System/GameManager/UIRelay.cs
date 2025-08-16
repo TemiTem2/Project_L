@@ -43,4 +43,12 @@ public class UIRelay: MonoBehaviour
     {
         uiManager.ToggleSettingUI();
     }
+    public void ToggleSaveUI()
+    {
+        uiManager.ToggleSaveUI();
+    }
+    public void ToggleLoadUI()
+    {
+        uiManager.ToggleLoadUI();
+    }
 }

@@ -1,7 +1,13 @@
 using UnityEngine;
 
+[System.Serializable]
 public class GameData
 {
+    public PlayerData playerData;
+    public StageData stageData;
+    public StatData statData;
+
+    [System.Serializable]
     public class PlayerData
     {
         public string currentPlayCharName;
@@ -11,6 +17,7 @@ public class GameData
         public Skill currentSkillInfo;
     }
 
+    [System.Serializable]
     public class StatData
     {
         public int level;
@@ -22,13 +29,11 @@ public class GameData
         public StatPoint statPoint;
     }
 
+    [System.Serializable]
     public class StageData
     {
         public GameState currentState;
         public int currentDayIndex;
     }
 
-    public PlayerData playerData;
-    public StageData stageData;
-    public StatData statData;
 }
