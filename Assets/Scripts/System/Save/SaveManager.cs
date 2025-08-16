@@ -99,14 +99,14 @@ public class SaveManager : MonoBehaviour
     private void SetStageData(GameData.StageData stage)
     {
         var gameManager = GameManager.Instance;
-        gameManager.currentState = stage.currentState;
+        gameManager.ChangeState(stage.currentState);
         gameManager.currentDayIndex = stage.currentDayIndex;
     }
     private void SetGameData(GameData data)
     {
+        SetStageData(data.stageData);
         SetPlayerData(data.playerData);
         SetStatdata(data.statData);
-        SetStageData(data.stageData);
     }
     #endregion
     
