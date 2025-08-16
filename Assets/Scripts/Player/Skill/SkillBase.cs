@@ -18,4 +18,10 @@ public class SkillBase : ProjectileBase
 
     protected override void OnHit()
     { }
+
+    protected override void ReturnToPool()
+    {
+        if (stats.haveAnim) animEvent.isDead = false;
+        SkillPool.Instance.ReturnObject(stats.projectileName, this);
+    }
 }
