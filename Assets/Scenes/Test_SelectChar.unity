@@ -2243,7 +2243,6 @@ GameObject:
   - component: {fileID: 1464470088}
   - component: {fileID: 1464470087}
   - component: {fileID: 1464470086}
-  - component: {fileID: 1464470090}
   m_Layer: 5
   m_Name: startbutton
   m_TagString: Untagged
@@ -2327,19 +2326,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1464470088}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1464470090}
-        m_TargetAssemblyTypeName: startbutton, Assembly-CSharp
-        m_MethodName: ResetProtectedTargetHP
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1464470088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2378,20 +2365,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464470084}
   m_CullTransparentMesh: 1
---- !u!114 &1464470090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1464470084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc1cd47279ddf5f4f9fd6f867d2a223e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStat: {fileID: 0}
-  protectedTargetHP: 100
 --- !u!1 &1500396184 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7545160830470025502, guid: 0c5b1a0650f95524ca834d64ad7a89e7, type: 3}

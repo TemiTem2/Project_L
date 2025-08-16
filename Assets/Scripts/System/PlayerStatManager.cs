@@ -6,8 +6,8 @@ public class PlayerStatManager : MonoBehaviour
 {
     public int level = 1;
     public int exp;
-    public int expToNextLevel=100;
-    public int skillPoints;
+    public int expToNextLevel=20;
+    public int skillPoints = 10;
     public float protectedTargetHP = 100f;
 
     public StatPoint statPoint = new StatPoint();
@@ -20,6 +20,7 @@ public class PlayerStatManager : MonoBehaviour
         {
             instance = this; 
             DontDestroyOnLoad(gameObject); 
+            ResetStats();
         }
         else
         {
@@ -152,4 +153,13 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
+    public void ResetStats()
+    {
+        statPoint = new StatPoint();
+        skillPoints = 10;
+        level = 1;
+        exp = 0;
+        expToNextLevel = 20;
+        protectedTargetHP = 100f;
+    }
 }

@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Main:
                 Database.Instance.ResetDatabase();
+                PlayerStatManager.instance.ResetStats();
                 LoadScene("Test_main");
                 break;
             case GameState.Opening:
