@@ -27,7 +27,11 @@ public class Database : MonoBehaviour
     private void Start()
     {
         LoadPlayerData();
-        LoadSkillData();
+        if (currentCharInfo != null)
+        {
+            LoadSkillData();
+            return;
+        }
     }
     public void LoadPlayerData()
     {
