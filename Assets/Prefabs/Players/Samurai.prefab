@@ -166,7 +166,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   anim: {fileID: 3014500805202314346}
-  fieldMin: {x: -14, y: -8}
+  fieldMin: {x: -14, y: 8}
   fieldMax: {x: 14, y: -8}
 --- !u!50 &7462393084946270225
 Rigidbody2D:

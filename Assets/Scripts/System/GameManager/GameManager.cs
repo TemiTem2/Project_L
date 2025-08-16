@@ -10,7 +10,9 @@ public enum GameState
     Day,
     Night,
     GameClear,
-    GameOver
+    GameOver,
+    Opening,
+    Ending,
 }
 public class GameManager : MonoBehaviour
 {
@@ -50,6 +52,9 @@ public class GameManager : MonoBehaviour
             case GameState.Main:
                 LoadScene("Test_main");
                 break;
+            case GameState.Opening:
+                LoadScene("Test_Opening");
+                break;
             case GameState.CharSelect:
                 LoadScene("Test_SelectChar");
                 break;
@@ -58,11 +63,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Day:
                 currentDayIndex++;
-                if (currentDayIndex > maxDayIndex) ChangeState(GameState.GameClear);
+                if (currentDayIndex > maxDayIndex) ChangeState(GameState.Ending);
                 else LoadScene("Test_RandomEvent");
                 break;
             case GameState.Night:
                 LoadScene("Test_Stage");
+                break;
+            case GameState.Ending:
+                LoadScene("Test_Ending");
                 break;
             case GameState.GameClear:
                 currentDayIndex = 0;

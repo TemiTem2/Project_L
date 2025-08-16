@@ -55,8 +55,21 @@ public class StoryManager : MonoBehaviour
     {
         if (isEventEnd)
         {
-            GameManager.Instance.ChangeState(GameState.Stat);
-            return;
+            if(GameManager.Instance.currentState == GameState.Opening)
+            {
+                GameManager.Instance.ChangeState(GameState.CharSelect);
+                return;
+            }
+            if (GameManager.Instance.currentState == GameState.Ending)
+            {
+                GameManager.Instance.ChangeState(GameState.GameClear);
+                return;
+            }
+            else
+            {
+                GameManager.Instance.ChangeState(GameState.Stat);
+                return;
+            }
         }
         switch (contentType)
         {
