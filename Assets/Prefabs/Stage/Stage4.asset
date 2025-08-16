@@ -17,19 +17,19 @@ MonoBehaviour:
     maxWave: 3
     spawnInterval: 0
   waves:
-  - waveNumber: 0
+  - waveNumber: 1
     enemyNames:
     - SlimeBlue
     - SlimeRed
     - SlimeGreen
     enemyCounts: 030000000300000003000000
-  - waveNumber: 0
+  - waveNumber: 2
     enemyNames:
     - Crab
     - Rat
     - Bat
     enemyCounts: 030000000300000003000000
-  - waveNumber: 0
+  - waveNumber: 3
     enemyNames:
     - SlimeSpiked
     enemyCounts: 03000000

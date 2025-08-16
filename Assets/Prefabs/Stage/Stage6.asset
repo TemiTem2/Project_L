@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: Stage6
   m_EditorClassIdentifier: 
   stageData:
-    stageNumber: 0
-    maxWave: 0
+    stageNumber: 6
+    maxWave: 3
     spawnInterval: 0
   waves:
-  - waveNumber: 0
+  - waveNumber: 1
     enemyNames:
     - Wizard
     - WizardRanged
     enemyCounts: 0100000001000000
-  - waveNumber: 0
+  - waveNumber: 2
     enemyNames:
     - SlimeSpiked
     - SingleSkull
     - Bat
     enemyCounts: 05000000050000000f000000
-  - waveNumber: 0
+  - waveNumber: 3
     enemyNames:
     - Wizard
     - WizardRanged

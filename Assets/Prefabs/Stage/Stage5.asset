@@ -13,26 +13,26 @@ MonoBehaviour:
   m_Name: Stage5
   m_EditorClassIdentifier: 
   stageData:
-    stageNumber: 0
+    stageNumber: 5
     maxWave: 4
     spawnInterval: 0
   waves:
-  - waveNumber: 0
+  - waveNumber: 1
     enemyNames:
     - SlimeBlue
     - SlimeGreen
     - SlimeRed
     enemyCounts: 070000000500000007000000
-  - waveNumber: 0
+  - waveNumber: 2
     enemyNames:
     - Pebble
     - SingleSkull
     enemyCounts: 0400000004000000
-  - waveNumber: 0
+  - waveNumber: 3
     enemyNames:
     - Wizard
     enemyCounts: 02000000
-  - waveNumber: 0
+  - waveNumber: 4
     enemyNames:
     - WizardRanged
     enemyCounts: 02000000

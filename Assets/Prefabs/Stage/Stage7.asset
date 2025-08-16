@@ -13,35 +13,35 @@ MonoBehaviour:
   m_Name: Stage7
   m_EditorClassIdentifier: 
   stageData:
-    stageNumber: 0
-    maxWave: 0
+    stageNumber: 7
+    maxWave: 6
     spawnInterval: 0
   waves:
-  - waveNumber: 0
+  - waveNumber: 1
     enemyNames:
     - SlimeRed
     - SlimeGreen
     - SlimeBlue
     enemyCounts: 0a0000000a0000000a000000
-  - waveNumber: 0
+  - waveNumber: 2
     enemyNames:
     - Bat
     - Crab
     - Rat
     enemyCounts: 0a0000000a0000000a000000
-  - waveNumber: 0
+  - waveNumber: 3
     enemyNames:
     - SingleSkull
     enemyCounts: 0a000000
-  - waveNumber: 0
+  - waveNumber: 4
     enemyNames:
     - SlimeSpiked
     enemyCounts: 0a000000
-  - waveNumber: 0
+  - waveNumber: 5
     enemyNames:
     - Wizard
     enemyCounts: 03000000
-  - waveNumber: 0
+  - waveNumber: 6
     enemyNames:
     - Wizard
     - WizardRanged
