@@ -52,7 +52,7 @@ MonoBehaviour:
     maxHP: 50
     damage: 30
     attackSpeed: 10
-    targetRange: 4
+    targetRange: 6
     moveSpeed: 2
     attackType: 1
     projectileName: WizardProjectile
