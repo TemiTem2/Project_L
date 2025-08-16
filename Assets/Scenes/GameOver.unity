@@ -347,10 +347,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8421548990180012680, guid: a1a4d34048072ae4ab25a9eb8e9609d5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1147510953}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -762,6 +758,8 @@ MonoBehaviour:
   pauseUI: {fileID: 0}
   settingsUI: {fileID: 0}
   exitUI: {fileID: 456190539}
+  saveUI: {fileID: 0}
+  loadUI: {fileID: 0}
 --- !u!1 &1148415902
 GameObject:
   m_ObjectHideFlags: 0

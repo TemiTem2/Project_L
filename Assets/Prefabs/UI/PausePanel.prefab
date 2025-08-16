@@ -607,7 +607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eaa3ebb7bd6244e9c9496fd6718781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 6
+  buttonType: 7
 --- !u!1 &4694907032714948214
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eaa3ebb7bd6244e9c9496fd6718781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 8
+  buttonType: 9
 --- !u!1 &4948464746364549039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eaa3ebb7bd6244e9c9496fd6718781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 9
+  buttonType: 10
 --- !u!1 &8274757891998882464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eaa3ebb7bd6244e9c9496fd6718781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 10
+  buttonType: 11
 --- !u!1 &9148484182678658624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eaa3ebb7bd6244e9c9496fd6718781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 7
+  buttonType: 8
 --- !u!1001 &8690938665645241344
 PrefabInstance:
   m_ObjectHideFlags: 0

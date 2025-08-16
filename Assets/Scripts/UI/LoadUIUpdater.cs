@@ -3,11 +3,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class SaveUIUpdater : MonoBehaviour
+public class LoadUIUpdater : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI[] slots;
     [SerializeField] private Button[] slotButtons;
-    [SerializeField] private GameObject saveCheckUI;
+    [SerializeField] private GameObject loadCheckUI;
 
     private int slotSelected;
 
@@ -28,15 +28,11 @@ public class SaveUIUpdater : MonoBehaviour
 
     private void CheckData(int slot)
     {
-        if (!SaveManager.Instance.HasSave(slot))
-        {
-            SaveManager.Instance.Save(slot);
-            UpdateUI(slot);
-        }
+        if (!SaveManager.Instance.HasSave(slot)) return;
         else
         {
             slotSelected = slot;
-            ToggleSaveCheckUI();
+            ToggleLoadCheckUI();
         }
     }
 
@@ -56,14 +52,13 @@ public class SaveUIUpdater : MonoBehaviour
         slots[slot].text = text;
     }
 
-    public void ToggleSaveCheckUI()
+    public void ToggleLoadCheckUI()
     {
-        saveCheckUI.SetActive(!saveCheckUI.activeSelf);
+        loadCheckUI.SetActive(!loadCheckUI.activeSelf);
     }
-    public void ConfirmUpdate()
+    public void ConfirmLoad()
     {
-        ToggleSaveCheckUI();
-        SaveManager.Instance.Save(slotSelected);
-        UpdateUI(slotSelected);
+        ToggleLoadCheckUI();
+        SaveManager.Instance.Load(slotSelected);
     }
 }

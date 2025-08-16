@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 7279190114812809527}
   - component: {fileID: 6484039543146179295}
   m_Layer: 5
-  m_Name: SaveView
+  m_Name: LoadView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2613,10 +2613,10 @@ RectTransform:
   - {fileID: 2442049612198008879}
   m_Father: {fileID: 2396098817436661576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -592, y: 360}
+  m_SizeDelta: {x: 1184, y: 1200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6015324614185634047
 MonoBehaviour:
@@ -5938,7 +5938,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1472140252121397497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ToggleSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1441222681557240365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5951,7 +5963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eaa3ebb7bd6244e9c9496fd6718781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonType: 10
+  buttonType: 11
 --- !u!1 &4881002056220480139
 GameObject:
   m_ObjectHideFlags: 0
@@ -7596,9 +7608,9 @@ GameObject:
   - component: {fileID: 1419293675310067841}
   - component: {fileID: 1326962260213496978}
   - component: {fileID: 2858741823638712902}
-  - component: {fileID: 4229444131821127222}
+  - component: {fileID: 726540409503073412}
   m_Layer: 5
-  m_Name: SavePanel
+  m_Name: LoadPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7664,7 +7676,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4229444131821127222
+--- !u!114 &726540409503073412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7673,7 +7685,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7205842544367963732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d4239affb6537d439017c2b222ce099, type: 3}
+  m_Script: {fileID: 11500000, guid: b517df73d6efc90489cb91508393611f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slots:
@@ -7718,7 +7730,7 @@ MonoBehaviour:
   - {fileID: 5552464745034919270}
   - {fileID: 5830719483357317654}
   - {fileID: 6040798453273174676}
-  saveCheckUI: {fileID: 6864989819346724597}
+  loadCheckUI: {fileID: 6864989819346724597}
 --- !u!1 &7389027970683150243
 GameObject:
   m_ObjectHideFlags: 0
@@ -8216,7 +8228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE30\uC874 \uB370\uC774\uD130\uB294 \uC0AD\uC81C\uB429\uB2C8\uB2E4.\n\uC9C4\uD589\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  m_text: "\uD604\uC7AC \uC9C4\uD589\uB3C4\uB294 \uC0AD\uC81C\uB429\uB2C8\uB2E4.\n\uC9C4\uD589\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8584,7 +8596,7 @@ GameObject:
   - component: {fileID: 3735056822059329131}
   - component: {fileID: 6514938946926638724}
   m_Layer: 5
-  m_Name: ButtonExit
+  m_Name: ButtonCancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8691,9 +8703,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4229444131821127222}
-        m_TargetAssemblyTypeName: SaveUIUpdater, Assembly-CSharp
-        m_MethodName: ToggleSaveCheckUI
+      - m_Target: {fileID: 726540409503073412}
+        m_TargetAssemblyTypeName: LoadUIUpdater, Assembly-CSharp
+        m_MethodName: ToggleLoadCheckUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9358,8 +9370,9 @@ GameObject:
   - component: {fileID: 5168908336438286428}
   - component: {fileID: 1086596228363762769}
   - component: {fileID: 2878471989240805599}
+  - component: {fileID: 4080991594272278814}
   m_Layer: 5
-  m_Name: ButtonSave
+  m_Name: ButtonLoad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9466,9 +9479,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4229444131821127222}
-        m_TargetAssemblyTypeName: SaveUIUpdater, Assembly-CSharp
-        m_MethodName: ConfirmUpdate
+      - m_Target: {fileID: 726540409503073412}
+        m_TargetAssemblyTypeName: LoadUIUpdater, Assembly-CSharp
+        m_MethodName: ConfirmLoad
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9478,6 +9491,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4080991594272278814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8553676469017653983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10eaa3ebb7bd6244e9c9496fd6718781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonType: 11
 --- !u!1 &8569370020460791570
 GameObject:
   m_ObjectHideFlags: 0
