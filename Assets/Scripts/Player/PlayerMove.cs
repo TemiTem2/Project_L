@@ -9,8 +9,8 @@ public class PlayerMove : MonoBehaviour
     protected bool canMove = true; // 플레이어가 이동 가능한지 여부
     protected bool isKnockDown = false;
     
-    protected float currentAttackCooldown = 1f;
-    protected float currentSkill1Cooldown = 0f;
+    public float currentAttackCooldown = 1f;
+    public float currentSkill1Cooldown = 0f;
     public Animator anim;
     protected SpriteRenderer spriteRenderer;
     protected StateManager stateManager;
