@@ -5,11 +5,13 @@ public class EnemyAI : MonoBehaviour
 {
     private Enemy enemy;
     private EnemyStats stats;
+    private AttackType attackType;
 
     private Transform target;
     private float attackCooldown = 0f;
     private bool isCollided = false;
     private int collideCount = 0;
+    private bool isInRange = false;
 
     private EnemyTargetor targetor;
 
@@ -24,17 +26,31 @@ public class EnemyAI : MonoBehaviour
         this.enemy = enemy;
         this.stats = stats;
         this.targetor = targetor;
+        attackType = stats.attackType;
+        isInRange = false;
         isCollided = false;
-        if (enemy != null) targetor.OnTargetChanged += SetTarget;
+        if (enemy != null)
+        {
+            targetor.OnTargetChanged += SetTarget;
+            targetor.OnTargetInRange += CheckRange;
+        }
     }
 
     private void OnDisable()
     {
-        if (enemy != null) targetor.OnTargetChanged -= SetTarget;
+        if (enemy != null)
+        {
+            targetor.OnTargetChanged -= SetTarget;
+            targetor.OnTargetInRange -= CheckRange;
+        }
     }
     private void SetTarget(Transform newTarget)
     {
         target = newTarget;
+    }
+    private void CheckRange(bool newRange)
+    {
+        isInRange = newRange;
     }
 
 
@@ -59,19 +75,40 @@ public class EnemyAI : MonoBehaviour
     private void EnemyBehavior()
     {
         if (target == null) return;
-        if (isCollided)
+        if (attackType == AttackType.melee)
         {
-            if (attackCooldown > 0f)
+            if (isCollided)
             {
-                attackCooldown -= Time.deltaTime;
-                enemy.ChangeState(EnemyState.idle);
+                if (attackCooldown > 0f)
+                {
+                    attackCooldown -= Time.deltaTime;
+                    enemy.ChangeState(EnemyState.idle);
+                }
+                else
+                {
+                    attackCooldown = stats.attackSpeed;
+                    enemy.ChangeState(EnemyState.attack);
+                }
             }
-            else
-            {
-                attackCooldown = stats.attackSpeed;
-                enemy.ChangeState(EnemyState.attack);
-            }
+            else enemy.ChangeState(EnemyState.trace);
         }
-        else enemy.ChangeState(EnemyState.trace);
+        else if (attackType == AttackType.ranged)
+        {
+            if (isInRange)
+            {
+                if (attackCooldown > 0f)
+                {
+                    attackCooldown -= Time.deltaTime;
+                    enemy.ChangeState(EnemyState.idle);
+                }
+                else
+                {
+                    attackCooldown = stats.attackSpeed;
+                    enemy.ChangeState(EnemyState.attack);
+                }
+            }
+
+            else enemy.ChangeState(EnemyState.trace);
+        }
     }
 }

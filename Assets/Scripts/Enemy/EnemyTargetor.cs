@@ -10,6 +10,7 @@ public class EnemyTargetor: MonoBehaviour
     private TargetType currentTarget = TargetType.None;
 
     public event Action<Transform> OnTargetChanged;
+    public event Action<bool> OnTargetInRange;
 
     private void Update()
     {
@@ -21,9 +22,10 @@ public class EnemyTargetor: MonoBehaviour
         this.player = player;
         this.protect = protect;
         sqrTargetRange = targetRange * targetRange;
+        currentTarget = TargetType.None;
     }
 
-    public void CheckTarget()
+    private void CheckTarget()
     {
         TargetType newTarget = UpdateTarget();
         if (currentTarget != newTarget)
@@ -33,16 +35,23 @@ public class EnemyTargetor: MonoBehaviour
         }
     }
 
-    public TargetType UpdateTarget()
+    private void CheckRange(float playerSqr, float protectSqr)
+    {
+        OnTargetInRange?.Invoke(sqrTargetRange >= playerSqr || sqrTargetRange >= protectSqr);
+    }
+
+    private TargetType UpdateTarget()
     {
         float playerSqr = (transform.position - player.position).sqrMagnitude;
         float protectSqr = (transform.position - protect.position).sqrMagnitude;
+
+        CheckRange(playerSqr, protectSqr);
 
         if (playerSqr < protectSqr && playerSqr <= sqrTargetRange) return TargetType.Player;
         else return TargetType.Protect;
     }
 
-    public Transform GetTargetTransform(TargetType targetType)
+    private Transform GetTargetTransform(TargetType targetType)
     {
         switch (targetType)
         {
