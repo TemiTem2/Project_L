@@ -61,4 +61,13 @@ public class Database : MonoBehaviour
             }
         }
     }
+
+    public void ResetDatabase()
+    {
+        currentPlayCharName = string.Empty;
+        currentPlayerSkill = string.Empty;
+
+        currentCharInfo = null;
+        currentSkillInfo = null;
+    }
 }
