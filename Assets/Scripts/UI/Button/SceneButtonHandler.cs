@@ -13,7 +13,8 @@ public class SceneButtonHandler : MonoBehaviour
         Exit,
         TogglePause,
         ToggleSetting,
-        ToggleExit
+        ToggleExit,
+        ChangeToOpening
     }
 
     public ButtonType buttonType;
@@ -40,6 +41,9 @@ public class SceneButtonHandler : MonoBehaviour
         {
             case ButtonType.ChangeToMain:
                 GameManager.Instance.ChangeState(GameState.Main);
+                break;
+            case ButtonType.ChangeToOpening:
+                GameManager.Instance.ChangeState(GameState.Opening);
                 break;
             case ButtonType.ChangeToCharSelect:
                 GameManager.Instance.ChangeState(GameState.CharSelect);
