@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         {
             EnemyPool.Instance.ReturnAllObjects();
             ProjectilePool.Instance.ReturnAllObjects();
+            SkillPool.Instance.ReturnAllObjects();
         }
         currentState = newState;
         Debug.Log(currentState + "·Î ÀüÈ¯");
