@@ -6,6 +6,7 @@ public class SceneButtonHandler : MonoBehaviour
     public enum ButtonType
     {
         ChangeToMain,
+        ChangeToOpening,
         ChangeToCharSelect,
         ChangeToStat,
         ChangeToDay,
@@ -42,6 +43,9 @@ public class SceneButtonHandler : MonoBehaviour
         {
             case ButtonType.ChangeToMain:
                 GameManager.Instance.ChangeState(GameState.Main);
+                break;
+            case ButtonType.ChangeToOpening:
+                GameManager.Instance.ChangeState(GameState.Opening);
                 break;
             case ButtonType.ChangeToCharSelect:
                 GameManager.Instance.ChangeState(GameState.CharSelect);

@@ -35,11 +35,23 @@ public class StoryUIUpdator : MonoBehaviour
         if(Image != null)
         {
             imageCharacter.sprite = Image;
+            imageCharacter.color = new Color(255, 255, 255, 255);
             return;
         }
         else
         {
-            imageCharacter.sprite = database.currentCharInfo.charIcon;
+            if(database.currentCharInfo == null)
+            {
+                imageCharacter.color = new Color(0, 0, 0, 0);
+                return;
+            }
+            else
+            {
+                imageCharacter.sprite = database.currentCharInfo.charIcon;
+                imageCharacter.color = new Color(255,255,255,255);
+                return;
+            }
+                
         }
     }
 

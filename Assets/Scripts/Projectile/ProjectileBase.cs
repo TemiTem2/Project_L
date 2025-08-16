@@ -17,7 +17,7 @@ public class ProjectileBase : MonoBehaviour, IPoolable
     private ProjectileAnim anim;
     private ProjectileMoveBase move;
     private ProjectileLifeBase life;
-    private AnimationEventRelay animEvent;
+    protected AnimationEventRelay animEvent;
 
     public static event Action<float> OnEnemyProjectileHitPlayer;
     public static event Action<float> OnEnemyProjectileHitProtect;
@@ -118,7 +118,7 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         }
     }
 
-    protected void StartDead()
+    private void StartDead()
     {
         ChangeState(ProjState.Dead);
         if (animEvent != null) StartCoroutine(DeadCoroutine());
@@ -131,9 +131,9 @@ public class ProjectileBase : MonoBehaviour, IPoolable
         ReturnToPool();
     }
 
-    private void ReturnToPool()
+    protected virtual void ReturnToPool()
     {
-        animEvent.isDead = false;
+        if (stats.haveAnim) animEvent.isDead = false;
         ProjectilePool.Instance.ReturnObject(stats.projectileName, this);
     }
     protected virtual void OnHit()

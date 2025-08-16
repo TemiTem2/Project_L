@@ -20,8 +20,8 @@ MonoBehaviour:
   - waveNumber: 1
     enemyNames:
     - Pebble
-    enemyCounts: 1e000000
+    enemyCounts: 0f000000
   - waveNumber: 2
     enemyNames:
     - Crab
-    enemyCounts: 1e000000
+    enemyCounts: 14000000

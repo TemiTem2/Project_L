@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb590dd8d494cc43906b3d6c5e684d0, type: 3}
+  m_Name: Stage7
+  m_EditorClassIdentifier: 
+  stageData:
+    stageNumber: 7
+    maxWave: 6
+    spawnInterval: 0
+  waves:
+  - waveNumber: 1
+    enemyNames:
+    - SlimeRed
+    - SlimeGreen
+    - SlimeBlue
+    enemyCounts: 0a0000000a0000000a000000
+  - waveNumber: 2
+    enemyNames:
+    - Bat
+    - Crab
+    - Rat
+    enemyCounts: 0a0000000a0000000a000000
+  - waveNumber: 3
+    enemyNames:
+    - SingleSkull
+    enemyCounts: 0a000000
+  - waveNumber: 4
+    enemyNames:
+    - SlimeSpiked
+    enemyCounts: 0a000000
+  - waveNumber: 5
+    enemyNames:
+    - Wizard
+    enemyCounts: 03000000
+  - waveNumber: 6
+    enemyNames:
+    - Wizard
+    - WizardRanged
+    - SingleSkull
+    - SlimeSpiked
+    enemyCounts: 05000000050000001400000014000000

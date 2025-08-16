@@ -8,6 +8,8 @@ public class SelectingChar : MonoBehaviour
     Database database;
     SelectingSkill selectingSkill;
 
+    // UI Elements
+    [SerializeField] GameObject charSelectPanel;
     [SerializeField] Image charImage;
     [SerializeField] TextMeshProUGUI charNameText;
     [SerializeField] TextMeshProUGUI charDescriptionText;
@@ -28,6 +30,7 @@ public class SelectingChar : MonoBehaviour
         charImage.sprite = database.currentCharInfo.charIcon;
         charNameText.text = database.currentCharInfo.charName;
         charDescriptionText.text = database.currentCharInfo.charDesc;
+        charSelectPanel.SetActive(true);
         selectingSkill.LoadCharSkill();
     }
 }
