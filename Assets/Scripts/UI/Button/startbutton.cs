@@ -3,6 +3,7 @@ using UnityEngine;
 public class startbutton : MonoBehaviour
 {
     public PlayerStatManager playerStat;
+    [SerializeField] float protectedTargetHP = 100f;
     void Start()
     {
         playerStat = PlayerStatManager.instance;
@@ -10,6 +11,6 @@ public class startbutton : MonoBehaviour
 
     public void ResetProtectedTargetHP()
     {
-        playerStat.protectedTargetHP = 100f;
+        playerStat.protectedTargetHP = protectedTargetHP;
     }
 }
