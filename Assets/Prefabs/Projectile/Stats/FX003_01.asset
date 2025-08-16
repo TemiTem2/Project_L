@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ad37e9ddc81644eaa8f03a0a1930af, type: 3}
   m_Name: FX003_01
   m_EditorClassIdentifier: 
-  projectileName: SmashingGroundFX
+  projectileName: SmashingGround
   lifeType: 1
   moveType: 0
   speed: 10
