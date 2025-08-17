@@ -2438,6 +2438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1862140068}
   - component: {fileID: 1862140067}
+  - component: {fileID: 1862140069}
   m_Layer: 0
   m_Name: StoryManager
   m_TagString: Untagged
@@ -2466,6 +2467,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d656764c1f56fb141a64b45d4eca2af1, type: 2}
   - {fileID: 11400000, guid: 834bdd81ec9c8e748a1fe07e4fb2625d, type: 2}
   - {fileID: 11400000, guid: 7d3ddd191e44ef04e817d1bb16ad07ff, type: 2}
+  levelupManager: {fileID: 1862140069}
   isEventEnd: 0
 --- !u!4 &1862140068
 Transform:
@@ -2482,6 +2484,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1862140069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862140066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ef2572c9d62b74cac3e04b21e889b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1972625611
 GameObject:
   m_ObjectHideFlags: 0

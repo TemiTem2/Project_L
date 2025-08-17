@@ -21,7 +21,7 @@ public class StoryManager : MonoBehaviour
     private string currentName;
 
     private PlayerStatManager playerstat => PlayerStatManager.instance;
-    private Database database => Database.Instance;
+    [SerializeField] LevelupManager levelupManager;
 
     public Dictionary<RewardType, int> reward = new();
     public bool isEventEnd = false; //랜덤이벤트 종료
@@ -132,7 +132,7 @@ public class StoryManager : MonoBehaviour
                     playerstat.protectedTargetHP += currentParData.rewards[rewardIndex].amount;
                     break;
                 case RewardType.Exp:
-                    playerstat.exp += currentParData.rewards[rewardIndex].amount;
+                    levelupManager.AddExp(currentParData.rewards[rewardIndex].amount);
                     break;
                 default:
                     Debug.LogWarning("Unknown Reward Type");
@@ -156,7 +156,7 @@ public class StoryManager : MonoBehaviour
                     playerstat.protectedTargetHP += currentParData.rewards[rewardIndex].amount;
                     break;
                 case RewardType.Exp:
-                    playerstat.exp += currentParData.rewards[rewardIndex].amount;
+                    levelupManager.AddExp(currentParData.rewards[rewardIndex].amount);
                     break;
                 default:
                     Debug.LogWarning("Unknown Reward Type");
