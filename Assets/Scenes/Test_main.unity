@@ -2358,10 +2358,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Project L
+  m_text: Protect I
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7c2483f1773512642afc0a08675ca78e, type: 2}
-  m_sharedMaterial: {fileID: -7740216683531617423, guid: 7c2483f1773512642afc0a08675ca78e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cde32ceeff475964ab0c91458dcd5745, type: 2}
+  m_sharedMaterial: {fileID: 7723550250051098430, guid: cde32ceeff475964ab0c91458dcd5745, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
