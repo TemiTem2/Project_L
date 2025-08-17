@@ -109,6 +109,7 @@ public class SaveManager : MonoBehaviour
         SetStageData(data.stageData);
         SetPlayerData(data.playerData);
         SetStatdata(data.statData);
+        Time.timeScale = 1f;
     }
     #endregion
     

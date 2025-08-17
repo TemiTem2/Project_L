@@ -759,6 +759,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df675f72f085c6a4eab06c5c2e91984b, type: 3}
+--- !u!1 &343229673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7205842544367963732, guid: df675f72f085c6a4eab06c5c2e91984b, type: 3}
+  m_PrefabInstance: {fileID: 343229672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &343229674 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1419293675310067841, guid: df675f72f085c6a4eab06c5c2e91984b, type: 3}
@@ -1651,6 +1656,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dfe49e56dd10ff489d586d921fc8213, type: 3}
+--- !u!1 &1196991418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7205842544367963732, guid: 3dfe49e56dd10ff489d586d921fc8213, type: 3}
+  m_PrefabInstance: {fileID: 1196991417}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1196991419 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1419293675310067841, guid: 3dfe49e56dd10ff489d586d921fc8213, type: 3}
@@ -2948,8 +2958,8 @@ MonoBehaviour:
   pauseUI: {fileID: 2004918351}
   settingsUI: {fileID: 1757639276}
   exitUI: {fileID: 6140512165292355656}
-  saveUI: {fileID: 0}
-  loadUI: {fileID: 0}
+  saveUI: {fileID: 343229673}
+  loadUI: {fileID: 1196991418}
 --- !u!1 &1928542792
 GameObject:
   m_ObjectHideFlags: 0
