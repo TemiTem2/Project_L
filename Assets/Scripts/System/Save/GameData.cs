@@ -34,6 +34,7 @@ public class GameData
     {
         public GameState currentState;
         public int currentDayIndex;
+        public int highScore;
     }
 
 }

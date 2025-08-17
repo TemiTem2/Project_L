@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameState currentState = GameState.Main;
-    private int maxDayIndex = 7;
+    public int maxDayIndex = 7;
     public int currentDayIndex;
-
+    public int highScore;
     void Awake()
     {
         if (Instance == null)
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.Main:
+                currentDayIndex = 0;
                 Database.Instance.ResetDatabase();
                 PlayerStatManager.instance.ResetStats();
                 LoadScene("Test_main");
@@ -76,11 +77,12 @@ public class GameManager : MonoBehaviour
                 LoadScene("Test_Ending");
                 break;
             case GameState.GameClear:
-                currentDayIndex = 0;
+                highScore = currentDayIndex;
                 LoadScene("GameClear");
                 break;
             case GameState.GameOver:
-                currentDayIndex = 0;
+                if (currentDayIndex > highScore)
+                    highScore = currentDayIndex;
                 LoadScene("GameOver");
                 break;
         }

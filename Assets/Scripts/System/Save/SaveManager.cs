@@ -55,7 +55,8 @@ public class SaveManager : MonoBehaviour
         return new GameData.StageData
         {
             currentState = gameManager.currentState,
-            currentDayIndex = gameManager.currentDayIndex
+            currentDayIndex = gameManager.currentDayIndex,
+            highScore = gameManager.highScore
         };
     }    
     private GameData CurrentData()
@@ -101,6 +102,7 @@ public class SaveManager : MonoBehaviour
         var gameManager = GameManager.Instance;
         gameManager.ChangeState(stage.currentState);
         gameManager.currentDayIndex = stage.currentDayIndex;
+        gameManager.highScore = stage.highScore;
     }
     private void SetGameData(GameData data)
     {
