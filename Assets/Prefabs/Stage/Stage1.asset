@@ -19,7 +19,7 @@ MonoBehaviour:
   waves:
   - waveNumber: 1
     enemyNames:
-    - WizardRanged
+    - SlimeBlue
     enemyCounts: 03000000
   - waveNumber: 2
     enemyNames:
